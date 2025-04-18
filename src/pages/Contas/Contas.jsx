@@ -1,207 +1,285 @@
 // src/pages/Contas/Contas.jsx
-import React, { useState, useMemo } from 'react';
-import { Table, Tag, Input, Checkbox, Space, Typography, Tooltip, Card, Row, Col } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import './Contas.css'; // Estilos específicos
+import React, { useState, useEffect, useMemo, useCallback } from 'react'; // Adicionar useCallback
+import { Table, Tag, Input, Checkbox, Space, Typography, Tooltip, Card, Row, Col, Spin, Alert, message, Pagination } from 'antd'; // Adicionar Spin, Alert, message, Pagination
+import { InfoCircleOutlined, LoadingOutlined } from '@ant-design/icons';
+import debounce from 'lodash.debounce'; // Importar debounce do lodash
+import './Contas.css';
 
 const { Search } = Input;
 const { Text, Title } = Typography;
 
-// --- Dados Mock (Substitua por dados reais da sua API/estado global) ---
-const initialUserData = [
-    { id: '1', email: 'usuario1@email.com', nome: 'Alice Silva', plano: 'Premium', expiracao: '2024-12-31', diasRestantes: null, },
-    { id: '2', email: 'joao.souza@email.com', nome: 'João Souza', plano: 'Free', expiracao: null, diasRestantes: 7, },
-    { id: '3', email: 'maria.pereira@email.com', nome: 'Maria Pereira', plano: 'Basic', expiracao: '2024-08-15', diasRestantes: null, },
-    { id: '4', email: 'carlos.rodrigues@email.com', nome: 'Carlos Rodrigues', plano: 'Free', expiracao: null, diasRestantes: 0, },
-    { id: '5', email: 'ana.costa@email.com', nome: 'Ana Costa', plano: 'Premium', expiracao: '2025-03-01', diasRestantes: null, },
-    // Adicione mais dados mock se necessário
-];
-// --- Fim dos Dados Mock ---
+// --- Definir URL da API e API Key ---
+const API_URL = process.env.REACT_APP_API_URL || 'https://smart-api.ftslwl.easypanel.host';
+const API_KEY = process.env.REACT_APP_INTERNAL_API_KEY || 'SUA_API_KEY_AQUI'; // <<< COLOQUE SUA API KEY REAL
 
-// Mapeamento de cores para Tags de Plano
+// --- Funções Helper ---
 const getPlanTagColor = (plano) => {
-   switch (plano) {
-    case 'Free': return 'default'; // Cor padrão AntD (cinza)
-    case 'Basic': return 'blue'; // Cor azul AntD
-    case 'Premium': return '#56935c'; // Nossa cor verde padrão
-    default: return 'default';
-  }
+    if (!plano) return 'default';
+    const lowerPlano = plano.toLowerCase();
+    if (lowerPlano.includes('free') || lowerPlano.includes('trial')) return 'default';
+    if (lowerPlano.includes('basic')) return 'blue';
+    if (lowerPlano.includes('premium')) return '#56935c'; // Verde
+    return 'default';
 };
 
-// Opções de Plano para os filtros Checkbox
+// Opções de Plano para filtro (pode ser dinâmico no futuro)
 const planOptions = [
-  { label: 'Free', value: 'Free' },
-  { label: 'Basic', value: 'Basic' },
-  { label: 'Premium', value: 'Premium' },
+  { label: 'Free', value: 'Free' }, // Usar valor exato ou padrão do DB
+  { label: 'Basic', value: 'Basic' }, // Ajustar valor se o nome no DB for diferente
+  { label: 'Premium', value: 'Premium' }, // Ajustar valor
+  // Adicione 'Trial' se quiser filtrar por trial especificamente
 ];
 
-// Componente da página Contas
+// --- Componente ---
 const Contas = () => {
-  const [userData] = useState(initialUserData); // Dados da tabela
-  const [searchText, setSearchText] = useState(''); // Texto da busca
-  const [selectedPlans, setSelectedPlans] = useState([]); // Planos selecionados no filtro (array)
+  // --- Estados ---
+  const [userData, setUserData] = useState([]); // Dados da página atual
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // Filtros e Paginação
+  const [searchText, setSearchText] = useState('');
+  const [selectedPlans, setSelectedPlans] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10); // Ou o default da sua API
+  const [totalUsers, setTotalUsers] = useState(0); // Total de usuários para paginação
 
-  // Definição das colunas da tabela (SEM SENHA)
-  const columns = [
+  // --- Função para buscar dados da API com filtros e paginação ---
+  const fetchUsers = useCallback(async (page = 1, limit = 10, search = '', plans = []) => {
+    setLoading(true);
+    setError(null);
+    console.log(`Buscando usuários: Pag=${page}, Lim=${limit}, Search='${search}', Plans=[${plans.join(',')}]`);
+
+    // Monta Query String
+    const query = new URLSearchParams({
+        page: page.toString(),
+        limit: limit.toString(),
+    });
+    if (search) query.set('search', search);
+    // Enviar múltiplos planos como parâmetro repetido ou separado por vírgula?
+    // Vamos assumir que a API aceita separado por vírgula por simplicidade aqui.
+    // Se a API espera ?plan=Basic&plan=Premium, ajuste a lógica.
+    if (plans.length > 0) query.set('plan', plans.join(',')); // Ex: ?plan=Basic,Premium
+
+    try {
+      const response = await fetch(`${API_URL}/api/v1/usuarios/allUsers?${query.toString()}`, { // <<< Usar endpoint /usuarios
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': API_KEY
+        },
+      });
+
+      if (!response.ok) {
+        let errorMsg = `Erro ${response.status}`;
+        try { const errData = await response.json(); errorMsg = errData.error || errorMsg; } catch (e) {}
+        throw new Error(errorMsg);
+      }
+
+      const data = await response.json();
+      console.log("Usuários recebidos:", data);
+
+      // Formatar os dados recebidos
+      const formattedData = (data.users || []).map(user => {
+            let diasRestantes = null;
+            let expiracaoFormatada = null;
+            let planoReal = user.plano || 'Free';
+
+            // Calcula dias restantes do trial
+             if (!user.assinatura_ativa && user.trial_fim) {
+                 const trialEnd = new Date(user.trial_fim);
+                 const hoje = new Date();
+                 if (!isNaN(trialEnd.getTime())) {
+                    const diff = Math.ceil((trialEnd.setHours(12,0,0,0) - hoje.setHours(12,0,0,0)) / (1000 * 60 * 60 * 24));
+                    diasRestantes = diff < 0 ? 0 : diff;
+                 }
+                 planoReal = `Free (Trial ${diasRestantes ?? '?'}d)`; // Indica trial
+             }
+             // Formata data de expiração da assinatura
+             else if (user.assinatura_ativa && user.assinatura_expira_em) {
+                 const expDate = new Date(user.assinatura_expira_em);
+                 if (!isNaN(expDate.getTime())) {
+                     expiracaoFormatada = expDate.toISOString().split('T')[0];
+                 }
+             } else if (!user.assinatura_ativa) { // Garante Free se não tem nada
+                planoReal = 'Free';
+             } else if (user.assinatura_ativa && !user.plano) { // Caso estranho
+                 planoReal = 'Pago'; // Ou 'Pago (Desconhecido)'
+             }
+
+            return {
+                id: user.id_usuario,
+                email: user.email || '-',
+                nome: user.nome || '-',
+                plano: planoReal, // Nome formatado com trial
+                planoBase: user.plano || 'Free', // Nome base para filtro
+                expiracao: expiracaoFormatada,
+                diasRestantes: diasRestantes,
+                telefone: user.telefone // Incluir telefone se precisar exibir/usar
+            };
+        });
+
+      setUserData(formattedData); // Atualiza dados da tabela (página atual)
+      setTotalUsers(data.total || 0); // Atualiza contagem total para paginação
+      setCurrentPage(data.currentPage || page); // Atualiza página atual (vindo da API)
+
+    } catch (err) {
+      console.error("Erro ao buscar usuários:", err);
+      setError(err.message || "Falha ao carregar lista de contas.");
+      setUserData([]);
+      setTotalUsers(0);
+    } finally {
+      setLoading(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // useCallback para evitar recriação desnecessária
+
+  // --- useEffect para buscar dados ao montar e quando filtros/página mudam ---
+  useEffect(() => {
+    // Chama fetchUsers com os estados atuais de filtro e paginação
+    // Usar debounce aqui para a busca de texto seria ideal para não chamar a API a cada letra digitada
+    fetchUsers(currentPage, pageSize, searchText, selectedPlans);
+  }, [currentPage, pageSize, searchText, selectedPlans, fetchUsers]); // Dependências
+
+  // --- Handler Debounced para Busca (Opcional, mas recomendado) ---
+  // Instalar lodash: npm install lodash.debounce
+  const debouncedSearch = useCallback(
+     debounce((value) => {
+         setCurrentPage(1); // Volta para a primeira página ao buscar
+         setSearchText(value);
+     }, 500), // Espera 500ms após usuário parar de digitar
+     [] // Sem dependências para o debounce em si
+  );
+
+  const handleSearchChange = (e) => {
+     debouncedSearch(e.target.value);
+  };
+  // --- Fim do Debounce ---
+
+  // --- Handler para Mudança de Página ---
+   const handlePageChange = (page, size) => {
+     setCurrentPage(page);
+     // Se o tamanho da página mudou, pode ser necessário reajustar
+     if (size !== pageSize) {
+        setPageSize(size); // Atualiza tamanho da página no estado
+     }
+     // O useEffect vai disparar a busca com a nova página/tamanho
+   };
+
+    // --- Handler para Mudança de Filtro de Plano ---
+    const handlePlanFilterChange = (checkedValues) => {
+        setCurrentPage(1); // Volta para a primeira página ao filtrar
+        setSelectedPlans(checkedValues);
+        // O useEffect vai disparar a busca com os novos planos
+    };
+
+
+  // --- Colunas da Tabela (Ajustadas para usar dados formatados) ---
+   const columns = [
+    { title: 'Email', dataIndex: 'email', key: 'email', sorter: (a, b) => (a.email || '').localeCompare(b.email || ''), width: 250, ellipsis: true },
+    { title: 'Nome', dataIndex: 'nome', key: 'nome', sorter: (a, b) => (a.nome || '').localeCompare(b.nome || ''), width: 200, ellipsis: true },
+    // { title: 'Telefone', dataIndex: 'telefone', key: 'telefone', width: 150 }, // Descomente se quiser exibir
     {
-      title: 'Email', // Título da coluna
-      dataIndex: 'email', // Campo do objeto de dados a ser exibido
-      key: 'email', // Chave única da coluna
-      sorter: (a, b) => a.email.localeCompare(b.email), // Habilita ordenação alfabética
-      width: 250, // Exemplo de largura fixa
+      title: 'Plano', dataIndex: 'plano', key: 'plano', width: 150, align: 'center',
+      render: (plano) => {
+        const planNameOnly = String(plano).split(' ')[0];
+        return <Tag color={getPlanTagColor(planNameOnly)} key={plano}>{plano ? String(plano).toUpperCase() : ''}</Tag>;
+      }
     },
     {
-      title: 'Nome',
-      dataIndex: 'nome',
-      key: 'nome',
-      sorter: (a, b) => a.nome.localeCompare(b.nome), // Habilita ordenação alfabética
-      width: 200, // Exemplo de largura fixa
-    },
-    // COLUNA SENHA FOI REMOVIDA
-    {
-      title: 'Plano',
-      dataIndex: 'plano',
-      key: 'plano',
-      // Renderização customizada para exibir a Tag colorida
-      render: (plano) => (
-        <Tag color={getPlanTagColor(plano)} key={plano}>
-          {plano ? plano.toUpperCase() : ''} {/* Garante uppercase e trata valor nulo */}
-        </Tag>
-      ),
-       width: 120, // Exemplo de largura fixa
-       align: 'center',
-    },
-    {
-      title: 'Expiração / Dias Restantes',
-      key: 'expiracao', // Usamos key pois não há um dataIndex único para os dois casos
-      align: 'center', // Alinha conteúdo no centro
-      width: 200, // Exemplo de largura fixa
-      // Ordenação customizada
-      sorter: (a, b) => {
-          const valA = a.plano === 'Free' ? (a.diasRestantes ?? -Infinity) : new Date(a.expiracao); // Trata dias nulos
-          const valB = b.plano === 'Free' ? (b.diasRestantes ?? -Infinity) : new Date(b.expiracao); // Trata dias nulos
-          const dateA = new Date(a.expiracao + 'T00:00:00');
-          const dateB = new Date(b.expiracao + 'T00:00:00');
-
-          // Lógica de ordenação: Free com dias > Free com 0 dias > Datas válidas (mais próximas primeiro) > Datas inválidas
-          if (a.plano === 'Free' && b.plano !== 'Free') return -1;
-          if (a.plano !== 'Free' && b.plano === 'Free') return 1;
-          if (a.plano === 'Free' && b.plano === 'Free') return valB - valA; // Ordena dias descrescente
-
-          // Ordena por data (datas inválidas ou não existentes vão para o final)
-          if (isNaN(dateA.getTime()) && isNaN(dateB.getTime())) return 0;
-          if (isNaN(dateA.getTime())) return 1;
-          if (isNaN(dateB.getTime())) return -1;
-          return dateA - dateB; // Ordena datas válidas (mais antigas primeiro)
-       },
-       // Renderização customizada para exibir dias ou data formatada
+      title: 'Expiração / Dias Trial', key: 'expiracao', align: 'center', width: 200,
+      // Sorter pode precisar de ajuste fino se API não ordenar
       render: (text, record) => {
-          if (record.plano === 'Free') {
-            const dias = record.diasRestantes;
-            // Verifica se dias é um número antes de comparar
-            if (typeof dias === 'number') {
-                const style = dias === 0 ? { color: '#ff4d4f', fontWeight: 'bold' } : { color: '#ccc'}; // Vermelho AntD ou cinza
-                return <span style={style}>{dias} dia(s)</span>;
-            }
-            return <span style={{color: '#888'}}>-</span>; // Retorno se dias não for número
-          } else if (record.plano === 'Basic' || record.plano === 'Premium') {
-            if (!record.expiracao) return <span style={{color: '#888'}}>-</span>; // Retorno se data de expiração não existir
-            try {
-              // Adiciona T00:00:00 para normalizar a data (evita problemas de fuso)
-              const date = new Date(record.expiracao + 'T00:00:00');
-              // Verifica se a data resultante é válida
-              if (isNaN(date.getTime())) {
-                  console.warn("Data inválida encontrada:", record.expiracao);
-                  return <Text type="danger">Inválida</Text>;
-              }
-              // Formatação DD/MM/YYYY
-              const day = String(date.getDate()).padStart(2, '0');
-              const month = String(date.getMonth() + 1).padStart(2, '0'); // Mês é 0-indexado
-              const year = date.getFullYear();
-              return <span style={{color: '#ccc'}}>{`${day}/${month}/${year}`}</span>;
-            } catch (error) {
-               console.error("Erro ao formatar data:", error, record.expiracao);
-               return <Text type="danger">Erro</Text>;
-            }
+          if (String(record.plano).includes('Trial')) {
+             const dias = record.diasRestantes;
+             if (typeof dias === 'number') {
+                 const style = dias <= 3 ? { color: '#f5222d', fontWeight: 'bold' } : {}; // Vermelho forte
+                 return <span style={style}>{dias} dia(s) Trial</span>;
+             }
+          } else if (record.expiracao) {
+             try {
+               const date = new Date(record.expiracao + 'T12:00:00Z');
+               if (isNaN(date.getTime())) return <Text type="danger">Inválida</Text>;
+               const day = String(date.getDate()).padStart(2, '0');
+               const month = String(date.getMonth() + 1).padStart(2, '0');
+               const year = date.getFullYear();
+               return <span style={{color: '#ccc'}}>{`${day}/${month}/${year}`}</span>;
+             } catch (error) { return <Text type="danger">Erro</Text>; }
           }
-          return <span style={{color: '#888'}}>-</span>; // Retorno padrão
+          return <span style={{color: '#888'}}>-</span>;
        },
     },
+    // Adicionar Coluna de Ações (Ex: Editar, Ver Detalhes) se necessário
+    // {
+    //   title: 'Ações',
+    //   key: 'action',
+    //   render: (_, record) => (
+    //     <Space size="middle">
+    //       <a>Editar</a>
+    //       <a>Excluir</a>
+    //     </Space>
+    //   ),
+    // },
   ];
 
-  // Filtra os dados usando useMemo para otimização
-  const filteredData = useMemo(() => {
-    let data = userData;
-    // Filtrar por texto de busca (case-insensitive)
-    if (searchText) {
-      const lowerSearchText = searchText.toLowerCase();
-      data = data.filter(
-        (item) =>
-          (item.email && item.email.toLowerCase().includes(lowerSearchText)) ||
-          (item.nome && item.nome.toLowerCase().includes(lowerSearchText))
-      );
-    }
-    // Filtrar por planos selecionados (se a lista não estiver vazia)
-    if (selectedPlans.length > 0) {
-      data = data.filter((item) => item.plano && selectedPlans.includes(item.plano));
-    }
-    return data;
-  }, [userData, searchText, selectedPlans]); // Recalcula quando estes mudarem
-
-  // --- Renderização do Componente ---
+  // --- Renderização ---
   return (
-    // Usa Fragment para evitar div externa desnecessária
     <>
-      {/* Título da Página */}
       <Title level={2} style={{ color: '#FFFFFF', marginBottom: '24px' }}>Gerenciamento de Contas</Title>
 
-      {/* --- Card com Filtros --- */}
       <Card className="filter-card" style={{ marginBottom: '24px' }}>
-         <Row gutter={[16, 16]} align="bottom"> {/* Linha com espaçamento e alinhamento */}
-            {/* Coluna da Barra de Busca */}
-            <Col xs={24} sm={12} md={10} lg={8} xl={6}> {/* Coluna responsiva */}
+         <Row gutter={[16, 16]} align="bottom">
+            <Col xs={24} sm={24} md={10} lg={8} xl={6}>
                 <Text strong style={{ color: '#FFFFFF', display: 'block', marginBottom: '8px' }}>Buscar</Text>
                 <Search
                     placeholder="Email ou Nome"
-                    allowClear // Permite limpar a busca
-                    onSearch={(value) => setSearchText(value)} // Busca ao pressionar Enter/ícone
-                    // Limpa o estado se o usuário apagar o texto do input
-                    onChange={(e) => !e.target.value && setSearchText('')}
-                    style={{ width: '100%' }} // Ocupa largura da coluna
-                    enterButton // Mostra botão de busca
+                    allowClear
+                    // onSearch agora é tratado pelo debounce no onChange
+                    onChange={handleSearchChange} // Usa handler com debounce
+                    style={{ width: '100%' }}
+                    enterButton // Mantém botão se desejar busca imediata com Enter
                 />
             </Col>
-
-             {/* Coluna do Filtro de Plano */}
-             <Col xs={24} sm={12} md={14} lg={16} xl={18}> {/* Coluna responsiva */}
+             <Col xs={24} sm={24} md={14} lg={16} xl={18}>
                 <Text strong style={{ color: '#FFFFFF', display: 'block', marginBottom: '8px' }}>Filtrar por Plano</Text>
                 <Checkbox.Group
-                    options={planOptions} // Opções definidas acima
-                    value={selectedPlans} // Valor controlado pelo estado
-                    onChange={(checkedValues) => setSelectedPlans(checkedValues)} // Atualiza estado ao mudar
-                    style={{ width: '100%', display: 'flex', flexWrap: 'wrap', gap: '8px 16px' }} // Layout flexível
+                    options={planOptions} // Usa as opções definidas
+                    value={selectedPlans}
+                    onChange={handlePlanFilterChange} // Usa handler que reseta página
+                    style={{ width: '100%', display: 'flex', flexWrap: 'wrap', gap: '8px 16px' }}
                 />
              </Col>
-             {/* Futuros filtros podem ser adicionados em novas <Col> aqui */}
          </Row>
       </Card>
-      {/* --- Fim do Card de Filtros --- */}
 
-      {/* Tabela AntD */}
+      {error && ( // Mostra alerta de erro GERAL acima da tabela
+         <Alert message="Erro ao Carregar Contas" description={error} type="error" showIcon style={{ marginBottom: 16 }}/>
+      )}
+
       <Table
-        columns={columns} // Colunas definidas acima
-        dataSource={filteredData} // Dados filtrados
-        rowKey="id" // Chave única de cada linha (do objeto de dados)
-        pagination={{
-            pageSize: 10, // Número de itens por página
-            showSizeChanger: false, // Opcional: esconde opção de mudar tamanho da página
-            // Estilos da paginação definidos no CSS
-        }}
-        scroll={{ x: 'max-content' }} // Habilita scroll horizontal se conteúdo exceder largura
-        className="contas-table" // Classe para aplicar estilos CSS específicos
+        columns={columns}
+        dataSource={userData} // Dados da página atual vindo da API
+        rowKey="id"
+        loading={loading} // Mostra overlay de loading na tabela
+        pagination={false} // Desabilitar paginação interna da tabela
+        scroll={{ x: 'max-content' }}
+        className="contas-table"
       />
+       {/* Paginação Externa AntD */}
+       {!loading && totalUsers > 0 && ( // Só mostra paginação se não estiver carregando e houver usuários
+           <Pagination
+               current={currentPage}
+               pageSize={pageSize}
+               total={totalUsers}
+               onChange={handlePageChange} // Handler para mudar de página
+               showSizeChanger={true} // Permite mudar qtd por página
+               onShowSizeChange={handlePageChange} // Usa o mesmo handler para atualizar
+               pageSizeOptions={[10, 20, 50, 100]} // Opções de tamanho
+               style={{ marginTop: 24, textAlign: 'center' }}
+               showTotal={(total, range) => `${range[0]}-${range[1]} de ${total} contas`}
+           />
+       )}
     </>
   );
 };
 
-export default Contas; // Exporta o componente
+export default Contas;
