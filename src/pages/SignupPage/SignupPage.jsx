@@ -1,47 +1,88 @@
 // src/pages/SignupPage/SignupPage.jsx
 import React, { useState } from 'react';
-import { Form, Input, Button, Typography, Row, Col, message } from 'antd'; // Import message para feedback
+// --- Importar useNavigate ---
+import { useNavigate } from 'react-router-dom';
+// --------------------------
+import { Form, Input, Button, Typography, Row, Col, message } from 'antd';
 import { WhatsAppOutlined, MailOutlined, ArrowRightOutlined } from '@ant-design/icons';
-import Header from '../../componentsLP/Header/Header'; // Importa o Header da Landing Page
-import FooterLP from '../../componentsLP/Footer/Footer'; // Importa o Footer da Landing Page
-import './SignupPage.css'; // Estilos específicos
+import Header from '../../componentsLP/Header/Header';
+import FooterLP from '../../componentsLP/Footer/Footer';
+import './SignupPage.css';
 
 const { Title, Paragraph } = Typography;
 
+// Definir URL da API (Idealmente de variável de ambiente)
+const API_URL =  'https://smart-api.ftslwl.easypanel.host';
+
 const SignupPage = () => {
-  const [form] = Form.useForm(); // Hook para interagir com o formulário AntD
-  const [loading, setLoading] = useState(false); // Estado para indicar carregamento
+  // --- Obter a função navigate ---
+  const navigate = useNavigate();
+  // -----------------------------
+  const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
 
-  // Função chamada ao submeter o formulário com sucesso
   const onFinish = async (values) => {
-    setLoading(true); // Ativa o estado de carregamento
-    console.log('Dados recebidos:', values);
-    // --- SIMULAÇÃO DE ENVIO PARA API ---
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Simula delay da rede
-    // -----------------------------------
+    setLoading(true);
+    console.log('Dados para enviar:', values);
 
-    // Exemplo: Resetar formulário e mostrar mensagem de sucesso
-    message.success('Cadastro iniciado! Verifique seu WhatsApp e E-mail.');
-    form.resetFields(); // Limpa os campos do formulário
-    setLoading(false); // Desativa o carregamento
+    try {
+      console.log('Tentando chamar a API...'); // Log de início da chamada
 
-    // Aqui você adicionaria a lógica real:
-    // 1. Enviar dados (values.whatsapp, values.email) para sua API backend.
-    // 2. Sua API validaria e criaria o usuário (talvez enviando uma confirmação/link).
-    // 3. Baseado na resposta da API, redirecionar o usuário ou mostrar mensagem de erro/sucesso.
-    // Ex: if (apiResponse.success) { navigate('/dashboard'); } else { message.error(apiResponse.message); }
+      const response = await fetch(`${API_URL}/api/v1/auth/website-register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Adicione outros headers como 'X-API-Key' se sua rota for protegida
+        },
+        body: JSON.stringify({
+          telefone: values.whatsapp, // Mapeia campo do form para 'telefone' da API
+          email: values.email        // Mapeia campo do form para 'email' da API
+        }),
+      });
+
+      console.log('Resposta da API recebida. Status:', response.status); // Log do status
+
+      if (response.ok) { // Status 2xx (200 ou 201)
+        const data = await response.json();
+        console.log('API Response OK:', data);
+        message.success('Cadastro realizado com sucesso! Redirecionando...'); // Feedback para o usuário
+        form.resetFields(); // Limpa o formulário
+
+        // --- Redirecionamento após sucesso ---
+        // Adiciona um pequeno delay (1 segundo) para o usuário ver a mensagem
+        setTimeout(() => {
+           navigate('/confirmacao'); // <<< Usa navigate para redirecionar
+        }, 1000);
+        // ----------------------------------
+
+      } else { // Erros da API (4xx, 5xx)
+        // Tenta pegar a mensagem de erro do corpo da resposta JSON
+        const errorData = await response.json().catch(() => ({ error: `Erro ${response.status}: Não foi possível processar a resposta da API.` }));
+        console.error('API Response Error:', response.status, errorData);
+        // Mostra a mensagem de erro da API ou uma mensagem padrão
+        message.error(errorData.error || `Falha no cadastro (${response.status}). Tente novamente.`);
+      }
+
+    } catch (error) { // Erros de rede ou falha na comunicação
+      console.error('Erro na chamada da API (fetch catch):', error);
+      message.error('Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.');
+    } finally {
+      // Garante que o estado de loading seja desativado, mesmo se der erro ou redirecionar
+      // Se redirecionar imediatamente, o setLoading(false) pode não ser necessário visualmente,
+      // mas é bom mantê-lo por consistência caso o redirecionamento falhe ou seja removido.
+      console.log('Finalizando onFinish, setLoading(false)');
+      setLoading(false);
+    }
   };
 
-  // Função chamada se a validação do formulário falhar
   const onFinishFailed = (errorInfo) => {
-    console.log('Falha na validação:', errorInfo);
+    console.log('Falha na validação do formulário AntD:', errorInfo);
     message.error('Por favor, corrija os erros no formulário.');
   };
 
   return (
     <div className="signup-page-container">
       <Header />
-
       <main className="signup-content-wrapper">
         <div className="signup-form-container">
           <Title level={2} className="signup-title">Quase lá!</Title>
@@ -50,34 +91,30 @@ const SignupPage = () => {
           </Paragraph>
 
           <Form
-            form={form} // Associa o hook do formulário
+            form={form}
             name="signup"
-            onFinish={onFinish} // Chama onFinish em caso de sucesso na validação
-            onFinishFailed={onFinishFailed} // Chama onFinishFailed em caso de erro na validação
-            layout="vertical" // Labels acima dos inputs
-            requiredMark={false} // Opcional: esconde marca de obrigatório (*)
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            layout="vertical"
+            requiredMark={false}
             className="signup-antd-form"
           >
-            {/* Campo WhatsApp */}
             <Form.Item
               name="whatsapp"
               label="Número do WhatsApp"
               rules={[
                 { required: true, message: 'Por favor, insira seu número de WhatsApp!' },
-                // Opcional: Adicionar regra de validação de formato (regex)
-                // { pattern: /^\d{10,15}$/, message: 'Número inválido!' }
               ]}
-              tooltip="Inclua o DDD. Ex: 11987654321" // Dica
+              tooltip="Inclua o DDD. Ex: 11987654321"
             >
               <Input
                 prefix={<WhatsAppOutlined className="site-form-item-icon" />}
                 placeholder="Seu número com DDD"
                 size="large"
-                type="tel" // Ajuda teclados móveis
+                type="tel"
               />
             </Form.Item>
 
-            {/* Campo E-mail */}
             <Form.Item
               name="email"
               label="Seu melhor E-mail"
@@ -94,15 +131,14 @@ const SignupPage = () => {
               />
             </Form.Item>
 
-            {/* Botão de Submissão */}
             <Form.Item>
               <Button
                 type="primary"
-                htmlType="submit" // Indica que este botão submete o formulário
+                htmlType="submit"
                 className="signup-submit-button"
-                loading={loading} // Mostra ícone de carregamento se loading=true
+                loading={loading}
                 size="large"
-                block // Faz o botão ocupar a largura toda
+                block
                 icon={<ArrowRightOutlined />}
               >
                 {loading ? 'Confirmando...' : 'Confirmar Cadastro e Iniciar'}
@@ -114,9 +150,7 @@ const SignupPage = () => {
           </Paragraph>
         </div>
       </main>
-
-       {/* Footer simples */}
-        <FooterLP />
+      <FooterLP />
     </div>
   );
 };

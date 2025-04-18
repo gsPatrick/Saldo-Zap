@@ -1,0 +1,253 @@
+/* src/pages/AccountDetailsPage/AccountDetailsPage.css */
+
+.account-details-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1f1f1f 0%, #1a1a1a 100%); /* Gradiente sutil no fundo */
+    color: #FFFFFF !important;
+  }
+  
+  .account-details-main-content {
+    flex-grow: 1;
+    display: flex; /* Centraliza o wrapper */
+    justify-content: center;
+    align-items: flex-start; /* Alinha card ao topo */
+    padding: 4rem 1.5rem; /* Mais padding */
+  }
+  
+  /* Wrapper para conteúdo e título/subtítulo */
+  .account-details-content-wrapper {
+      width: 100%;
+      max-width: 750px; /* Largura do conteúdo central */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centraliza o card */
+  }
+  
+  
+  .page-title.ant-typography {
+    color: #FFFFFF !important;
+    margin-bottom: 0.5rem !important; /* Menos espaço */
+    font-weight: 600;
+    font-size: 2.2em; /* Tamanho ajustado */
+    text-align: center;
+  }
+  
+  .page-subtitle.ant-typography {
+    color: rgba(255, 255, 255, 0.75) !important; /* Mais claro */
+    margin-bottom: 2.5rem !important; /* Espaço antes do card */
+    font-size: 1.1em;
+    text-align: center;
+    max-width: 500px; /* Limita largura */
+  }
+  
+  /* Estilo do Card Principal */
+  .account-details-card {
+    background: linear-gradient(145deg, #333333, #282828) !important; /* Gradiente no card */
+    border: 1px solid #4a4a4a !important; /* Borda mais clara */
+    border-radius: 16px !important; /* Mais arredondado */
+    padding: 2rem 2.5rem !important; /* Padding geral do card */
+    width: 100%; /* Ocupa largura do wrapper */
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3) !important;
+    position: relative; /* Para o ícone no topo */
+    overflow: hidden; /* Para efeitos de borda/fundo */
+  }
+  .account-details-card .ant-card-body {
+      padding: 0 !important;
+      color: #FFFFFF !important;
+  }
+  
+  /* Ícone decorativo no topo do card */
+  .card-top-icon {
+      position: absolute;
+      top: -25px; /* Metade para fora */
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #54945c, #4a8351); /* Fundo verde */
+      color: #FFFFFF;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6em; /* Tamanho do ícone */
+      box-shadow: 0 4px 15px rgba(84, 148, 92, 0.2);
+      border: 3px solid #2b2b2b; /* Borda na cor do card para efeito de sobreposição */
+  }
+  
+  
+  /* Animação de Entrada do Card */
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animated-card {
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+    opacity: 0; /* Começa invisível */
+  }
+  
+  /* Grid para as informações */
+  .account-info-grid {
+      display: grid;
+      /* Cria 1 ou 2 colunas dependendo do espaço */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem 2rem; /* Espaço linha / coluna */
+      margin-top: 3rem; /* Espaço abaixo do ícone do topo */
+      width: 100%;
+  }
+  
+  
+  .account-info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0; /* Espaçamento vertical reduzido */
+    border-bottom: 1px solid #404040; /* Divisor mais sutil */
+    transition: background-color 0.2s ease;
+  }
+  /* Remove a borda do último item */
+  .account-info-grid > .account-info-item:last-child {
+      border-bottom: none;
+  }
+  /* Efeito hover sutil nos itens */
+  .account-info-item:hover {
+      /* background-color: rgba(255, 255, 255, 0.03); */ /* Fundo muito sutil no hover */
+  }
+  
+  /* Linha especial do Plano */
+  .account-info-item.plan-info-row {
+      grid-column: 1 / -1; /* Ocupa toda a largura no grid */
+      display: flex;
+      justify-content: space-between;
+      align-items: center; /* Alinha verticalmente tag e status */
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem; /* Ajusta gaps */
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+  }
+  .plan-tag-section { /* Agrupa ícone, label e tag do plano */
+      display: flex;
+      align-items: center;
+      gap: 1rem; /* Espaço entre ícone e texto */
+  }
+  
+  .info-icon {
+    font-size: 1.6em; /* Ícones um pouco maiores */
+    color: #54945c;
+    /* Removido fundo e padding para layout mais limpo */
+    min-width: 30px; /* Ajuste */
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .account-info-item:hover .info-icon {
+      transform: scale(1.1); /* Animação sutil no ícone */
+  }
+  
+  .plan-status-wrapper .status-icon {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.2em; /* Ícone de calendário */
+      margin-right: 8px;
+  }
+  
+  
+  .info-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Ocupa espaço */
+  }
+  
+  .info-label {
+    font-size: 0.9em; /* Ligeiramente maior */
+    color: rgba(255, 255, 255, 0.7) !important; /* Cinza claro */
+    margin-bottom: 3px; /* Ajuste espaço */
+    display: block;
+    text-transform: uppercase; /* Opcional: Deixa label maiúsculo */
+    letter-spacing: 0.5px; /* Opcional: Espaçamento */
+  }
+  
+  .info-value {
+    font-size: 1.1em; /* Valor um pouco maior */
+    font-weight: 500;
+    color: #FFFFFF !important;
+    word-break: break-all;
+    line-height: 1.4; /* Ajuste */
+  }
+  
+  /* Tag do Plano */
+  .plan-tag.ant-tag {
+      font-size: 1em;
+      padding: 5px 12px; /* Aumenta padding */
+      border-radius: 16px; /* Mais arredondado */
+      margin: 0;
+      border-width: 0px; /* Remove borda padrão da tag */
+      font-weight: 500;
+  }
+  /* Cores Tags */
+  .ant-tag-success { background-color: rgba(82, 196, 26, 0.25) !important; color: #b7eb8f !important;}
+  .ant-tag-processing { background-color: rgba(24, 144, 255, 0.2) !important; color: #69c0ff !important;}
+  .ant-tag-default { background-color: rgba(107, 114, 128, 0.25) !important; color: #e5e7eb !important;}
+  
+  /* Wrapper e texto do status */
+  .plan-status-wrapper {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      background-color: rgba(255, 255, 255, 0.05); /* Fundo muito sutil */
+      padding: 6px 12px; /* Padding interno */
+      border-radius: 16px; /* Arredondado */
+      margin-top: 5px; /* Espaço se quebrar linha no mobile */
+  }
+  .plan-status {
+      font-size: 1em; /* Tamanho maior */
+      font-weight: 500; /* Mais destaque */
+      color: rgba(255, 255, 255, 0.9) !important; /* Cor padrão clara */
+  }
+  .plan-status.expired { color: #ff7875 !important; }
+  .plan-status.active { color: #b7eb8f !important; }
+  .plan-status.info { color: #69c0ff !important; } /* Cor para dias restantes */
+  
+  
+  /* Divider removido visualmente, mas a borda do item faz o papel */
+  .info-divider.ant-divider-horizontal {
+     display: none; /* Esconde o divider padrão */
+  }
+  
+  /* Ações removidas */
+  /* .account-actions { ... } */
+  
+  /* Mensagem de erro */
+  .error-message {
+      color: #ff7875 !important;
+      text-align: center;
+      font-size: 1.1em;
+  }
+  
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+      .account-details-main-content { padding: 3rem 1rem; }
+      .account-details-card { padding: 1.5rem !important; }
+      .page-title.ant-typography { font-size: 1.9em; }
+      .page-subtitle.ant-typography { font-size: 1em; margin-bottom: 2rem;}
+      .account-info-grid { grid-template-columns: 1fr; gap: 0.5rem 0; margin-top: 2.5rem; } /* Uma coluna, menos gap */
+      .account-info-item { padding: 1rem 0; } /* Ajusta padding vertical */
+      .account-info-item.plan-info-row { flex-direction: column; align-items: flex-start; } /* Empilha plano e status */
+      .plan-status-wrapper { margin-top: 10px; } /* Espaço entre tag e status */
+  
+  }
+  
+  @media (max-width: 480px) {
+      .account-details-card { padding: 1.5rem 1rem !important; border-radius: 12px;}
+      .page-title.ant-typography { font-size: 1.7em; }
+      .info-value { font-size: 1em; }
+      .plan-tag.ant-tag { font-size: 0.9em; padding: 4px 10px;}
+      .plan-status { font-size: 0.9em; }
+  }

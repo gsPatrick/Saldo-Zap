@@ -38,7 +38,7 @@ const HeroSection = () => {
       {/* Coluna do Texto (sem alterações) */}
       <div className="hero-content">
         <h1 className="hero-title">
-          Gerencie suas Finanças Pelo <span className="hero-highlight">WhatsApp</span> com Saldo Zap
+          Gerencie suas Finanças Pelo <span className="hero-highlight">WhatsApp</span> Usando Inteligência Artificial com Saldo Zap
         </h1>
         <p className="hero-description">
           Seu assistente financeiro inteligente: registre gastos e receitas, receba análises e alertas personalizados conversando com nosso bot. Simples, rápido e adaptado a você.

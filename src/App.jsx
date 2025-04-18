@@ -14,6 +14,8 @@ import FeaturesPage from './pages/FeaturesPage/FeaturesPage';
 import SecurityPage from './pages/SecurityPage/SecurityPage';
 import LoginPage from './pages/LoginPage/LoginPage'; // <<< IMPORTAR LOGIN PAGE
 import ConfirmationPage from './pages/ConfirmationPage/ConfirmationPage'; // <<< IMPORTAR CONFIRMATION PAGE
+import AccountDetailsPage from './pages/AccountDetailsPage/AccountDetailsPage';
+import UserActivationPage from './pages/UserActivationPage/UserActivationPage';
 
 // --- Componentes e Páginas do Dashboard Interno ---
 import Sidebar from './components/Sidebar/Sidebar'; // Importação para DashboardLayout
@@ -63,6 +65,8 @@ function App() {
         <Route path="/seguranca" element={<SecurityPage />} />
         <Route path="/login" element={<LoginPage />} /> {/* <<< NOVA ROTA LOGIN */}
         <Route path="/confirmacao" element={<ConfirmationPage />} /> {/* <<< NOVA ROTA */}
+        <Route path="/conta" element={<AccountDetailsPage />} /> {/* <<< ROTA CONTA DETALHES */}
+        <Route path="/usuarioLogin" element={<UserActivationPage />} /> {/* <<< ROTA CONTA DETALHES */}
 
 
         {/* <Route path="/termos" element={<TermsPage />} /> */}

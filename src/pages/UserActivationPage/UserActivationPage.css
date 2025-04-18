@@ -1,0 +1,124 @@
+/* src/pages/UserActivationPage/UserActivationPage.css */
+
+.user-activation-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+  }
+  
+  .user-activation-main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+  }
+  
+  .activation-form-card {
+    width: 100%;
+    max-width: 480px; /* Um pouco maior que login */
+    background-color: #2b2b2b !important;
+    border: 1px solid #444 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    color: #FFFFFF !important; /* Garante texto branco */
+  }
+  .activation-form-card .ant-card-body {
+      padding: 32px 40px !important;
+      color: inherit !important;
+  }
+  
+  .activation-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .activation-logo {
+    height: 55px;
+    margin-bottom: 1rem;
+  }
+  
+  .activation-title.ant-typography {
+    color: #FFFFFF !important;
+    margin-bottom: 0.8rem !important;
+    font-weight: 600;
+    font-size: 1.6em !important; /* Ajuste tamanho */
+  }
+  
+  .activation-description.ant-typography {
+    color: rgba(255, 255, 255, 0.8) !important;
+    line-height: 1.6;
+    font-size: 1em;
+  }
+  
+  /* Estilos Formulário AntD (similares ao Login/Signup) */
+  .activation-antd-form .ant-form-item-label > label {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+  }
+  
+  .activation-antd-form .ant-input-affix-wrapper {
+    background-color: #1f1f1f !important;
+    border-color: #444 !important;
+    border-radius: 8px !important;
+    padding-top: 0; padding-bottom: 0;
+  }
+  
+  .activation-antd-form .ant-input {
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+    height: 48px !important; line-height: 48px !important;
+    font-size: 1em;
+  }
+  /* Autofill */
+  .activation-antd-form input:-webkit-autofill,
+  .activation-antd-form input:-webkit-autofill:hover,
+  .activation-antd-form input:-webkit-autofill:focus,
+  .activation-antd-form input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px #1f1f1f inset !important;
+      -webkit-text-fill-color: #fff !important;
+      caret-color: #fff !important;
+      border-radius: 8px !important; border-color: #444 !important;
+  }
+  .activation-antd-form .ant-input::placeholder { color: rgba(255, 255, 255, 0.5) !important; }
+  .activation-antd-form .ant-input-prefix .anticon { color: rgba(255, 255, 255, 0.5) !important; font-size: 1.1em; }
+  .activation-antd-form .ant-input-affix-wrapper-focused,
+  .activation-antd-form .ant-input-affix-wrapper:focus,
+  .activation-antd-form .ant-input-affix-wrapper:focus-within {
+    border-color: #54945c !important;
+    box-shadow: 0 0 0 2px rgba(84, 148, 92, 0.2) !important;
+  }
+  /* Tooltip */
+  .ant-tooltip-inner { background-color: #444 !important; color: #fff !important;}
+  .ant-tooltip-arrow-content { background-color: #444 !important; }
+  
+  /* Botão */
+  .activation-submit-button.ant-btn-primary {
+    background: linear-gradient(90deg, #4a8351 0%, #54945c 100%) !important;
+    border: none !important; color: #fff !important;
+    height: 50px !important; font-size: 1.1em; font-weight: 600;
+    border-radius: 8px; box-shadow: 0 4px 12px rgba(84, 148, 92, 0.25);
+    margin-top: 1.5rem; /* Mais espaço acima */
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+  }
+  .activation-submit-button.ant-btn-primary .anticon { margin-left: 8px; }
+  .activation-submit-button.ant-btn-primary:hover:not(:disabled) {
+    box-shadow: 0 6px 18px rgba(84, 148, 92, 0.35); transform: translateY(-1px);
+  }
+  .activation-submit-button.ant-btn-primary:disabled { /* ... estilos desabilitado ... */ }
+  
+  /* Erros */
+  .activation-antd-form .ant-form-item-explain-error {
+      color: #ff7875 !important; font-size: 0.9em; margin-top: 4px; text-align: left;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 480px) {
+    .activation-form-card { padding: 24px; max-width: 100%; border-radius: 8px !important; }
+    .activation-form-card .ant-card-body { padding: 24px !important; }
+    .activation-logo { height: 50px; }
+    .activation-title.ant-typography { font-size: 1.5em; }
+    .activation-description.ant-typography { font-size: 0.95em;}
+    .activation-submit-button.ant-btn { height: 46px !important; font-size: 1em; }
+  }

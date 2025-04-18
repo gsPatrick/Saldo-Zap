@@ -56,7 +56,7 @@ const Header = () => {
             to="/faq"
             className={({ isActive }) => "lp-nav-link" + (isActive ? " active" : "")}
         >
-            FAQ
+            Perguntas Frequentes
         </NavLink>
         {/* BOTÃO/LINK "ACESSAR PAINEL" REMOVIDO */}
         {/* <Link to="/dashboard" className="lp-cta-button">Acessar Painel</Link> */}
