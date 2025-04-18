@@ -147,3 +147,7 @@
 .contas-table span[style*="color: red"], .contas-table span[style*="color:#ff4d4f"] { color: #ff7875 !important; font-weight: bold; }
 .contas-table span[style*="color: #ccc"], .contas-table span:not([style*="color"]) { color: rgba(255, 255, 255, 0.85) !important; }
 .ant-typography-danger, .ant-typography.ant-typography-danger { color: #ff7875 !important; }
+
+.ant-pagination .ant-pagination-total-text{
+    color: white !important;
+}

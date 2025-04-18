@@ -47,7 +47,7 @@ const DetailedPricing = () => {
       priceSuffix: '/ mês',
       features: commonPaidFeatures, // Usa as features comuns dos planos pagos
       ctaText: 'Assinar Mensal',
-      ctaLink: '/checkout/mensal', // Rota para checkout mensal
+      ctaLink: 'https://pay.kirvano.com/fbeae57f-6abf-4593-a60c-e97d12e74857', // Rota para checkout mensal
       isFeatured: false,
       badgeText: null,
     },
@@ -63,7 +63,7 @@ const DetailedPricing = () => {
            '**Desconto Exclusivo Anual**' // Feature extra de destaque
        ],
       ctaText: 'Assinar Anual (Economize!)',
-      ctaLink: '/checkout/anual', // Rota para checkout anual
+      ctaLink: 'https://pay.kirvano.com/2b1b309f-53ba-4be6-9573-d4759596f4a5', // Rota para checkout anual
       isFeatured: true, // Destaca o plano anual
       badgeText: 'Melhor Valor',
     },
