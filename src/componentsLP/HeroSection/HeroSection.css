@@ -213,7 +213,7 @@
 /* ... (all styles before the media query remain the same) ... */
 @media (max-width: 1024px) {
   .hero-section {
-    flex-direction: column-reverse; /* Empilha */
+    flex-direction: column !important; /* Empilha */
     text-align: center;
     padding: 4rem 1.5rem;
     min-height: auto;
