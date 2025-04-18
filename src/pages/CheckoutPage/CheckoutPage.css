@@ -1,0 +1,332 @@
+/* src/pages/CheckoutPage/CheckoutPage.css */
+
+.checkout-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #1f1f1f;
+    color: #FFFFFF; /* Cor padrão branca */
+  }
+
+  .checkout-content-wrapper {
+    flex-grow: 1;
+    padding: 3rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  /* Container principal do formulário */
+  .checkout-form-container {
+    max-width: 1100px;
+    width: 100%;
+    background-color: transparent;
+  }
+  .checkout-form-container .ant-spin-nested-loading,
+  .checkout-form-container .ant-spin-container {
+      width: 100%;
+  }
+
+  /* --- ESTILOS ADICIONADOS/MODIFICADOS --- */
+
+  /* Botão Voltar aos Planos */
+  .checkout-back-button.ant-btn { /* Adiciona uma classe específica */
+    background-color: #3a3a3a !important; /* Fundo cinza escuro */
+    border: none !important; /* Remove borda padrão */
+    color: #FFFFFF !important; /* Texto branco */
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important; /* Sombra */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease !important;
+    font-weight: 500 !important;
+  }
+  .checkout-back-button.ant-btn:hover {
+    background-color: #4a4a4a !important; /* Cinza um pouco mais claro no hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(-1px);
+  }
+  .checkout-back-button.ant-btn .anticon {
+      margin-right: 6px; /* Espaço ícone */
+  }
+
+
+  /* Título Principal "Finalizar Compra" */
+  .checkout-title.ant-typography { /* Aplica ao componente Title do AntD */
+    text-align: center;
+    color: #FFFFFF !important; /* FORÇA a cor branca */
+    margin-bottom: 1.5rem !important;
+    font-weight: 600;
+    font-size: 2.2em; /* Ajuste tamanho se necessário */
+  }
+
+
+  /* Forçar texto branco dentro dos Cards (se necessário) */
+  .checkout-card,
+  .checkout-card .ant-card-body,
+  .checkout-card .ant-card-body p, /* Parágrafos dentro do card */
+  .checkout-card .ant-card-body span, /* Spans dentro do card */
+  .checkout-card .ant-card-body div /* Divs dentro do card */
+  {
+      color: #FFFFFF !important; /* Força branco em elementos comuns */
+  }
+  /* (Exceto onde já definimos cores específicas como verde ou cinza claro) */
+  .order-summary .plan-name-summary,
+  .order-summary .price-value.total-value,
+  .secure-payment-info .anticon,
+  .payment-method-radio.ant-radio-wrapper-checked .anticon,
+  .payment-instructions strong,
+  .checkout-card .ant-form-item-label > label {
+      color: inherit !important; /* Permite que as cores específicas (verde, cinza) aplicadas anteriormente funcionem */
+  }
+   .checkout-card .ant-input::placeholder {
+       color: rgba(255, 255, 255, 0.6) !important; /* Mantém cor do placeholder */
+   }
+    .checkout-card .ant-input-prefix .anticon {
+       color: rgba(255, 255, 255, 0.6) !important; /* Mantém cor dos ícones de input */
+   }
+   .checkout-steps .ant-steps-item-description {
+        color: rgba(255, 255, 255, 0.5) !important; /* Mantém cor da descrição dos steps */
+   }
+   .secure-payment-info {
+        color: rgba(255, 255, 255, 0.7) !important; /* Mantém cor do texto de segurança */
+   }
+   .checkout-footer p { /* Garante texto do footer */
+        color: rgba(255, 255, 255, 0.7) !important;
+   }
+
+
+ /* --- FIM ESTILOS ADICIONADOS/MODIFICADOS --- */
+
+
+  .checkout-steps {
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .checkout-steps .ant-steps-item-title { color: rgba(255, 255, 255, 0.8) !important; }
+  .checkout-steps .ant-steps-item-description { color: rgba(255, 255, 255, 0.5) !important; }
+  .checkout-steps .ant-steps-item-icon { background-color: #444 !important; border-color: #555 !important; color: rgba(255, 255, 255, 0.5) !important; }
+  .checkout-steps .ant-steps-item-finish .ant-steps-item-icon { background-color: #54945c !important; border-color: #54945c !important; color: #fff !important;}
+  .checkout-steps .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title { color: #FFFFFF !important; }
+  .checkout-steps .ant-steps-item-process .ant-steps-item-icon { background-color: #54945c !important; border-color: #54945c !important; color: #fff !important;}
+  .checkout-steps .ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title { color: #fff !important; font-weight: 600;}
+  .checkout-steps .ant-steps-item-wait .ant-steps-item-icon { color: rgba(255, 255, 255, 0.5) !important; }
+  .checkout-steps .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-tail::after,
+  .checkout-steps .ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-tail::after { background-color: #54945c !important; }
+
+
+  .checkout-card {
+    background-color: #2b2b2b !important;
+    border: 1px solid #444 !important;
+    border-radius: 10px !important;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .checkout-card .ant-card-head {
+    border-bottom: 1px solid #444 !important;
+  }
+  .checkout-card .ant-card-head-title {
+    color: #FFFFFF !important;
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+  /* .checkout-card .ant-card-body { padding: 24px; color: #FFFFFF !important; } */ /* Movido para regra geral acima */
+
+  /* Resumo do Pedido */
+  .order-summary .plan-name-summary {
+      font-weight: 500;
+      font-size: 1.1em;
+      color: #adedb1;
+      margin-left: 8px;
+  }
+  .order-summary .price-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 1em;
+     /* color: rgba(255, 255, 255, 0.9); */ /* Cor definida na regra geral do card */
+  }
+  .order-summary .price-value {
+      font-weight: 500;
+     /* color: #FFFFFF; */ /* Cor definida na regra geral do card */
+  }
+  .order-summary .price-line.total {
+      font-size: 1.1em;
+      margin-top: 8px;
+     /* color: #FFFFFF; */ /* Cor definida na regra geral do card */
+  }
+  .order-summary .price-value.total-value {
+      font-weight: 700;
+      color: #54945c;
+  }
+
+
+  /* Estilos Form */
+  .checkout-card .ant-form-item-label > label {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    font-size: 0.95em;
+  }
+  .checkout-card .ant-input-affix-wrapper,
+  .checkout-card .ant-input-password {
+    background-color: #1f1f1f !important;
+    border-color: #444 !important;
+    border-radius: 8px !important;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .checkout-card .ant-input {
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+    height: 48px !important;
+    line-height: 48px !important;
+    font-size: 1em;
+  }
+   .checkout-card .ant-input::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  .checkout-card .ant-input-prefix .anticon {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 1.1em;
+  }
+  .checkout-card .ant-input-affix-wrapper-focused,
+  .checkout-card .ant-input-affix-wrapper:focus,
+  .checkout-card .ant-input-affix-wrapper:focus-within,
+  .checkout-card .ant-input-password-focused {
+    border-color: #54945c !important;
+    box-shadow: 0 0 0 2px rgba(84, 148, 92, 0.2) !important;
+  }
+
+  /* Radio Buttons de Pagamento */
+  .payment-method-radio.ant-radio-wrapper {
+    background-color: #3a3a3a;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 12px 16px;
+    width: 100%;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    color: #FFFFFF;
+  }
+  .payment-method-radio.ant-radio-wrapper:hover {
+     border-color: #777;
+     background-color: #444;
+  }
+  .payment-method-radio .ant-radio-inner {
+     border-color: #777 !important;
+     background-color: #2b2b2b !important;
+  }
+  .payment-method-radio.ant-radio-wrapper-checked {
+     border-color: #54945c !important;
+     background-color: rgba(84, 148, 92, 0.1) !important;
+     color: #fff;
+  }
+  .payment-method-radio.ant-radio-wrapper-checked .ant-radio-inner {
+     border-color: #54945c !important;
+     background-color: #54945c !important;
+  }
+  .payment-method-radio.ant-radio-wrapper-checked .ant-radio-inner::after {
+     background-color: #fff !important;
+  }
+  .payment-method-radio .anticon {
+      margin-right: 10px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 1.2em;
+      vertical-align: middle;
+  }
+  .payment-method-radio.ant-radio-wrapper-checked .anticon {
+      color: #54945c;
+  }
+
+
+  /* Instruções Pix/Boleto */
+  .payment-instructions {
+    padding: 16px;
+    background-color: rgba(84, 148, 92, 0.05);
+    border: 1px dashed #54945c;
+    border-radius: 8px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  .payment-instructions p { margin-bottom: 8px; }
+  .payment-instructions strong {
+    color: #adedb1;
+  }
+
+  /* Botão Finalizar */
+  .checkout-submit-button.ant-btn-primary {
+    background: linear-gradient(90deg, #4a8351 0%, #54945c 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    height: 52px !important;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(84, 148, 92, 0.25);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+  }
+  .checkout-submit-button.ant-btn-primary .anticon {
+     margin-right: 8px;
+     color: #fff !important;
+  }
+  .checkout-submit-button.ant-btn-primary:hover:not(:disabled) {
+    box-shadow: 0 6px 18px rgba(84, 148, 92, 0.35);
+    transform: translateY(-1px);
+  }
+  .checkout-submit-button.ant-btn-primary:disabled {
+      background: #555 !important;
+      box-shadow: none !important;
+      cursor: not-allowed;
+      opacity: 0.7;
+      color: rgba(255, 255, 255, 0.5) !important;
+  }
+  .checkout-submit-button.ant-btn-primary:disabled .anticon {
+       color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .secure-payment-info {
+     text-align: center;
+     font-size: 0.85em;
+     color: rgba(255, 255, 255, 0.7) !important;
+     margin-top: 1.5rem;
+  }
+  .secure-payment-info .anticon {
+      margin-right: 6px;
+      color: #54945c;
+  }
+
+
+  /* Footer */
+  .checkout-footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background-color: #2b2b2b;
+    border-top: 1px solid #444;
+   /* color: rgba(255, 255, 255, 0.7); */ /* Cor herdada da página */
+    font-size: 0.9em;
+  }
+   .checkout-footer p {
+       color: rgba(255, 255, 255, 0.7) !important; /* Garante a cor */
+       margin: 0; /* Remove margem padrão do p */
+   }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+     .checkout-content-wrapper {
+         padding: 2rem 1rem;
+     }
+     .checkout-form-container > .ant-row > .ant-col {
+         width: 100% !important;
+         max-width: 100% !important;
+         flex: 0 0 100% !important;
+     }
+     .checkout-card {
+         margin-bottom: 1rem;
+     }
+     .checkout-steps {
+         margin-bottom: 2rem;
+     }
+     .checkout-steps .ant-steps-item-description {
+         display: none;
+     }
+  }

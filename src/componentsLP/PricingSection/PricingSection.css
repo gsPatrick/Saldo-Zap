@@ -1,0 +1,234 @@
+/* src/componentsLP/PricingSection.css */
+
+.pricing-section {
+    padding: 5rem 1.5rem;
+    background-color: #1a1a1a; /* Fundo escuro padrão */
+    color: #FFFFFF;
+    text-align: center; /* Centraliza títulos e o CTA principal */
+  }
+  
+  .pricing-title {
+    font-size: 2.4em;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  
+  .pricing-subtitle {
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 3.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Grid responsivo */
+    gap: 2rem; /* Espaço entre os cards */
+    max-width: 1100px; /* Largura máxima da grade */
+    margin: 0 auto; /* Centraliza a grade */
+    text-align: left; /* Alinha o texto dentro dos cards à esquerda */
+  }
+  
+  .plan-card {
+    background-color: #2b2b2b; /* Fundo dos cards */
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    border: 1px solid #3a3a3a;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative; /* Para possíveis badges */
+    overflow: hidden; /* Para o efeito de borda do featured */
+  }
+  
+  /* Estilo para card em destaque */
+  .plan-card.featured {
+    border-color: #54945c; /* Borda verde */
+    box-shadow: 0 8px 30px rgba(84, 148, 92, 0.15);
+    transform: scale(1.03); /* Levemente maior */
+  }
+  
+  .plan-card:not(.featured):hover {
+     transform: translateY(-5px);
+     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  .plan-icon-wrapper {
+    font-size: 2.8em; /* Tamanho do ícone */
+    color: #54945c; /* Cor verde padrão para ícones */
+    margin-bottom: 1.5rem;
+    line-height: 1;
+    width: 60px; /* Container do ícone */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(84, 148, 92, 0.1); /* Fundo sutil verde */
+    border-radius: 50%; /* Círculo */
+  }
+  /* Cores específicas se desejar */
+  /* .plan-card:nth-child(1) .plan-icon-wrapper { color: #aaa; background-color: rgba(170, 170, 170, 0.1); } */
+  /* .plan-card:nth-child(2) .plan-icon-wrapper { color: #4a90e2; background-color: rgba(74, 144, 226, 0.1); } */
+  
+  
+  .plan-name {
+    font-size: 1.6em;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .plan-price-container {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #444;
+    padding-bottom: 1.5rem;
+  }
+  
+  .plan-price {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-right: 0.3em;
+  }
+  
+  .plan-price-suffix {
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0; /* Espaço abaixo da lista */
+    flex-grow: 1; /* Faz a lista ocupar espaço para alinhar botões (se houver) */
+  }
+  
+  .plan-features li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start; /* Alinha ícone com topo do texto */
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+  }
+  
+  .feature-check-icon {
+    color: #54945c; /* Cor do checkmark */
+    margin-right: 0.7em; /* Espaço após o ícone */
+    margin-top: 0.2em; /* Ajuste vertical fino */
+    font-size: 1.1em;
+  }
+  
+  /* Estilo para botão individual (se descomentado) */
+  .plan-individual-cta.ant-btn {
+     margin-top: auto; /* Empurra para o final do card */
+     width: 100%;
+     height: 44px;
+     font-weight: 500;
+     border-radius: 8px;
+  }
+  .plan-individual-cta.ant-btn-primary {
+      background-color: #54945c !important;
+      border-color: #54945c !important;
+  }
+  .plan-individual-cta.ant-btn-default {
+      background-color: #3a3a3a !important;
+      border-color: #555 !important;
+      color: #fff !important;
+  }
+  .plan-individual-cta.ant-btn-default:hover {
+     border-color: #54945c !important;
+     color: #54945c !important;
+  }
+  
+  
+  /* Container e Botão CTA Principal */
+  .pricing-cta-container {
+    margin-top: 4rem; /* Espaço acima do botão principal */
+  }
+  
+  .pricing-main-cta-button.ant-btn-primary {
+    background-color: #54945c !important;
+    border-color: #54945c !important;
+    color: #FFFFFF !important;
+    padding: 0 45px;
+    height: 55px;
+    font-size: 1.2em;
+    font-weight: 600;
+    border-radius: 28px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(84, 148, 92, 0.25);
+  }
+  
+  .pricing-main-cta-button.ant-btn-primary .anticon {
+     margin-left: 12px;
+  }
+  
+  .pricing-main-cta-button.ant-btn-primary:hover {
+    background-color: #4a8351 !important;
+    border-color: #4a8351 !important;
+     transform: translateY(-2px);
+     box-shadow: 0 6px 20px rgba(84, 148, 92, 0.35);
+  }
+  
+  .pricing-main-cta-button.ant-btn-primary:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 2px 10px rgba(84, 148, 92, 0.2);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .pricing-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajusta tamanho mínimo */
+      gap: 1.5rem;
+    }
+     .pricing-title {
+        font-size: 2.1em;
+     }
+     .pricing-subtitle {
+        font-size: 1em;
+     }
+     .plan-card {
+        padding: 2rem 1.5rem;
+     }
+     .plan-card.featured {
+        transform: scale(1.01); /* Reduz o scale em telas menores */
+     }
+  }
+  
+  @media (max-width: 768px) {
+     .pricing-grid {
+        max-width: 450px; /* Força uma coluna mais cedo se necessário */
+     }
+      .plan-card.featured {
+        transform: scale(1); /* Remove scale no mobile para evitar problemas de layout */
+     }
+  }
+  
+  @media (max-width: 480px) {
+    .pricing-title {
+      font-size: 1.8em;
+    }
+    .pricing-subtitle {
+       margin-bottom: 2.5rem;
+    }
+    .pricing-grid {
+       gap: 1rem;
+    }
+    .plan-card {
+       padding: 1.5rem 1.2rem;
+    }
+    .plan-name {
+       font-size: 1.4em;
+    }
+    .plan-price {
+       font-size: 1.9em;
+    }
+     .pricing-main-cta-button.ant-btn {
+        height: 50px;
+        font-size: 1.1em;
+        padding: 0 30px;
+     }
+  }

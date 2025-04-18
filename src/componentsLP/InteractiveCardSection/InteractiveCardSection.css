@@ -1,0 +1,162 @@
+/* src/componentsLP/InteractiveCardSection.css */
+
+.interactive-card-section {
+    padding: 5rem 1.5rem;
+    background-color: #1f1f1f; /* Fundo ligeiramente diferente */
+    color: #FFFFFF;
+  }
+  
+  .interactive-card-section-title {
+    text-align: center;
+    font-size: 2.4em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .interactive-card-section-subtitle {
+    text-align: center;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 4rem; /* Espaço antes dos cards */
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  
+  .interactive-cards-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Cria colunas responsivas, mínimo de 250px */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem; /* Espaço entre os cards */
+  }
+  
+  /* Estilo para o Link que envolve o card */
+  .interactive-card-link {
+    text-decoration: none; /* Remove sublinhado do link */
+    color: inherit; /* Herda a cor padrão (branco) */
+    display: block; /* Permite que o link ocupe o espaço do grid item */
+    height: 100%; /* Faz o link preencher a altura do card (útil se cards tiverem alturas diferentes) */
+  }
+  
+  /* Estilo do Card Individual */
+  .interactive-card-item {
+    background: linear-gradient(145deg, #2f2f2f, #252525); /* Gradiente sutil no card */
+    padding: 2rem 1.8rem;
+    border-radius: 12px;
+    border: 1px solid #4a4a4a;
+    height: 100%; /* Faz o card interno preencher o link */
+    display: flex;
+    flex-direction: column; /* Empilha conteúdo */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    /* Transições para animação */
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.3s ease;
+  }
+  
+  /* Efeito Hover no Card */
+  .interactive-card-link:hover .interactive-card-item {
+    transform: translateY(-8px) scale(1.03); /* Levanta e aumenta */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); /* Sombra mais forte */
+    border-color: #54945c; /* Borda verde */
+  }
+  
+  /* Wrapper do Ícone Principal */
+  .interactive-card-icon-wrapper {
+    font-size: 2.5em;
+    color: #54945c; /* Cor verde principal */
+    margin-bottom: 1.5rem;
+    line-height: 1;
+    /* Transição para o ícone */
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .interactive-card-link:hover .interactive-card-icon-wrapper {
+      color: #adedb1; /* Verde mais claro no hover */
+      transform: rotate(-5deg); /* Rotação sutil no hover */
+  }
+  
+  
+  /* Título do Card */
+  .interactive-card-title {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: #FFFFFF;
+  }
+  
+  /* Descrição do Card */
+  .interactive-card-description {
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Faz a descrição ocupar espaço e empurrar o footer para baixo */
+  }
+  
+  /* Footer do Card (para gráfico e CTA) */
+  .interactive-card-footer {
+    margin-top: auto; /* Empurra para o final do card */
+    padding-top: 1rem; /* Espaço acima do footer */
+    border-top: 1px solid #444; /* Linha divisória */
+    display: flex;
+    justify-content: space-between; /* Alinha gráfico e CTA */
+    align-items: center; /* Alinha verticalmente */
+    min-height: 25px; /* Altura mínima para alinhamento */
+  }
+  
+  /* Placeholder do Mini Gráfico */
+  .mini-graph-svg {
+      width: 60px; /* Tamanho pequeno */
+      height: auto;
+      opacity: 0.6; /* Sutil */
+  }
+  
+  /* Texto/Link "Saiba Mais" */
+  .interactive-card-cta {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    transition: color 0.3s ease, gap 0.3s ease;
+  }
+  
+  .interactive-card-link:hover .interactive-card-cta {
+    color: #adedb1; /* Verde claro no hover */
+    gap: 0.6em; /* Afasta um pouco a seta */
+  }
+  
+  .cta-arrow-icon {
+    transition: transform 0.3s ease;
+    font-size: 1.1em;
+  }
+  .interactive-card-link:hover .cta-arrow-icon {
+    transform: translateX(4px); /* Move a seta para a direita */
+  }
+  
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .interactive-cards-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .interactive-card-section-title { font-size: 2.2em; }
+    .interactive-card-section-subtitle { font-size: 1.1em; margin-bottom: 3rem; }
+  }
+  
+  @media (max-width: 600px) {
+     .interactive-cards-grid {
+      grid-template-columns: 1fr; /* Uma coluna */
+      max-width: 400px; /* Limita largura do card único */
+    }
+    .interactive-card-section { padding: 4rem 1rem; }
+    .interactive-card-section-title { font-size: 2em; }
+    .interactive-card-item { padding: 1.8rem 1.5rem; }
+    .interactive-card-title { font-size: 1.3em; }
+    .interactive-card-description { font-size: 0.9em; }
+  }

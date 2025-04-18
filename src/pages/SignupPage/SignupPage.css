@@ -1,0 +1,175 @@
+/* src/pages/SignupPage/SignupPage.css */
+
+.signup-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #1a1a1a; /* Fundo escuro padrão */
+  }
+  
+  .signup-content-wrapper {
+    flex-grow: 1; /* Ocupa espaço vertical */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    padding: 3rem 1rem; /* Espaçamento */
+  }
+  
+  .signup-form-container {
+    background-color: #2b2b2b; /* Fundo do card de formulário */
+    padding: 2.5rem 3rem; /* Espaçamento interno */
+    border-radius: 12px;
+    max-width: 450px; /* Largura máxima do formulário */
+    width: 100%; /* Ocupa até a largura máxima */
+    border: 1px solid #444;
+  }
+  
+  .signup-title {
+    text-align: center;
+    color: #FFFFFF !important;
+    margin-bottom: 0.8rem !important; /* Sobrescreve margem antd */
+    font-weight: 600;
+  }
+  
+  .signup-description {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem !important;
+    line-height: 1.6;
+  }
+  
+  /* Estilização dos componentes AntD dentro do formulário */
+  .signup-antd-form .ant-form-item-label > label {
+    color: rgba(255, 255, 255, 0.75) !important; /* Cor do label */
+    font-weight: 500;
+    font-size: 0.95em;
+  }
+  
+  .signup-antd-form .ant-input-affix-wrapper {
+    background-color: #1f1f1f !important; /* Fundo do input */
+    border-color: #444 !important;
+    border-radius: 8px !important;
+    padding-top: 0; /* Reset padding */
+    padding-bottom: 0;
+  }
+  
+  .signup-antd-form .ant-input {
+    background-color: transparent !important; /* Input transparente */
+    color: #FFFFFF !important; /* Cor do texto */
+    height: 48px !important; /* Altura input large */
+    line-height: 48px !important;
+    font-size: 1em;
+  }
+  .signup-antd-form input:-webkit-autofill,
+  .signup-antd-form input:-webkit-autofill:hover,
+  .signup-antd-form input:-webkit-autofill:focus,
+  .signup-antd-form input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px #1f1f1f inset !important; /* Fundo autofill */
+      -webkit-text-fill-color: #fff !important; /* Texto autofill */
+      caret-color: #fff !important; /* Cor do cursor */
+  }
+  
+  
+  .signup-antd-form .ant-input::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  .signup-antd-form .ant-input-prefix .anticon {
+    color: rgba(255, 255, 255, 0.5) !important; /* Cor do ícone */
+    font-size: 1.1em;
+  }
+  
+  /* Foco no input */
+  .signup-antd-form .ant-input-affix-wrapper-focused,
+  .signup-antd-form .ant-input-affix-wrapper:focus,
+  .signup-antd-form .ant-input-affix-wrapper:focus-within {
+    border-color: #54945c !important; /* Borda verde no foco */
+    box-shadow: 0 0 0 2px rgba(84, 148, 92, 0.2) !important;
+  }
+  
+  /* Botão de submissão */
+  .signup-submit-button.ant-btn-primary {
+    background: linear-gradient(90deg, #4a8351 0%, #54945c 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    height: 50px !important;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(84, 148, 92, 0.25);
+    margin-top: 1rem; /* Espaço acima do botão */
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+  }
+
+  .ant-form-item .ant-form-item-label >label .ant-form-item-tooltip {
+    color: white !important;  
+  }
+  .signup-submit-button.ant-btn-primary .anticon {
+     margin-left: 8px;
+  }
+  
+  .signup-submit-button.ant-btn-primary:hover:not(:disabled) {
+    box-shadow: 0 6px 18px rgba(84, 148, 92, 0.35);
+    transform: translateY(-1px);
+  }
+  .signup-submit-button.ant-btn-primary:disabled {
+      background: #555 !important;
+      box-shadow: none !important;
+      cursor: not-allowed;
+  }
+  
+  /* Texto de termos */
+  .signup-terms-info {
+      text-align: center;
+      font-size: 0.85em;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 2rem !important;
+  }
+  .signup-terms-info a {
+      color: #adedb1; /* Verde claro para links */
+      text-decoration: none;
+  }
+  .signup-terms-info a:hover {
+      text-decoration: underline;
+  }
+  
+  
+  /* Mensagens de erro AntD */
+  .signup-antd-form .ant-form-item-explain-error {
+      color: #ff7875 !important; /* Cor vermelha AntD clara */
+      font-size: 0.9em;
+      margin-top: 4px;
+  }
+  
+  
+  /* Footer */
+  .signup-footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background-color: #2b2b2b;
+    border-top: 1px solid #444;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9em;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 480px) {
+    .signup-form-container {
+      padding: 2rem 1.5rem;
+      box-shadow: none;
+      border: none;
+      background-color: transparent; /* Remove fundo do card em telas pequenas */
+    }
+    .signup-title {
+       font-size: 1.8em;
+    }
+    .signup-description {
+       font-size: 1em;
+       margin-bottom: 2rem;
+    }
+     .signup-submit-button.ant-btn {
+        height: 48px !important;
+     }
+  }

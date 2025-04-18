@@ -1,0 +1,155 @@
+/* src/componentsLP/HowItWorksSection.css */
+
+.how-it-works-section {
+    padding: 5rem 1.5rem;
+    background-color: #222222;
+    color: #FFFFFF;
+  }
+  
+  .how-it-works-title {
+    text-align: center;
+    font-size: 2.4em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .how-it-works-subtitle {
+    text-align: center;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 4rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  
+  .how-it-works-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start; /* Alinha pelo topo */
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  
+  /* Container dos Passos */
+  .how-it-works-steps-container {
+    flex: 1; /* Ocupa 1 parte */
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+  
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background-color: #2c2c2c;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #444;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .step-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+  .step-icon-wrapper {
+    flex-shrink: 0;
+    font-size: 2.2em;
+    color: #54945c;
+    margin-top: 0.2em;
+  }
+  .step-text-content { }
+  .step-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #FFFFFF;
+  }
+  .step-description {
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Container da Coluna do Vídeo */
+  .how-it-works-video-container {
+    flex: 1.4; /* Ocupa 1.4 partes -> MAIOR */
+    min-width: 320px;
+    align-self: center; /* Tenta centralizar verticalmente */
+  }
+  
+  /* --- ESTILOS PARA O IFRAME DO VÍDEO --- */
+  .embedded-video-iframe {
+    display: block; /* Garante que o aspect-ratio funcione bem */
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Mantém proporção */
+    border: none; /* Remove qualquer borda padrão do iframe */
+    border-radius: 12px; /* Bordas arredondadas */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra */
+  }
+  /* --- FIM ESTILOS IFRAME --- */
+  
+  
+  /* --- ESTILOS DO PLACEHOLDER ANTERIOR (REMOVIDOS OU COMENTADOS) --- */
+  /*
+  .video-link-placeholder { ... }
+  .video-thumbnail-placeholder { ... }
+  .video-overlay { ... }
+  .video-play-button-container { ... }
+  .video-play-icon { ... }
+  .video-link-text { ... }
+  */
+  
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .how-it-works-content {
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+    }
+    .how-it-works-steps-container {
+      width: 100%;
+      max-width: 650px;
+      flex: none;
+      order: 2; /* Passos depois do vídeo */
+    }
+    .how-it-works-video-container {
+      width: 100%;
+      max-width: 650px;
+      flex: none;
+      order: 1; /* Vídeo primeiro */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .how-it-works-section {
+      padding: 4rem 1rem;
+    }
+    .how-it-works-title {
+       font-size: 2em;
+    }
+     .how-it-works-subtitle {
+       font-size: 1em;
+       margin-bottom: 3rem;
+    }
+    .step-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.2rem;
+    }
+    .step-icon-wrapper {
+        margin-bottom: 0.5rem;
+    }
+    .step-title {
+        font-size: 1.2em;
+    }
+    /* O iframe já se ajusta com aspect-ratio, então não precisa de mais ajustes aqui */
+  }

@@ -1,0 +1,104 @@
+/* src/componentsLP/FinalCTASection.css */
+
+.final-cta-section {
+    padding: 5rem 1.5rem;
+    /* Fundo com gradiente suave para destacar */
+    background: linear-gradient(180deg, #222222 0%, #1a1a1a 100%);
+    text-align: center; /* Centraliza todo o conteúdo */
+    border-top: 1px solid #333; /* Linha de separação sutil */
+  }
+  
+  .final-cta-content {
+    max-width: 750px; /* Largura máxima do conteúdo */
+    margin: 0 auto; /* Centraliza */
+  }
+  
+  .final-cta-title {
+    font-size: 2.6em; /* Título bem grande */
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .final-cta-description {
+    font-size: 1.15em;
+    color: rgba(255, 255, 255, 0.85); /* Texto um pouco mais claro */
+    line-height: 1.6;
+    margin-bottom: 2.5rem; /* Espaço antes do botão */
+    max-width: 600px; /* Limita largura da descrição */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .final-cta-button.ant-btn-primary {
+    /* Reutiliza e talvez aumenta um pouco o estilo do botão primário */
+    background: linear-gradient(90deg, #4a8351 0%, #54945c 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    height: 58px !important; /* Botão ligeiramente mais alto */
+    padding: 0 45px !important; /* Mais padding horizontal */
+    font-size: 1.2em !important; /* Fonte maior */
+    font-weight: 600;
+    border-radius: 30px; /* Mais arredondado */
+    box-shadow: 0 6px 20px rgba(84, 148, 92, 0.3);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+  }
+  
+  .final-cta-button.ant-btn-primary .anticon {
+     margin-left: 12px; /* Espaço antes da seta */
+     font-size: 1.1em; /* Tamanho da seta */
+  }
+  
+  .final-cta-button.ant-btn-primary:hover {
+    box-shadow: 0 8px 25px rgba(84, 148, 92, 0.4);
+    transform: translateY(-3px); /* Levanta mais */
+  }
+  
+  .final-cta-button.ant-btn-primary:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 3px 12px rgba(84, 148, 92, 0.25);
+  }
+  
+  .final-cta-subtext {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 1rem; /* Espaço acima do subtexto */
+  }
+  
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+      .final-cta-section {
+          padding: 4rem 1rem;
+      }
+      .final-cta-title {
+          font-size: 2.2em;
+      }
+      .final-cta-description {
+          font-size: 1.1em;
+          margin-bottom: 2rem;
+      }
+      .final-cta-button.ant-btn {
+          height: 52px !important;
+          padding: 0 35px !important;
+          font-size: 1.1em !important;
+      }
+  }
+  
+  @media (max-width: 480px) {
+       .final-cta-title {
+          font-size: 1.9em;
+      }
+       .final-cta-description {
+          font-size: 1em;
+      }
+       .final-cta-button.ant-btn {
+          height: 50px !important;
+          padding: 0 30px !important;
+          font-size: 1em !important;
+      }
+       .final-cta-subtext {
+          font-size: 0.85em;
+      }
+  }

@@ -1,0 +1,196 @@
+/* src/pages/LoginPage/LoginPage.css */
+
+.login-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1a1a1a; /* Fundo escuro */
+    padding: 20px; /* Espaçamento nas laterais em telas pequenas */
+  }
+  
+  .login-form-card {
+    width: 100%;
+    max-width: 420px; /* Largura máxima do card */
+    background-color: #2b2b2b !important; /* Fundo do card */
+    border: 1px solid #444 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+  .login-form-card .ant-card-body {
+      padding: 32px 40px !important; /* Padding interno */
+  }
+  
+  .login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .login-logo {
+    height: 60px; /* Tamanho da logo */
+    margin-bottom: 1rem;
+  }
+  
+  .login-title.ant-typography {
+    color: #FFFFFF !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 600;
+  }
+  
+  .login-header .ant-typography-secondary {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  
+  /* Estilos do Formulário AntD */
+  .login-antd-form .ant-form-item-label > label {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500;
+  }
+  
+  .login-antd-form .ant-input-affix-wrapper,
+  .login-antd-form .ant-input-password {
+    background-color: #1f1f1f !important;
+    border-color: #444 !important;
+    border-radius: 8px !important;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  .login-antd-form .ant-input {
+    background-color: transparent !important;
+    color: #FFFFFF !important;
+    height: 48px !important;
+    line-height: 48px !important;
+    font-size: 1em;
+  }
+  /* Estilos para Autofill do Chrome/Webkit */
+  .login-antd-form input:-webkit-autofill,
+  .login-antd-form input:-webkit-autofill:hover,
+  .login-antd-form input:-webkit-autofill:focus,
+  .login-antd-form input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px #1f1f1f inset !important; /* Fundo igual ao input */
+      -webkit-text-fill-color: #fff !important; /* Cor do texto */
+      caret-color: #fff !important; /* Cor do cursor piscando */
+      border-radius: 8px !important; /* Mantém o border-radius */
+      border-color: #444 !important; /* Mantém a borda */
+  }
+  
+  
+  .login-antd-form .ant-input::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  .login-antd-form .ant-input-prefix .anticon {
+    color: rgba(255, 255, 255, 0.5) !important;
+    font-size: 1.1em;
+  }
+  
+  /* Foco nos Inputs */
+  .login-antd-form .ant-input-affix-wrapper-focused,
+  .login-antd-form .ant-input-affix-wrapper:focus,
+  .login-antd-form .ant-input-affix-wrapper:focus-within,
+  .login-antd-form .ant-input-password-focused {
+    border-color: #54945c !important;
+    box-shadow: 0 0 0 2px rgba(84, 148, 92, 0.2) !important;
+  }
+  
+  /* Checkbox "Lembrar-me" e Link "Esqueci senha" */
+  .login-antd-form .ant-form-item:has(.ant-checkbox-wrapper) { /* Seleciona o Form.Item do Checkbox */
+      margin-bottom: 24px; /* Mantém espaço padrão */
+      display: flex;
+      justify-content: space-between; /* Alinha checkbox e link */
+      align-items: center;
+  }
+  
+  .login-antd-form .ant-checkbox-wrapper {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  .login-antd-form .ant-checkbox-inner {
+    background-color: #444 !important;
+    border-color: #666 !important;
+  }
+  .login-antd-form .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #54945c !important;
+    border-color: #54945c !important;
+  }
+  .login-antd-form .ant-checkbox-checked::after {
+      border-color: #54945c !important;
+  }
+  
+  /* Link "Esqueci minha senha" (se for descomentado) */
+  .login-form-forgot {
+    float: right; /* Remove float se o pai for flex */
+    color: #adedb1;
+    font-size: 0.9em;
+    text-decoration: none;
+  }
+  .login-form-forgot:hover {
+    text-decoration: underline;
+    color: #cfffd1;
+  }
+  
+  /* Botão de Login */
+  .login-form-button.ant-btn-primary {
+    background: linear-gradient(90deg, #4a8351 0%, #54945c 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    height: 50px !important;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(84, 148, 92, 0.25);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+    margin-top: 1rem; /* Espaço acima */
+  }
+  .login-form-button.ant-btn-primary .anticon {
+     /* Ícone antes ou depois? Ajuste margin */
+     margin-right: 8px;
+  }
+  .login-form-button.ant-btn-primary:hover:not(:disabled) {
+    box-shadow: 0 6px 18px rgba(84, 148, 92, 0.35);
+    transform: translateY(-1px);
+  }
+  .login-form-button.ant-btn-primary:disabled {
+      background: #555 !important;
+      box-shadow: none !important;
+      cursor: not-allowed;
+      opacity: 0.7;
+      color: rgba(255, 255, 255, 0.5) !important;
+  }
+  .login-form-button.ant-btn-primary:disabled .anticon {
+         color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  /* Mensagens de erro */
+  .login-antd-form .ant-form-item-explain-error {
+      color: #ff7875 !important;
+      font-size: 0.9em;
+      margin-top: 4px;
+      text-align: left; /* Garante alinhamento */
+  }
+  
+  
+  /* Responsividade simples */
+  @media (max-width: 480px) {
+    .login-form-card {
+      padding: 24px; /* Menos padding */
+      max-width: 100%; /* Ocupa toda largura */
+      border-radius: 8px !important;
+    }
+     .login-form-card .ant-card-body {
+      padding: 24px !important;
+    }
+    .login-logo {
+      height: 50px;
+    }
+     .login-title.ant-typography {
+       font-size: 1.8em;
+     }
+     .login-antd-form .ant-input {
+        height: 44px !important;
+        line-height: 44px !important;
+     }
+     .login-form-button.ant-btn {
+         height: 46px !important;
+     }
+  }

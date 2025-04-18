@@ -1,0 +1,139 @@
+/* src/components/Sidebar/Sidebar.css */
+
+/* --- Estilos da Sider (Container da Sidebar) --- */
+/* Aplica ao componente Sider com tema escuro */
+.ant-layout-sider-dark {
+    background: #1a1a1a !important; /* Força o fundo padrão do sistema */
+    border-right: none !important; /* Remove qualquer borda direita padrão */
+    box-shadow: none !important; /* Remove qualquer sombra padrão */
+    height: 100vh; /* Garante que ocupe toda a altura da tela */
+  }
+  /* Estiliza o container interno dos filhos do Sider para layout flexível */
+  .ant-layout-sider-children {
+      display: flex; /* Habilita Flexbox */
+      flex-direction: column; /* Empilha os filhos verticalmente (logo, menu, trigger) */
+      height: 100%; /* Garante que os filhos ocupem todo o espaço vertical */
+  }
+
+  /* --- Logo --- */
+  .logo-container {
+    height: 64px; /* Altura fixa para o container do logo */
+    display: flex; /* Flexbox para alinhamento */
+    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: center; /* Alinha horizontalmente ao centro */
+    padding: 10px 0; /* Padding vertical */
+    overflow: hidden; /* Esconde conteúdo que possa vazar */
+    margin-bottom: 8px; /* Espaço abaixo do logo, antes do menu */
+    flex-shrink: 0; /* Impede que este container encolha se o espaço faltar */
+    margin-top: 12px;
+  }
+ 
+  
+  .logo-container .logo-text {
+    color: #FFFFFF; /* Texto branco */
+    font-size: 1.4em; /* Tamanho da fonte */
+    font-weight: 600; /* Peso da fonte */
+    white-space: nowrap; /* Impede quebra de linha */
+    letter-spacing: 1px; /* Espaçamento entre letras */
+    transition: opacity 0.3s ease-in-out; /* Transição suave para aparecer/desaparecer */
+  }
+  /* Estilo da imagem placeholder */
+  .logo-container .collapsed-logo {
+    max-width: 40px; /* Largura máxima */
+    max-height: 40px; /* Altura máxima */
+    display: block; /* Remove espaço extra abaixo da imagem */
+    transition: opacity 0.3s ease-in-out; /* Transição suave */
+  }
+  /* Oculta o texto quando a classe 'ant-layout-sider-collapsed' está presente no Sider pai */
+  .ant-layout-sider-collapsed .logo-container .logo-text { opacity: 0; font-size: 0; }
+  /* Oculta a imagem quando a classe 'ant-layout-sider-collapsed' NÃO está presente */
+  .ant-layout-sider:not(.ant-layout-sider-collapsed) .logo-container .collapsed-logo { opacity: 0; width: 0; }
+
+  /* --- Estilos do Menu --- */
+  /* Fundo e cor de texto padrão para o menu escuro e seus submenus */
+  .sidebar-menu.ant-menu-dark,
+  .sidebar-menu.ant-menu-dark .ant-menu-sub {
+    background: transparent !important; /* Usa o fundo da Sider */
+    color: #FFFFFF !important; /* Texto branco */
+  }
+  /* Estilos específicos para o menu inline (vertical) */
+  .sidebar-menu.ant-menu-dark.ant-menu-inline {
+    border-inline-end: none !important; /* Remove borda interna direita */
+    flex-grow: 1; /* Faz o menu ocupar o espaço vertical restante */
+    overflow-y: auto; /* Adiciona scroll vertical apenas ao menu se necessário */
+    overflow-x: hidden; /* Esconde scroll horizontal */
+  }
+  /* Estilo geral para cada item (<li>) do menu */
+  .sidebar-menu.ant-menu-dark.ant-menu-inline .ant-menu-item {
+    margin-left: 8px !important; /* Margem esquerda */
+    margin-right: 8px !important; /* Margem direita */
+    width: calc(100% - 16px) !important; /* Largura considerando as margens */
+    border-radius: 8px; /* Cantos arredondados */
+    margin-top: 4px; /* Espaço acima */
+    margin-bottom: 4px; /* Espaço abaixo */
+    transition: background-color 0.2s ease-in-out; /* Transição suave de fundo */
+    position: relative; /* Necessário para pseudo-elementos */
+  }
+  /* Ícone e Link dentro do item */
+  .sidebar-menu.ant-menu-dark .ant-menu-item .ant-menu-item-icon,
+  .sidebar-menu.ant-menu-dark .ant-menu-item .ant-menu-title-content a {
+      color: #FFFFFF !important; /* Força cor branca */
+      transition: color 0.2s; /* Transição suave de cor */
+  }
+  /* Remove pseudo-elementos padrão do AntD que podem causar a linha azul */
+  .sidebar-menu.ant-menu-dark.ant-menu-inline .ant-menu-item::after,
+  .sidebar-menu.ant-menu-dark.ant-menu-inline .ant-menu-item::before {
+      display: none !important;
+      border-right: none !important;
+  }
+  /* Hover em item NÃO selecionado */
+  .sidebar-menu.ant-menu-dark.ant-menu-inline .ant-menu-item:not(.ant-menu-item-selected):hover {
+    background-color: #56935c !important; /* Fundo Verde (#56935c) no hover */
+  }
+
+  /* ****** FOCO DA CORREÇÃO - ITEM SELECIONADO ****** */
+
+  /* Regra GERAL para item selecionado (Sidebar ABERTA) */
+  .ant-layout-sider:not(.ant-layout-sider-collapsed) .sidebar-menu.ant-menu-dark.ant-menu-inline .ant-menu-item-selected {
+      background-color: #56935c !important; /* Fundo Verde */
+  }
+  /* Ícone/Texto quando selecionado e ABERTA */
+  .ant-layout-sider:not(.ant-layout-sider-collapsed) .sidebar-menu.ant-menu-dark.ant-menu-inline .ant-menu-item-selected .ant-menu-item-icon,
+  .ant-layout-sider:not(.ant-layout-sider-collapsed) .sidebar-menu.ant-menu-dark.ant-menu-inline .ant-menu-item-selected .ant-menu-title-content a {
+      color: #FFFFFF !important; /* Branco */
+  }
+
+
+  /* Regra ALTAMENTE ESPECÍFICA para item selecionado quando a Sidebar está COLAPSADA */
+  /* Usamos a classe do Sider e a classe do Menu colapsado */
+  .ant-layout-sider-collapsed .sidebar-menu.ant-menu-dark.ant-menu-inline-collapsed .ant-menu-item-selected {
+      background-color: #56935c !important; /* FORÇA Fundo Verde */
+      color: #FFFFFF !important; /* Garante cor geral branca */
+  }
+  /* FORÇA a cor do ícone dentro do item selecionado/colapsado */
+  .ant-layout-sider-collapsed .sidebar-menu.ant-menu-dark.ant-menu-inline-collapsed .ant-menu-item-selected .ant-menu-item-icon {
+      color: #FFFFFF !important; /* FORÇA Ícone branco */
+  }
+
+
+  /* Padding do item quando a sidebar está COLAPSADA para centralizar o ícone */
+  .ant-layout-sider-collapsed .sidebar-menu.ant-menu-dark.ant-menu-inline .ant-menu-item,
+  .ant-layout-sider-collapsed .sidebar-menu.ant-menu-dark.ant-menu-inline .ant-menu-item-group .ant-menu-item-group-list .ant-menu-item {
+      padding-left: 24px !important; /* Padding padrão AntD para ícone centralizado */
+      padding-right: 24px !important;
+  }
+
+
+  /* --- Estilo do Trigger PADRÃO AntD (Botão inferior de colapsar/expandir) --- */
+  /* Aplica ao trigger no tema escuro */
+  .ant-layout-sider-dark .ant-layout-sider-trigger {
+      background: #2c2c2c !important; /* Fundo cinza escuro (#2c2c2c) */
+      color: #FFFFFF !important; /* Ícone/seta branca */
+      border-top: none !important; /* Remove borda superior */
+      /* A altura e posicionamento são gerenciados pelo AntD */
+  }
+  /* Hover no trigger */
+  .ant-layout-sider-dark .ant-layout-sider-trigger:hover {
+       background: #56935c !important; /* Fundo Verde (#56935c) no hover */
+       color: #FFFFFF !important; /* Ícone/seta permanece branco */
+  }

@@ -1,0 +1,121 @@
+/* src/componentsLP/SecuritySection.css */
+
+.security-section-component {
+    padding: 5rem 1.5rem;
+    background-color: #1a1a1a; /* Pode variar se quiser contraste */
+    color: #FFFFFF;
+  }
+  
+  .security-section-title {
+    text-align: center;
+    font-size: 2.4em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+  }
+  
+  .security-section-subtitle {
+    text-align: center;
+    font-size: 1.15em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 4rem; /* Espaço antes dos pontos */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  
+  .security-points-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    /* 3 colunas em telas maiores, 2 em médias, 1 em pequenas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem; /* Espaço entre os itens */
+  }
+  
+  .security-point-item {
+    background-color: #2b2b2b; /* Fundo do card de segurança */
+    padding: 2rem 1.8rem;
+    border-radius: 10px;
+    border: 1px solid #444;
+    text-align: center; /* Centraliza conteúdo do item */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .security-point-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .security-icon-wrapper {
+    display: inline-flex; /* Para centralizar e aplicar fundo/padding */
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #54945c, #4a8351); /* Fundo verde para ícones */
+    margin-bottom: 1.5rem; /* Espaço abaixo do ícone */
+    box-shadow: 0 4px 10px rgba(84, 148, 92, 0.15);
+  }
+  
+  .security-icon-wrapper .anticon {
+    font-size: 2.2em; /* Tamanho do ícone */
+    color: #FFFFFF; /* Ícone branco */
+  }
+  
+  .security-point-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: #FFFFFF;
+  }
+  
+  .security-point-description {
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Link para política de privacidade */
+  .privacy-link-prompt {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 1em;
+      color: rgba(255, 255, 255, 0.7);
+  }
+  .privacy-link-prompt a {
+      color: #adedb1; /* Verde claro para o link */
+      text-decoration: none;
+      font-weight: 500;
+  }
+  .privacy-link-prompt a:hover {
+      text-decoration: underline;
+      color: #cfffd1;
+  }
+  
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .security-points-grid {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+     .security-section-title { font-size: 2.2em; }
+     .security-section-subtitle { font-size: 1.1em; margin-bottom: 3.5rem; }
+  }
+  
+  @media (max-width: 768px) {
+     .security-section-component { padding: 4rem 1rem; }
+     .security-point-item { padding: 1.8rem 1.5rem; }
+  }
+  
+  @media (max-width: 480px) {
+      .security-section-title { font-size: 1.9em; }
+      .security-section-subtitle { font-size: 1em; margin-bottom: 3rem; }
+      .security-points-grid { gap: 1.5rem; }
+      .security-point-title { font-size: 1.2em; }
+      .security-point-description { font-size: 0.9em; }
+  }

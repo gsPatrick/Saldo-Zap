@@ -1,0 +1,191 @@
+/* src/pages/ConfirmationPage/ConfirmationPage.css */
+
+.confirmation-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  color: #FFFFFF;
+}
+.confirmation-page-container.loading {
+    /* Estilos de loading definidos no JSX */
+}
+
+.confirmation-main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1.5rem;
+}
+
+/* --- NOVO: Card que envolve todo o conteúdo --- */
+.confirmation-content-card {
+  background-color: #2b2b2b;
+  padding: 2rem 2.5rem; /* Padding interno do card */
+  border-radius: 12px;
+  max-width: 700px; /* Aumenta um pouco a largura */
+  width: 100%;
+  border: 1px solid #444;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Centraliza elementos internos como o bot visual */
+}
+
+
+/* --- NOVO: Estilo para o Visual do Bot --- */
+.bot-visual-placeholder {
+  margin: 0 auto 1.5rem auto; /* Centraliza e adiciona espaço abaixo */
+  padding: 1rem;
+  /* background-color: #3a3a3a; */ /* Fundo opcional */
+  border-radius: 8px;
+  display: inline-flex; /* Para alinhar itens */
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bot-visual-placeholder .anticon { /* Ícone do Robô */
+    font-size: 3.5em;
+    color: #54945c; /* Verde */
+    line-height: 1;
+}
+
+.bot-visual-dots span { /* Pontos de "pensando" */
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    margin: 0 3px;
+    animation: bot-thinking-dots 1.4s infinite ease-in-out both;
+}
+.bot-visual-dots span:nth-child(1) { animation-delay: -0.32s; }
+.bot-visual-dots span:nth-child(2) { animation-delay: -0.16s; }
+.bot-visual-dots span:nth-child(3) { animation-delay: 0s; }
+
+@keyframes bot-thinking-dots {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1.0); }
+}
+/* --- FIM: Estilo para o Visual do Bot --- */
+
+
+/* Estilização do componente Result (AGORA DENTRO DO CARD) */
+.confirmation-result-inner.ant-result {
+  /* Remove fundo e borda daqui, pois estão no card pai */
+  background-color: transparent !important;
+  padding: 0 !important; /* Remove padding interno do Result */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Ícone de Sucesso */
+.confirmation-result-inner .ant-result-icon > .anticon {
+  color: #52c41a !important;
+  font-size: 60px !important; /* Reduz um pouco */
+  margin-bottom: 1rem !important; /* Menos espaço abaixo */
+}
+
+/* Título */
+.confirmation-result-inner .ant-result-title {
+  color: #FFFFFF !important;
+  font-size: 1.6em !important; /* Reduz um pouco */
+  font-weight: 600;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Subtítulo */
+.confirmation-result-inner .ant-result-subtitle {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 1.05em !important; /* Ajuste */
+  line-height: 1.6;
+  max-width: 550px; /* Ajuste */
+  margin: 8px auto 0 auto;
+}
+
+/* Container dos botões/extras */
+.confirmation-result-inner .ant-result-extra {
+  margin-top: 24px !important;
+}
+
+/* Botão Principal WhatsApp */
+.confirmation-cta-button.ant-btn-primary {
+  background-color: #25D366 !important;
+  border-color: #25D366 !important;
+  color: #FFFFFF !important;
+  height: 50px !important;
+  padding: 0 30px !important;
+  font-size: 1.1em !important;
+  font-weight: 600;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+}
+.confirmation-cta-button.ant-btn-primary .anticon { margin-right: 10px; }
+.confirmation-cta-button.ant-btn-primary:hover {
+  background-color: #1ebe5b !important;
+  border-color: #1ebe5b !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Parágrafo "Salve o número" */
+.save-contact-info {
+  margin-top: 1rem !important; /* Menos espaço */
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.whatsapp-number-display {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+}
+
+.ant-typography.ant-typography-secondary {
+  color: white !important;
+  font-size: 20px !important;
+}
+
+.ant-result .ant-result-extra>*:last-child{
+  font-size: 17px !important;
+}
+
+/* --- NOVO: Estilo para o Alert --- */
+.security-alert-message.ant-alert-warning {
+    margin-top: 2rem; /* Espaço acima do alerta */
+    background-color: rgba(250, 173, 20, 0.1) !important; /* Fundo amarelo transparente */
+    border: 1px solid rgba(250, 173, 20, 0.4) !important; /* Borda amarela */
+    border-radius: 8px;
+    text-align: left; /* Alinha texto do alerta à esquerda */
+}
+.security-alert-message .ant-alert-icon {
+    color: #faad14 !important; /* Ícone amarelo */
+    font-size: 1.1em; /* Ajuste tamanho ícone */
+}
+.security-alert-message .ant-alert-message {
+    color: #FFFFFF !important; /* Título do alerta branco */
+    font-weight: 500;
+    font-size: 1em;
+}
+.security-alert-message .ant-alert-description {
+    color: rgba(255, 255, 255, 0.8) !important; /* Descrição clara */
+    font-size: 0.9em;
+}
+/* --- FIM: Estilo para o Alert --- */
+
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .confirmation-main-content { padding: 2rem 1rem; }
+    .confirmation-content-card { padding: 1.5rem; } /* Menos padding no card */
+    .bot-visual-placeholder .anticon { font-size: 3em; }
+    .confirmation-result-inner .ant-result-icon > .anticon { font-size: 50px !important; }
+    .confirmation-result-inner .ant-result-title { font-size: 1.4em !important; }
+    .confirmation-result-inner .ant-result-subtitle { font-size: 0.95em !important; }
+    .confirmation-cta-button.ant-btn { height: 46px !important; padding: 0 25px !important; font-size: 1em !important; }
+    .save-contact-info { font-size: 0.85em; }
+    .security-alert-message { margin-top: 1.5rem; }
+}

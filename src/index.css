@@ -1,0 +1,71 @@
+/* src/index.css */
+/* Importa a fonte Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Reset super básico */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Aplica a todos os elementos via herança */
+}
+
+*, *::before, *::after {
+  box-sizing: inherit; /* Garante herança do box-sizing */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1a1a1a;
+  color: #FFFFFF;
+  /* Removido overflow: hidden */
+}
+
+/* --- Estilos Gerais de Texto Mínimos --- */
+a {
+  color: inherit; /* Herda cor do pai */
+  text-decoration: none;
+}
+
+/* --- Layout AntD Mínimo --- */
+/* Garante altura e fundo */
+.ant-layout {
+    min-height: 100vh !important;
+    background: #1a1a1a !important; /* Garante fundo escuro */
+}
+
+/* O layout que contém o conteúdo */
+/* Deixe AntD adicionar padding-left aqui */
+.site-layout {
+   background: #1a1a1a !important;
+   /* A transição será adicionada pelo AntD */
+   /* transition: padding-left 0.2s; */ /* Removido para teste */
+}
+
+/* A área de conteúdo em si */
+.ant-layout-content {
+   background: #1a1a1a !important; /* Fundo */
+   color: #FFFFFF; /* Texto */
+   /* Padding será inline no App.jsx */
+}
+
+/* Garante fonte em componentes chave */
+.ant-menu, .ant-table, .ant-card, .ant-input, .ant-select, .ant-checkbox-wrapper, .ant-tag, .ant-pagination, .ant-btn, .ant-typography {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Tenta garantir que o layout do conteúdo não tenha largura fixa */
+.site-layout .ant-layout-content {
+    width: auto !important; /* Tenta impedir largura 100vw/100% */
+    margin-left: 0; /* Reset explícito, AntD deve sobrescrever */
+    margin-right: 0;
+}
+
+/* Reset explícito de posicionamento que poderia quebrar o fluxo */
+.ant-layout, .ant-layout-sider, .site-layout, .ant-layout-content {
+    position: relative !important; /* Garante fluxo normal */
+    float: none !important; /* Remove float */
+}

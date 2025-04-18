@@ -1,0 +1,220 @@
+/* src/pages/Mensagens/Mensagens.css */
+
+/* --- Card de Filtros/Ações --- */
+.mensagens-card.ant-card {
+    background-color: #2c2c2c !important;
+    border: 1px solid #444 !important;
+    margin-bottom: 24px;
+    border-radius: 8px;
+}
+.mensagens-card .ant-card-body {
+    padding: 16px !important;
+}
+.mensagens-card .ant-typography {
+     color: #FFFFFF !important;
+     display: block; /* Para o label ficar acima */
+     margin-bottom: 8px;
+     font-weight: 500;
+}
+
+/* --- Select de Filtro --- */
+.mensagens-card .ant-select .ant-select-selector {
+  background-color: #1a1a1a !important; /* Fundo principal */
+  border-color: #444 !important; /* Borda cinza */
+  color: #FFFFFF !important; /* Texto branco */
+  border-radius: 6px !important;
+}
+.mensagens-card .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+    border-color: #56935c !important; /* Borda verde hover */
+}
+.mensagens-card .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-color: #56935c !important; /* Borda verde foco */
+    box-shadow: 0 0 0 2px rgba(86, 147, 92, 0.2) !important; /* Sombra verde foco */
+}
+.mensagens-card .ant-select .ant-select-arrow {
+    color: rgba(255, 255, 255, 0.6) !important; /* Cor da seta */
+}
+/* Dropdown do Select (igual Contas.css) */
+/* (Opcional, pode deixar no index.css ou duplicar se preferir isolamento) */
+/* .ant-select-dropdown { background-color: #2c2c2c !important; } ... etc ... */
+
+
+/* --- Botões de Ação --- */
+.mensagens-card .ant-space .ant-btn {
+    background-color: #444; /* Fundo cinza escuro padrão */
+    border-color: #555; /* Borda cinza */
+    color: rgba(255, 255, 255, 0.85); /* Texto branco suave */
+    box-shadow: none;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.mensagens-card .ant-space .ant-btn:hover {
+    background-color: #555; /* Hover cinza mais claro */
+    border-color: #666;
+    color: #FFFFFF; /* Texto branco forte hover */
+}
+.mensagens-card .ant-space .ant-btn-dangerous { /* Botões 'danger' (expirados) */
+     background-color: rgba(255, 77, 79, 0.2); /* Fundo vermelho transparente */
+     border-color: rgba(255, 77, 79, 0.6); /* Borda vermelha transparente */
+     color: #ff7875; /* Texto vermelho claro */
+}
+.mensagens-card .ant-space .ant-btn-dangerous:hover:not(:disabled) {
+    background-color: rgba(255, 77, 79, 0.3);
+    border-color: rgba(255, 77, 79, 0.8);
+    color: #ff4d4f; /* Texto vermelho forte hover */
+}
+.mensagens-card .ant-space .ant-btn-dashed { /* Botão Todos Visíveis */
+     background: transparent;
+     border-color: #555;
+     color: rgba(255, 255, 255, 0.85);
+}
+.mensagens-card .ant-space .ant-btn-dashed:hover {
+    border-color: #56935c; /* Borda verde hover */
+    color: #56935c; /* Texto verde hover */
+}
+.mensagens-card .ant-space .ant-btn:disabled {
+    background-color: #333 !important;
+    border-color: #444 !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    cursor: not-allowed;
+}
+
+/* --- Tabela de Mensagens (Reutiliza estilos de Contas) --- */
+.mensagens-table .ant-table { background: #1a1a1a !important; border-radius: 8px; overflow: hidden; border: 1px solid #333; }
+.mensagens-table .ant-table-container::before, .mensagens-table .ant-table-container::after { background: none !important; }
+.mensagens-table .ant-table-wrapper { background: #1a1a1a !important; }
+.mensagens-table .ant-table-thead > tr > th { background: #2c2c2c !important; color: rgba(255, 255, 255, 0.85) !important; border-bottom: 1px solid #444 !important; padding: 10px 12px; font-weight: 500; text-align: left; border-inline-end: none !important; }
+.mensagens-table .ant-table-thead > tr > th[align="center"] { text-align: center; }
+.mensagens-table .ant-table-tbody > tr > td { background: #1a1a1a !important; color: rgba(255, 255, 255, 0.85); border-bottom: 1px solid #333 !important; padding: 8px 12px; vertical-align: middle; border-inline-end: none !important; transition: background-color 0.2s ease-in-out; }
+.mensagens-table .ant-table-tbody > tr:last-child > td { border-bottom: none !important; }
+.mensagens-table .ant-table-tbody > tr.ant-table-row:hover > td,
+.mensagens-table .ant-table-tbody > tr:hover > td { background: #2a2a2a !important; }
+
+/* Estilos para linha selecionada */
+.mensagens-table .ant-table-tbody > tr.ant-table-row-selected > td {
+    background: #3a3a3a !important; /* Um cinza um pouco mais claro para seleção */
+}
+
+/* Checkbox da seleção */
+.mensagens-table .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.mensagens-table .ant-checkbox:hover .ant-checkbox-inner,
+.mensagens-table .ant-checkbox-input:focus + .ant-checkbox-inner { border-color: #56935c !important; }
+.mensagens-table .ant-checkbox .ant-checkbox-inner { background-color: #1a1a1a !important; border-color: #555 !important; border-radius: 4px; }
+.mensagens-table .ant-checkbox-checked .ant-checkbox-inner { background-color: #56935c !important; border-color: #56935c !important; }
+.mensagens-table .ant-checkbox-checked::after { border: none !important; }
+.mensagens-table .ant-checkbox-checked .ant-checkbox-inner::after { border-color: #FFFFFF !important; }
+.mensagens-table .ant-checkbox-indeterminate .ant-checkbox-inner { background-color: #56935c !important; border-color: #56935c !important; }
+.mensagens-table .ant-checkbox-indeterminate .ant-checkbox-inner::after { background-color: #FFFFFF !important; } /* Traço do indeterminate */
+
+/* --- Paginação (Reutiliza estilos de Contas) --- */
+.mensagens-table .ant-pagination { margin: 24px 16px 16px 16px; text-align: right; }
+/* ... (copiar todas as regras de .contas-table .ant-pagination-* de Contas.css aqui se não estiverem globais) ... */
+.mensagens-table .ant-pagination-item, .mensagens-table .ant-pagination-prev .ant-pagination-item-link, .mensagens-table .ant-pagination-next .ant-pagination-item-link { background-color: #2c2c2c !important; border-color: #444 !important; color: rgba(255, 255, 255, 0.85) !important; border-radius: 6px; box-shadow: none !important; transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out; }
+.mensagens-table .ant-pagination-item:not(.ant-pagination-item-active):hover, .mensagens-table .ant-pagination-prev:not(.ant-pagination-disabled):hover .ant-pagination-item-link, .mensagens-table .ant-pagination-next:not(.ant-pagination-disabled):hover .ant-pagination-item-link { background-color: #444 !important; border-color: #555 !important; }
+.mensagens-table .ant-pagination-item:not(.ant-pagination-item-active):hover a { color: #FFFFFF !important; }
+.mensagens-table .ant-pagination-item a { color: rgba(255, 255, 255, 0.85) !important; }
+.mensagens-table .ant-pagination-item-active { background-color: #56935c !important; border-color: #56935c !important; }
+.mensagens-table .ant-pagination-item-active a { color: #FFFFFF !important; }
+.mensagens-table .ant-pagination-item-active:hover { background-color: #6aa870 !important; border-color: #6aa870 !important; }
+.mensagens-table .ant-pagination-item-active:hover a { color: #FFFFFF !important; }
+.mensagens-table .ant-pagination-disabled .ant-pagination-item-link, .mensagens-table .ant-pagination-disabled:hover .ant-pagination-item-link { color: rgba(255, 255, 255, 0.3) !important; border-color: #444 !important; background-color: transparent !important; cursor: not-allowed; }
+.mensagens-table .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis, .mensagens-table .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis { color: rgba(255, 255, 255, 0.4) !important; }
+.mensagens-table .ant-pagination-jump-prev:hover .ant-pagination-item-container .ant-pagination-item-link-icon, .mensagens-table .ant-pagination-jump-next:hover .ant-pagination-item-container .ant-pagination-item-link-icon { color: #56935c !important; }
+.mensagens-table .ant-pagination-jump-prev:hover .ant-pagination-item-container .ant-pagination-item-ellipsis, .mensagens-table .ant-pagination-jump-next:hover .ant-pagination-item-container .ant-pagination-item-ellipsis { color: rgba(255, 255, 255, 0.8) !important; }
+
+
+/* --- Tags de Status/Plano (Reutiliza estilos de Contas) --- */
+.mensagens-table .ant-tag { border-radius: 4px; padding: 2px 8px; font-size: 0.85em; margin-right: 0 !important; line-height: inherit; border-width: 1px; border-style: solid; font-weight: 500; }
+.mensagens-table .ant-tag-green, .mensagens-table .ant-tag[color="#56935c"] { background-color: rgba(86, 147, 92, 0.2) !important; border-color: rgba(86, 147, 92, 0.6) !important; color: #adedb1 !important; }
+.mensagens-table .ant-tag-blue { background-color: rgba(59, 130, 246, 0.2) !important; border-color: rgba(59, 130, 246, 0.6) !important; color: #bfdbfe !important; }
+.mensagens-table .ant-tag-default { background-color: rgba(107, 114, 128, 0.2) !important; border-color: rgba(107, 114, 128, 0.6) !important; color: #d1d5db !important; }
+.mensagens-table .ant-tag-red { background-color: rgba(255, 77, 79, 0.15) !important; border-color: rgba(255, 77, 79, 0.5) !important; color: #ff7875 !important; } /* Tag Vermelha para Expirado */
+
+/* src/pages/Mensagens/Mensagens.css */
+
+/* --- Card de Filtros/Ações --- */
+.mensagens-card.ant-card { background-color: #2c2c2c !important; border: 1px solid #444 !important; margin-bottom: 24px; border-radius: 8px; }
+.mensagens-card .ant-card-body { padding: 16px !important; }
+.mensagens-card .ant-typography { color: #FFFFFF !important; display: block; margin-bottom: 8px; font-weight: 500; }
+
+/* --- Select de Filtro --- */
+.mensagens-card .ant-select .ant-select-selector { background-color: #1a1a1a !important; border-color: #444 !important; color: #FFFFFF !important; border-radius: 6px !important; }
+.mensagens-card .ant-select:not(.ant-select-disabled):hover .ant-select-selector { border-color: #56935c !important; }
+.mensagens-card .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector { border-color: #56935c !important; box-shadow: 0 0 0 2px rgba(86, 147, 92, 0.2) !important; }
+.mensagens-card .ant-select .ant-select-arrow { color: rgba(255, 255, 255, 0.6) !important; }
+
+/* --- Botões de Ação --- */
+.mensagens-card .ant-space .ant-btn { background-color: #444; border-color: #555; color: rgba(255, 255, 255, 0.85); box-shadow: none; transition: background-color 0.3s, border-color 0.3s; border-radius: 6px; }
+.mensagens-card .ant-space .ant-btn:hover { background-color: #555; border-color: #666; color: #FFFFFF; }
+.mensagens-card .ant-space .ant-btn-dangerous { background-color: rgba(255, 77, 79, 0.2); border-color: rgba(255, 77, 79, 0.6); color: #ff7875; }
+.mensagens-card .ant-space .ant-btn-dangerous:hover:not(:disabled) { background-color: rgba(255, 77, 79, 0.3); border-color: rgba(255, 77, 79, 0.8); color: #ff4d4f; }
+.mensagens-card .ant-space .ant-btn-dashed { background: transparent; border-color: #555; color: rgba(255, 255, 255, 0.85); }
+.mensagens-card .ant-space .ant-btn-dashed:hover { border-color: #56935c; color: #56935c; }
+.mensagens-card .ant-space .ant-btn:disabled { background-color: #333 !important; border-color: #444 !important; color: rgba(255, 255, 255, 0.4) !important; cursor: not-allowed; }
+
+/* --- Tabela de Mensagens --- */
+.mensagens-table .ant-table { background: #1a1a1a !important; border-radius: 8px; overflow: hidden; border: 1px solid #333; }
+.mensagens-table .ant-table-container::before, .mensagens-table .ant-table-container::after { background: none !important; }
+.mensagens-table .ant-table-wrapper { background: #1a1a1a !important; }
+.mensagens-table .ant-table-thead > tr > th { background: #2c2c2c !important; color: rgba(255, 255, 255, 0.85) !important; border-bottom: 1px solid #444 !important; padding: 10px 12px; font-weight: 500; text-align: left; border-inline-end: none !important; }
+.mensagens-table .ant-table-thead > tr > th[align="center"] { text-align: center; }
+.mensagens-table .ant-table-tbody > tr > td { background: #1a1a1a !important; color: rgba(255, 255, 255, 0.85); border-bottom: 1px solid #333 !important; padding: 8px 12px; vertical-align: middle; border-inline-end: none !important; transition: background-color 0.2s ease-in-out; }
+.mensagens-table .ant-table-tbody > tr:last-child > td { border-bottom: none !important; }
+.mensagens-table .ant-table-tbody > tr.ant-table-row:hover > td, .mensagens-table .ant-table-tbody > tr:hover > td { background: #2a2a2a !important; }
+.mensagens-table .ant-table-tbody > tr.ant-table-row-selected > td { background: #3a3a3a !important; }
+/* Checkbox da seleção */
+.mensagens-table .ant-checkbox-wrapper:hover .ant-checkbox-inner, .mensagens-table .ant-checkbox:hover .ant-checkbox-inner, .mensagens-table .ant-checkbox-input:focus + .ant-checkbox-inner { border-color: #56935c !important; }
+.mensagens-table .ant-checkbox .ant-checkbox-inner { background-color: #1a1a1a !important; border-color: #555 !important; border-radius: 4px; }
+.mensagens-table .ant-checkbox-checked .ant-checkbox-inner { background-color: #56935c !important; border-color: #56935c !important; }
+.mensagens-table .ant-checkbox-checked::after { border: none !important; }
+.mensagens-table .ant-checkbox-checked .ant-checkbox-inner::after { border-color: #FFFFFF !important; }
+.mensagens-table .ant-checkbox-indeterminate .ant-checkbox-inner { background-color: #56935c !important; border-color: #56935c !important; }
+.mensagens-table .ant-checkbox-indeterminate .ant-checkbox-inner::after { background-color: #FFFFFF !important; }
+
+/* --- Paginação --- */
+.mensagens-table .ant-pagination { margin: 24px 16px 16px 16px; text-align: right; }
+.mensagens-table .ant-pagination-item, .mensagens-table .ant-pagination-prev .ant-pagination-item-link, .mensagens-table .ant-pagination-next .ant-pagination-item-link { background-color: #2c2c2c !important; border-color: #444 !important; color: rgba(255, 255, 255, 0.85) !important; border-radius: 6px; box-shadow: none !important; transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out; }
+.mensagens-table .ant-pagination-item:not(.ant-pagination-item-active):hover, .mensagens-table .ant-pagination-prev:not(.ant-pagination-disabled):hover .ant-pagination-item-link, .mensagens-table .ant-pagination-next:not(.ant-pagination-disabled):hover .ant-pagination-item-link { background-color: #444 !important; border-color: #555 !important; }
+.mensagens-table .ant-pagination-item:not(.ant-pagination-item-active):hover a { color: #FFFFFF !important; }
+.mensagens-table .ant-pagination-item a { color: rgba(255, 255, 255, 0.85) !important; }
+.mensagens-table .ant-pagination-item-active { background-color: #56935c !important; border-color: #56935c !important; }
+.mensagens-table .ant-pagination-item-active a { color: #FFFFFF !important; }
+.mensagens-table .ant-pagination-item-active:hover { background-color: #6aa870 !important; border-color: #6aa870 !important; }
+.mensagens-table .ant-pagination-item-active:hover a { color: #FFFFFF !important; }
+.mensagens-table .ant-pagination-disabled .ant-pagination-item-link, .mensagens-table .ant-pagination-disabled:hover .ant-pagination-item-link { color: rgba(255, 255, 255, 0.3) !important; border-color: #444 !important; background-color: transparent !important; cursor: not-allowed; }
+.mensagens-table .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis, .mensagens-table .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis { color: rgba(255, 255, 255, 0.4) !important; }
+.mensagens-table .ant-pagination-jump-prev:hover .ant-pagination-item-container .ant-pagination-item-link-icon, .mensagens-table .ant-pagination-jump-next:hover .ant-pagination-item-container .ant-pagination-item-link-icon { color: #56935c !important; }
+.mensagens-table .ant-pagination-jump-prev:hover .ant-pagination-item-container .ant-pagination-item-ellipsis, .mensagens-table .ant-pagination-jump-next:hover .ant-pagination-item-container .ant-pagination-item-ellipsis { color: rgba(255, 255, 255, 0.8) !important; }
+
+/* --- Tags de Status/Plano --- */
+.mensagens-table .ant-tag { border-radius: 4px; padding: 2px 8px; font-size: 0.85em; margin-right: 0 !important; line-height: inherit; border-width: 1px; border-style: solid; font-weight: 500; }
+.mensagens-table .ant-tag-green, .mensagens-table .ant-tag[color="#56935c"] { background-color: rgba(86, 147, 92, 0.2) !important; border-color: rgba(86, 147, 92, 0.6) !important; color: #adedb1 !important; }
+.mensagens-table .ant-tag-blue { background-color: rgba(59, 130, 246, 0.2) !important; border-color: rgba(59, 130, 246, 0.6) !important; color: #bfdbfe !important; }
+.mensagens-table .ant-tag-default { background-color: rgba(107, 114, 128, 0.2) !important; border-color: rgba(107, 114, 128, 0.6) !important; color: #d1d5db !important; }
+.mensagens-table .ant-tag-red { background-color: rgba(255, 77, 79, 0.15) !important; border-color: rgba(255, 77, 79, 0.5) !important; color: #ff7875 !important; }
+
+/* --- Área de Mensagem e Envio --- */
+.message-area { padding: 16px; background-color: #2c2c2c; border-radius: 8px; border: 1px solid #444; }
+.message-area .message-textarea textarea { background-color: #1a1a1a !important; border-color: #444 !important; color: #FFFFFF !important; border-radius: 6px !important; resize: vertical; line-height: 1.5715; /* Reset line-height */ }
+.message-area .message-textarea textarea:hover { border-color: #56935c !important; }
+.message-area .message-textarea textarea:focus, .message-area .message-textarea-focused textarea { border-color: #56935c !important; box-shadow: 0 0 0 2px rgba(86, 147, 92, 0.2) !important; outline: 0; }
+.message-area .ant-input-textarea-show-count::after { color: rgba(255, 255, 255, 0.5) !important; }
+.message-area .send-button.ant-btn-primary { background: #56935c !important; border-color: #56935c !important; color: #FFFFFF !important; border-radius: 6px; }
+.message-area .send-button.ant-btn-primary:hover:not(:disabled) { background: #6aa870 !important; border-color: #6aa870 !important; }
+.message-area .send-button.ant-btn-primary:disabled { background: #333 !important; border-color: #444 !important; color: rgba(255, 255, 255, 0.4) !important; cursor: not-allowed; }
+
+/* Link "Limpar Seleção" */
+.ant-btn-link.ant-btn-dangerous {
+    color: #ff7875 !important; /* Cor vermelha */
+}
+.ant-btn-link.ant-btn-dangerous:hover {
+    color: #ff4d4f !important; /* Vermelho mais forte no hover */
+}
+
+/* Tooltip */
+.ant-tooltip-inner {
+    background-color: #444 !important;
+    color: #FFFFFF !important;
+}
+.ant-tooltip-arrow::before, .ant-tooltip-arrow::after {
+     background-color: #444 !important;
+}

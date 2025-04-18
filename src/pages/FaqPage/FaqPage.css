@@ -1,0 +1,151 @@
+/* src/pages/FaqPage/FaqPage.css */
+
+.faq-page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    color: #FFFFFF; /* Cor padrão branca para a página */
+  }
+  
+  .faq-main-content {
+    flex-grow: 1;
+    padding: 4rem 1.5rem; /* Mais padding vertical */
+    max-width: 900px; /* Largura máxima para o conteúdo do FAQ */
+    margin: 0 auto; /* Centraliza */
+    width: 100%;
+  }
+  
+  .faq-page-title {
+    text-align: center;
+    color: #FFFFFF !important;
+    margin-bottom: 1rem !important;
+    font-weight: 600;
+    font-size: 2.5em;
+  }
+  
+  .faq-page-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-bottom: 3.5rem !important;
+    font-size: 1.1em;
+    line-height: 1.6;
+  }
+  
+  /* Estilização do Collapse */
+  .faq-collapse.ant-collapse {
+    background-color: transparent !important; /* Fundo transparente */
+    border: none !important; /* Remove borda principal */
+  }
+  
+  /* Estilização de cada Painel */
+  .faq-collapse .faq-panel.ant-collapse-item {
+    background-color: #2b2b2b !important; /* Fundo de cada painel */
+    border: 1px solid #444 !important;
+    border-radius: 8px !important;
+    margin-bottom: 1rem !important; /* Espaço entre painéis */
+    overflow: hidden; /* Garante que borda arredondada funcione */
+  }
+  
+  /* Estilização do Header do Painel */
+  .faq-collapse .ant-collapse-header {
+    padding: 16px 20px !important; /* Ajusta padding */
+    color: #FFFFFF !important; /* Cor do texto da pergunta */
+    font-weight: 500;
+    font-size: 1.1em;
+    align-items: center !important; /* Alinha ícone da seta verticalmente */
+  }
+  .faq-collapse .ant-collapse-header .anticon { /* Ícone da pergunta */
+      margin-right: 10px;
+      color: #54945c; /* Cor do ícone da pergunta */
+      font-size: 1.2em;
+  }
+  
+  /* Estilização da Seta de Expandir/Recolher */
+  .faq-collapse .ant-collapse-expand-icon .anticon {
+    color: rgba(255, 255, 255, 0.6) !important; /* Cor da seta */
+    transition: transform 0.2s ease-in-out !important;
+    font-size: 1em !important; /* Tamanho da seta */
+    margin-right: 0px !important; /* Remove margem padrão se houver */
+  }
+  
+  /* Estilização do Conteúdo do Painel (Resposta) */
+  .faq-collapse .ant-collapse-content {
+    background-color: #222222 !important; /* Fundo ligeiramente diferente para a resposta */
+    border-top: 1px solid #444 !important;
+    /* Remove a cor daqui */
+  }
+  
+  .faq-collapse .ant-collapse-content > .ant-collapse-content-box {
+    padding: 20px !important; /* Padding interno da resposta */
+    /* A herança deve definir a cor, mas garantimos com a regra abaixo */
+     color: #FFFFFF !important; /* <<< COR PADRÃO PARA A CAIXA */
+  }
+  
+  /* >>> CORREÇÃO MAIS ESPECÍFICA <<< */
+  /* Força a cor branca em parágrafos ou qualquer elemento de tipografia AntD dentro da resposta */
+  .faq-collapse .ant-collapse-content-box .ant-typography,
+  .faq-collapse .ant-collapse-content-box p {
+    color: #FFFFFF !important; /* <<< FORÇA BRANCO AQUI */
+    line-height: 1.7 !important;
+    margin-bottom: 0 !important; /* Remove margem padrão (opcional) */
+  }
+  /* --- FIM DA CORREÇÃO --- */
+  
+  
+  /* Prompt de Contato Adicional */
+  .faq-contact-prompt {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 2rem;
+      background-color: #2b2b2b;
+      border-radius: 8px;
+      border: 1px solid #444;
+  }
+  .faq-contact-prompt .ant-typography { /* Aplica ao Paragraph */
+      color: #FFFFFF !important; /* Garante branco */
+      font-size: 1.1em;
+      margin-bottom: 1.5rem !important;
+  }
+  .faq-contact-prompt .ant-btn-primary {
+      background-color: #25D366 !important; /* Cor WhatsApp */
+      border-color: #25D366 !important;
+      font-weight: 500;
+  }
+  .faq-contact-prompt .ant-btn-primary:hover {
+      background-color: #1ebe5b !important;
+      border-color: #1ebe5b !important;
+  }
+  .faq-contact-prompt .ant-btn .anticon {
+      margin-right: 8px;
+  }
+  
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+      .faq-main-content {
+          padding: 3rem 1rem;
+      }
+      .faq-page-title {
+          font-size: 2.1em;
+      }
+      .faq-page-subtitle {
+          font-size: 1em;
+          margin-bottom: 2.5rem;
+      }
+      .faq-collapse .ant-collapse-header {
+          font-size: 1em;
+          padding: 14px 16px !important;
+      }
+      .faq-collapse .ant-collapse-content > .ant-collapse-content-box {
+         padding: 16px !important;
+      }
+       .faq-collapse .ant-collapse-content-box p,
+       .faq-collapse .ant-collapse-content-box .ant-typography {
+          line-height: 1.6 !important; /* Ajuste para mobile */
+      }
+       .faq-contact-prompt {
+          margin-top: 3rem;
+          padding: 1.5rem;
+      }
+  }

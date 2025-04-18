@@ -1,0 +1,213 @@
+/* src/componentsLP/DetailedFeaturesSection.css */
+
+.detailed-features-section {
+    padding: 5rem 1.5rem;
+    background-color: #1a1a1a; /* Fundo padrão */
+    color: #FFFFFF;
+    overflow-x: hidden;
+  }
+  
+  .detailed-features-main-title {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+  }
+  
+  .detailed-features-main-subtitle {
+    text-align: center;
+    font-size: 1.15em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  
+  .features-list-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+  
+  .feature-row {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  .feature-row.align-left { /* Visual Esquerda, Texto Direita */ }
+  .feature-row.align-right { flex-direction: row-reverse; } /* Texto Esquerda, Visual Direita */
+  
+  /* Container do Visual (Chat ou Gráfico) */
+  .feature-visual-container {
+    flex: 1;
+    min-width: 300px;
+    background-color: #2b2b2b; /* Fundo padrão para o container visual */
+    border-radius: 10px;
+    padding: 1.5rem; /* Padding interno */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: flex; /* Para centralizar conteúdo interno se necessário */
+    justify-content: center;
+    align-items: center;
+    /* Mantém uma proporção mínima para não ficar muito achatado */
+    aspect-ratio: 4 / 3;
+  }
+  
+  /* --- ESTILOS PARA CHAT SIMULADO --- */
+  .visual-chat-simulation {
+    width: 100%;
+    height: 100%; /* Tenta ocupar altura do container */
+    max-height: 350px; /* Limita altura máxima */
+    background-color: #1e1e1e; /* Fundo interno do chat */
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Esconde conteúdo extra */
+  }
+  .chat-header-sim {
+      font-size: 0.9em;
+      color: rgba(255, 255, 255, 0.6);
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #444;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0; /* Não encolhe */
+  }
+  .chat-header-sim .anticon {
+      color: #25D366; /* Cor WhatsApp */
+  }
+  .chat-messages-sim {
+    flex-grow: 1; /* Ocupa espaço */
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem; /* Espaço entre mensagens */
+    overflow-y: auto; /* Scroll se necessário (raro aqui) */
+  }
+  .chat-bubble-sim {
+    padding: 0.5rem 0.9rem;
+    border-radius: 15px;
+    max-width: 85%;
+    font-size: 0.9em;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+  .chat-bubble-sim.bot {
+    background-color: #3a3a3a;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+  }
+  .chat-bubble-sim.user {
+    background-color: #075E54; /* Verde escuro WhatsApp para usuário */
+    color: #FFFFFF;
+    border-bottom-right-radius: 4px;
+    align-self: flex-end;
+  }
+  /* --- FIM ESTILOS CHAT SIMULADO --- */
+  
+  
+  /* --- ESTILOS PARA GRÁFICO PLACEHOLDER --- */
+  .placeholder-svg {
+      width: 90%; /* Ocupa quase toda a largura do container */
+      max-height: 250px; /* Limita altura */
+      height: auto; /* Mantém proporção */
+      display: block;
+      margin: auto; /* Centraliza */
+  }
+  /* --- FIM ESTILOS GRÁFICO PLACEHOLDER --- */
+  
+  
+  /* Container do Texto */
+  .feature-text-container {
+    flex: 1.1;
+    min-width: 300px;
+  }
+  
+  .feature-icon-title {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+  }
+  .feature-title-icon {
+      font-size: 1.8em;
+      color: #54945c;
+      flex-shrink: 0;
+  }
+  .feature-title {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 0;
+    color: #FFFFFF;
+  }
+  
+  .feature-description {
+    font-size: 1.05em;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  
+  .feature-benefit {
+    font-size: 1em;
+    color: #adedb1;
+    background-color: rgba(84, 148, 92, 0.08);
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #54945c;
+    margin: 0;
+    line-height: 1.6;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.6em;
+  }
+  .feature-benefit strong { font-weight: 600; }
+  .benefit-icon { font-size: 1.1em; margin-top: 0.15em; }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .detailed-features-section { padding: 4rem 1rem; }
+    .detailed-features-main-title { font-size: 2.1em; }
+    .detailed-features-main-subtitle { font-size: 1.1em; margin-bottom: 4rem; }
+    .feature-row { flex-direction: column !important; gap: 2.5rem; align-items: center; text-align: center; }
+    /* Garante que visual venha primeiro mesmo quando align-right */
+    .feature-row.align-right .feature-visual-container { order: 0; }
+    .feature-row.align-right .feature-text-container { order: 1; }
+  
+    .feature-visual-container,
+    .feature-text-container {
+       max-width: 550px; /* Aumenta um pouco a largura máxima */
+       min-width: unset;
+       flex-basis: auto;
+       width: 100%; /* Ocupa toda a largura disponível */
+    }
+    .feature-visual-container {
+         padding: 1rem; /* Reduz padding interno do visual */
+         aspect-ratio: 16 / 10; /* Ajusta proporção se necessário */
+     }
+    .feature-icon-title { justify-content: center; }
+    .feature-title { font-size: 1.6em; }
+    .feature-description { font-size: 1em; }
+    .feature-benefit { display: flex; text-align: left; } /* Mantém flex mas centraliza o bloco */
+  }
+  
+  @media (max-width: 480px) {
+      .detailed-features-main-title { font-size: 1.9em; }
+      .detailed-features-main-subtitle { font-size: 1em; margin-bottom: 3rem; }
+      .features-list-container { gap: 3.5rem; }
+      .feature-title { font-size: 1.4em; }
+      .feature-description { font-size: 0.95em; }
+      .feature-benefit { font-size: 0.9em; }
+      .visual-chat-simulation { font-size: 0.9em; } /* Ajusta tamanho da fonte no chat simulado */
+      .chat-bubble-sim { padding: 0.4rem 0.8rem; }
+      .placeholder-svg { max-height: 180px; } /* Reduz altura máxima do gráfico */
+  }

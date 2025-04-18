@@ -1,0 +1,242 @@
+/* src/componentsLP/FooterLP.css */
+
+.lp-footer-component {
+    background: linear-gradient(to bottom, #252525, #1c1c1c); /* Gradiente sutil */
+    padding: 4rem 1.5rem 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+    position: relative; /* Para ::before */
+  }
+  
+  /* Linha decorativa superior */
+  .lp-footer-component::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, rgba(84, 148, 92, 0), rgba(84, 148, 92, 0.4), rgba(84, 148, 92, 0));
+      opacity: 0.6;
+  }
+  
+  /* Grid principal */
+  .lp-footer-main-content {
+    max-width: 1200px;
+    margin: 0 auto 2.5rem auto;
+    display: grid;
+    /* Ajustado para 3 colunas, dando um pouco mais de espaço para a primeira */
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 2.5rem 2rem;
+  }
+  
+  /* Ajuste para auto-fit em telas um pouco menores antes de empilhar */
+  @media (max-width: 1024px) {
+      .lp-footer-main-content {
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+  }
+  
+  .footer-col { /* Estilos comuns */ }
+  
+  /* Coluna da Marca */
+  .footer-brand-col { padding-right: 1rem; }
+  
+  /* --- ESTILOS DA LOGO + TEXTO (Como no Header) --- */
+  .footer-logo-container {
+    display: inline-flex; /* Para logo e texto na mesma linha */
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 1rem; /* Espaço abaixo */
+  }
+  
+  .footer-logo { /* Imagem */
+    height: 45px; /* Tamanho ajustado */
+    width: auto;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.4s ease;
+  }
+  
+  .footer-logo-text { 
+    font-size: 1.6em; /* Similar ao header */
+    font-weight: 600;
+    color: #FFFFFF;
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+  
+  /* Hover no conjunto logo + texto */
+  .footer-logo-container:hover .footer-logo {
+    transform: scale(1.1) rotate(-5deg);
+    filter: drop-shadow(0 0 8px rgba(84, 148, 92, 0.6));
+  }
+  .footer-logo-container:hover .footer-logo-text {
+      color: #adedb1; /* Muda cor do texto no hover */
+  }
+  /* --- FIM ESTILOS LOGO --- */
+  
+  
+  .footer-description {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 320px;
+  }
+  
+  .footer-social-icons {
+    display: flex;
+    gap: 1.2rem; /* Espaço entre ícones */
+    margin-bottom: 2rem; /* Espaço abaixo dos ícones */
+  }
+  
+  .footer-social-icons a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.6em; /* Tamanho dos ícones */
+    transition: color 0.3s ease, transform 0.2s ease-out;
+  }
+  
+  .footer-social-icons a:hover {
+    color: #FFFFFF;
+    transform: translateY(-3px); /* Sobe um pouco */
+  }
+  
+  /* --- CRÉDITOS DO DESENVOLVEDOR NA COLUNA PRINCIPAL --- */
+  .developer-credit-main {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1em; /* <<< TAMANHO MAIOR */
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    /* margin-top: 1.5rem; /* Espaçamento opcional acima */
+  }
+  
+  .developer-credit-main .dev-text { }
+  
+  .developer-credit-main .heart-icon {
+    color: #e84a5f;
+    font-size: 1.1em;
+    animation: pulse-heart 1.5s infinite ease-in-out;
+    display: inline-block;
+  }
+  @keyframes pulse-heart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+  
+  .developer-credit-main .developer-link {
+    color: #adedb1;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  .developer-credit-main .developer-link:hover {
+    color: #cfffd1;
+    text-shadow: 0 0 8px rgba(173, 237, 177, 0.5);
+  }
+  .developer-credit-main .developer-link::after { content: ''; position: absolute; width: 0; height: 1px; display: block; margin-top: 2px; right: 0; background: #adedb1; transition: width 0.3s ease; -webkit-transition: width 0.3s ease; }
+  .developer-credit-main .developer-link:hover::after { width: 100%; left: 0; background-color: #cfffd1; }
+  /* --- FIM CRÉDITOS DEV --- */
+  
+  
+  /* Colunas de Links e Contato */
+  .footer-links-col ul,
+  .footer-contact-col ul {
+    list-style: none; padding: 0; margin: 0;
+  }
+  
+  .footer-col-title {
+    color: #FFFFFF;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+  }
+  
+  .footer-links-col li,
+  .footer-contact-col li {
+    margin-bottom: 0.8rem;
+  }
+  
+  .footer-links-col a,
+  .footer-contact-col a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+  
+  .footer-links-col a:hover,
+  .footer-contact-col a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+  }
+  
+  .footer-contact-col .anticon {
+    font-size: 1.1em;
+  }
+  
+  /* Linha Divisória */
+  .footer-divider {
+    border: none;
+    border-top: 1px solid #3a3a3a;
+    margin: 0 auto 1.5rem auto;
+    max-width: 1200px;
+  }
+  
+  /* Barra Inferior (Agora só Copyright) */
+  .lp-footer-bottom-bar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center; /* Centraliza o copyright */
+    align-items: center;
+  }
+  
+  .copyright-text {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85em;
+    margin: 0;
+  }
+  
+  /* Estilo antigo do developer-credit (removido da barra inferior) */
+  /* .developer-credit { ... } */
+  
+  
+  /* Responsividade */
+  /* @media (max-width: 992px) { ... } // Mantido o ajuste de auto-fit de 1024px */
+  
+  @media (max-width: 768px) {
+    .lp-footer-component { padding: 3rem 1rem 1.5rem; }
+    .lp-footer-main-content {
+        grid-template-columns: 1fr; /* Força uma coluna */
+        gap: 2rem 1.5rem;
+    }
+     .footer-brand-col {
+        grid-column: 1 / -1; /* Garante que ocupe toda a largura */
+        text-align: center;
+        padding-right: 0;
+        margin-bottom: 1.5rem; /* Aumenta espaço abaixo da primeira coluna */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+     }
+     .footer-logo-container { display: flex; /* Garante alinhamento logo+texto */ }
+     .footer-description { margin-left: auto; margin-right: auto; }
+     .footer-social-icons { justify-content: center; margin-bottom: 1.5rem; }
+     .developer-credit-main { justify-content: center; }
+     .footer-links-col, .footer-contact-col { text-align: center; }
+     .footer-contact-col ul { display: inline-block; text-align: left; }
+     .lp-footer-bottom-bar { /* Já está centralizado */ }
+  }
+  
+  @media (max-width: 480px) {
+    /* .lp-footer-main-content { grid-template-columns: 1fr; text-align: center; } */ /* Já está 1fr de 768px */
+    .footer-col-title { margin-bottom: 1rem; }
+    .footer-links-col ul, .footer-contact-col ul { display: inline-block; text-align: left; }
+    .developer-credit-main { font-size: 0.9em; }
+  }

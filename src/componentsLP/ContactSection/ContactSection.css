@@ -1,0 +1,195 @@
+/* src/componentsLP/ContactSection.css */
+
+.contact-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 5rem 2.5rem;
+    background-color: #222222; /* Fundo um pouco diferente para contraste */
+    color: #FFFFFF;
+    width: 100%;
+    max-width: 1200px; /* Limita largura */
+    margin: 0 auto; /* Centraliza */
+    border-radius: 15px; /* Bordas arredondadas na seção inteira */
+    margin-top: 4rem; /* Espaço acima */
+    margin-bottom: 4rem; /* Espaço abaixo */
+    overflow: hidden; /* Garante que elementos internos não vazem */
+  }
+  
+  /* --- Conteúdo da Esquerda --- */
+  .contact-content {
+    flex: 1;
+    max-width: 500px;
+  }
+  
+  .contact-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+  
+  .contact-description {
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  
+  .contact-cta-button.ant-btn-primary {
+    background-color: #25D366 !important; /* Cor verde do WhatsApp */
+    border-color: #25D366 !important;
+    color: #FFFFFF !important;
+    padding: 0 35px;
+    height: 52px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 26px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2); /* Sombra verde WhatsApp */
+  }
+  
+  .contact-cta-button.ant-btn-primary .anticon {
+    margin-right: 10px; /* Ícone antes do texto */
+  }
+  
+  .contact-cta-button.ant-btn-primary:hover {
+    background-color: #1ebe5b !important; /* Verde WhatsApp mais escuro */
+    border-color: #1ebe5b !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+  }
+  
+  .contact-cta-button.ant-btn-primary:active {
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 2px 10px rgba(37, 211, 102, 0.2);
+  }
+  
+  /* --- Visual da Direita --- */
+  .contact-visual {
+    flex: 0.8; /* Ocupa um pouco menos espaço que o texto */
+    max-width: 450px;
+    perspective: 800px; /* Para efeito 3D sutil */
+  }
+  
+  .visual-chat-window {
+    background-color: #2b2b2b; /* Fundo do chat */
+    border-radius: 12px;
+    border: 1px solid #444;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    min-height: 250px; /* Altura mínima */
+    display: flex;
+    flex-direction: column;
+     /* Efeito 3D sutil no hover (opcional) */
+    transform: rotateY(-5deg) rotateX(3deg);
+    transition: transform 0.4s ease;
+  }
+  .contact-visual:hover .visual-chat-window {
+     transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+  }
+  
+  .chat-header {
+     font-size: 0.9em;
+     color: rgba(255, 255, 255, 0.6);
+     padding-bottom: 0.8rem;
+     border-bottom: 1px solid #444;
+     margin-bottom: 1rem;
+     text-align: center;
+  }
+  
+  .chat-messages {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .chat-bubble {
+    padding: 0.6rem 1rem;
+    border-radius: 18px;
+    max-width: 80%;
+    font-size: 0.95em;
+    line-height: 1.4;
+    word-wrap: break-word; /* Quebra palavras longas */
+  }
+  
+  .chat-bubble.bot {
+    background-color: #3a3a3a; /* Cor para mensagens do bot */
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom-left-radius: 4px; /* Estilo de balão */
+    align-self: flex-start; /* Alinha à esquerda */
+  }
+  
+  .chat-bubble.user {
+    background-color: #54945c; /* Cor verde para mensagens do usuário */
+    color: #FFFFFF;
+    border-bottom-right-radius: 4px; /* Estilo de balão */
+    align-self: flex-end; /* Alinha à direita */
+  }
+  
+  /* Simulação de "digitando" */
+  .chat-bubble.typing {
+     background-color: #3a3a3a;
+     color: rgba(255, 255, 255, 0.7);
+     border-bottom-left-radius: 4px;
+     align-self: flex-start;
+     padding: 0.8rem 1rem; /* Ajuste padding */
+  }
+  .chat-bubble.typing span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: currentColor;
+      border-radius: 50%;
+      margin: 0 2px;
+      animation: typing-dots 1.2s infinite ease-in-out;
+  }
+  .chat-bubble.typing span:nth-child(1) { animation-delay: 0s; }
+  .chat-bubble.typing span:nth-child(2) { animation-delay: 0.2s; }
+  .chat-bubble.typing span:nth-child(3) { animation-delay: 0.4s; }
+  
+  @keyframes typing-dots {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-4px); }
+  }
+  
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .contact-section {
+      flex-direction: column; /* Empilha */
+      text-align: center; /* Centraliza todo o texto */
+      padding: 4rem 1.5rem;
+      gap: 2.5rem;
+    }
+    .contact-content {
+      max-width: 600px; /* Permite largura maior quando centralizado */
+    }
+    .contact-visual {
+       max-width: 400px; /* Reduz tamanho do visual */
+       width: 100%; /* Ocupa largura disponível */
+       perspective: none; /* Remove perspectiva */
+    }
+    .visual-chat-window {
+       transform: none !important; /* Remove efeito 3D */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contact-title {
+      font-size: 2.2em;
+    }
+    .contact-description {
+       font-size: 1em;
+    }
+     .contact-cta-button.ant-btn {
+        height: 48px;
+        font-size: 1em;
+        padding: 0 25px;
+     }
+     .contact-visual {
+        max-width: 100%;
+     }
+  }

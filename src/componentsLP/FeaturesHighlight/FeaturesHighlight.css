@@ -1,0 +1,107 @@
+/* src/componentsLP/FeaturesHighlight.css */
+
+.features-highlight-section {
+    padding: 3rem 1.5rem; /* Aumenta um pouco o padding vertical */
+    background-color: #1f1f1f; /* Um cinza um pouco diferente para leve contraste */
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para o título adicionado */
+  .features-highlight-title {
+    text-align: center;
+    font-size: 1.1em; /* Tamanho moderado */
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7); /* Cor sutil */
+    margin-bottom: 2.5rem; /* Espaço abaixo do título */
+    letter-spacing: 0.5px;
+  }
+  
+  .features-highlight-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os itens na linha */
+    align-items: center;
+    gap: 2rem 3.5rem; /* Aumenta um pouco o gap horizontal */
+  }
+  
+  .feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    /* Animação melhorada */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0.75;
+    cursor: default;
+  }
+  
+  .feature-item:hover {
+    transform: translateY(-4px); /* Move um pouco para cima */
+    color: #FFFFFF; /* Cor branca total no hover */
+    opacity: 1; /* Opacidade total */
+  }
+  
+  /* Estilo específico para os ícones Ant Design */
+  .feature-antd-icon {
+    font-size: 2.4em; /* Tamanho maior para os ícones */
+    margin-bottom: 0.8rem; /* Espaço abaixo do ícone */
+    line-height: 1;
+    /* Cor inicial do ícone pode ser a mesma do texto ou um pouco mais clara */
+     color: rgba(255, 255, 255, 0.7);
+     transition: color 0.3s ease-in-out; /* Transição suave da cor do ícone */
+  }
+  
+  /* Opcional: Mudar a cor do ícone no hover do item pai */
+  .feature-item:hover .feature-antd-icon {
+     color: #54945c; /* Cor verde principal no hover */
+     /* Ou pode deixar branco: color: #FFFFFF; */
+  }
+  
+  
+  .feature-name {
+    font-size: 0.9em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Ajustes para telas menores */
+  @media (max-width: 768px) {
+    .features-highlight-section {
+      padding: 2.5rem 1rem;
+    }
+     .features-highlight-title {
+        font-size: 1em;
+        margin-bottom: 2rem;
+     }
+    .features-highlight-content {
+      gap: 1.8rem 2.5rem; /* Reduz o espaçamento */
+    }
+    .feature-antd-icon {
+      font-size: 2.1em; /* Reduz ícone */
+    }
+    .feature-name {
+      font-size: 0.85em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .features-highlight-title {
+        font-size: 0.95em;
+     }
+     .features-highlight-content {
+      justify-content: center;
+      gap: 1.5rem;
+    }
+     .feature-item {
+        flex-basis: calc(50% - 1.5rem);
+     }
+     .feature-antd-icon {
+        font-size: 2em;
+     }
+  }

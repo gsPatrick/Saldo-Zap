@@ -1,0 +1,241 @@
+/* src/componentsLP/Header.css */
+
+.lp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 3rem; /* Ajustado padding vertical e horizontal */
+  /* Gradiente sutil para mais profundidade */
+  background: linear-gradient(to bottom, #333333, #2b2b2b);
+  color: #FFFFFF;
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Alto z-index para ficar sobre tudo */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25); /* Sombra mais definida */
+  border-bottom: 1px solid #404040; /* Linha inferior sutil */
+}
+
+/* Container da Logo */
+.lp-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none; /* Remove sublinhado do Link */
+  color: inherit; /* Herda cor */
+}
+
+.lp-logo-img {
+  height: 48px; /* Tamanho ajustado */
+  width: auto;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
+}
+
+.lp-logo-container:hover .lp-logo-img {
+  transform: scale(1.1) rotate(-5deg);
+  filter: drop-shadow(0 0 8px rgba(84, 148, 92, 0.6));
+}
+
+.lp-logo-text {
+  font-size: 1.7em; /* Ligeiramente maior */
+  font-weight: 600;
+  color: #FFFFFF;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+.lp-logo-container:hover .lp-logo-text {
+    color: #adedb1; /* Cor do texto no hover da logo */
+}
+
+/* Navegação Desktop */
+.lp-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* Espaço maior entre links */
+}
+
+.lp-nav-link {
+  color: rgba(255, 255, 255, 0.8); /* Cinza claro */
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 0.5rem 0; /* Adiciona padding vertical para área de clique */
+  position: relative; /* Para o pseudo-elemento ::after */
+  transition: color 0.3s ease;
+}
+
+.lp-nav-link::after { /* Sublinhado animado */
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 4px; /* Distância do texto */
+  right: 0;
+  background: #54945c; /* Cor do sublinhado */
+  transition: width 0.3s ease;
+  -webkit-transition: width 0.3s ease;
+}
+
+.lp-nav-link:hover {
+  color: #FFFFFF; /* Branco no hover */
+}
+
+.lp-nav-link:hover::after {
+  width: 100%;
+  left: 0;
+  background-color: #6aa870; /* Cor mais clara no hover */
+}
+/* Estilo para link ativo (se usar NavLink) */
+.lp-nav-link.active {
+    color: #FFFFFF;
+    font-weight: 600;
+}
+.lp-nav-link.active::after {
+    width: 100%;
+    left: 0;
+    background: #54945c;
+}
+
+
+/* Botão CTA "Acessar Painel" (estilo similar ao login anterior) */
+.lp-cta-button {
+  background-color: #54945c;
+  color: #FFFFFF;
+  text-decoration: none; /* Para o Link */
+  border: none;
+  padding: 0.65rem 1.6rem; /* Ajustado padding */
+  border-radius: 8px; /* Menos arredondado, mais moderno */
+  font-size: 0.95em; /* Ligeiramente menor */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.lp-cta-button:hover {
+  background-color: #4a8351;
+  box-shadow: 0 4px 10px rgba(84, 148, 92, 0.3);
+  transform: translateY(-1px);
+}
+
+.lp-cta-button:active {
+   transform: translateY(0px) scale(0.98);
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Responsividade e Menu Mobile --- */
+
+/* Botão Hamburger (escondido por padrão) */
+.mobile-menu-toggle {
+  display: none; /* Escondido em telas maiores */
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 1.8em; /* Tamanho do ícone hamburger */
+  cursor: pointer;
+  padding: 0.5rem; /* Área de clique */
+  z-index: 1100; /* Acima do menu mobile */
+}
+
+/* Menu Mobile (escondido por padrão) */
+.mobile-menu {
+  display: none; /* Escondido em telas maiores */
+  position: absolute;
+  top: 100%; /* Logo abaixo do header */
+  left: 0;
+  width: 100%;
+  background-color: #2b2b2b; /* Mesmo fundo do header */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  padding: 1rem 0;
+  border-top: 1px solid #404040;
+  /* Animação de entrada/saída */
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none; /* Não clicável quando escondido */
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  z-index: 1050; /* Abaixo do botão toggle, mas acima do conteúdo */
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto; /* Clicável quando aberto */
+}
+
+/* Links dentro do Menu Mobile */
+.mobile-nav-link {
+  display: block;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 1.1em;
+  padding: 0.8rem 2rem; /* Espaçamento interno */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background-color: #3a3a3a; /* Fundo no hover/ativo */
+  color: #FFFFFF;
+}
+
+/* Botão CTA dentro do Menu Mobile */
+.mobile-cta-button {
+  display: block;
+  background-color: #54945c;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  margin: 1rem 2rem 0.5rem; /* Espaçamento acima/horizontal/abaixo */
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-cta-button:hover {
+  background-color: #4a8351;
+}
+
+
+/* Media Query para ativar o Menu Mobile */
+@media (max-width: 850px) { /* Ponto de quebra onde a navegação desktop começa a ficar apertada */
+  .lp-nav-actions {
+    display: none; /* Esconde navegação desktop */
+  }
+  .mobile-menu-toggle {
+    display: block; /* Mostra botão hamburger */
+  }
+   .mobile-menu {
+     display: block; /* Torna o menu mobile parte do fluxo (mas controla visibilidade com opacity/transform) */
+   }
+   .lp-header {
+     padding: 0.8rem 1.5rem; /* Ajusta padding do header */
+   }
+   .lp-logo-img {
+      height: 42px; /* Reduz logo */
+   }
+   .lp-logo-text {
+      font-size: 1.5em;
+   }
+}
+
+@media (max-width: 480px) {
+   .lp-header {
+     padding: 0.7rem 1rem; /* Menor padding */
+   }
+   .mobile-menu-toggle {
+     font-size: 1.6em;
+   }
+   .mobile-nav-link {
+     font-size: 1em;
+     padding: 0.7rem 1.5rem;
+   }
+   .mobile-cta-button {
+      margin: 0.8rem 1.5rem 0.4rem;
+      padding: 0.7rem 1.5rem;
+   }
+}
