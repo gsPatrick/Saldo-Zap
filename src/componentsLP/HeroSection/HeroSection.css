@@ -208,84 +208,53 @@
       font-style: italic;
   }
   
-  /* --- Responsividade --- */
-  @media (max-width: 1024px) {
-    .hero-section {
-      flex-direction: column; /* Empilha as colunas */
-      text-align: center; /* Centraliza texto */
-      padding: 4rem 1.5rem; /* Ajusta padding */
-      min-height: auto; /* Remove altura mínima fixa */
-    }
-  
-    .hero-content {
-      max-width: 700px; /* Permite largura maior quando centralizado */
-      order: 2; /* Coloca o texto abaixo dos visuais */
-      margin-top: 2rem;
-    }
-  
-    .hero-title {
-      font-size: 2.8em;
-    }
-  
-    .hero-description {
-      font-size: 1.1em;
-       margin-left: auto;
-       margin-right: auto;
-       max-width: 600px;
-    }
-  
-    .hero-visuals {
-      order: 1; /* Coloca os visuais acima */
-      max-width: 600px; /* Limita largura dos visuais */
-       margin: 0 auto; /* Centraliza a grade */
-       grid-template-columns: repeat(2, 1fr); /* Mantém 2 colunas se possível */
-       width: 100%; /* Ocupa largura disponível */
-    }
-     .visual-card-main {
-        min-height: 180px;
-     }
-     .visual-card-secondary {
-        min-height: 140px;
-     }
-     .whatsapp-card {
-        grid-column: 1 / -1; /* Garante que o card do whats ocupe toda largura */
-     }
+/* src/componentsLP/HeroSection.css */
+
+/* ... (all styles before the media query remain the same) ... */
+@media (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column-reverse; /* Empilha */
+    text-align: center;
+    padding: 4rem 1.5rem;
+    min-height: auto;
   }
-  
-  @media (max-width: 600px) {
-    .hero-title {
-      font-size: 2.2em; /* Reduz mais o título */
-    }
-    .hero-description {
-       font-size: 1em;
-    }
-     .hero-cta-button.ant-btn {
-        height: 48px;
-        font-size: 1em;
-        padding: 0 30px;
-     }
-    .hero-visuals {
-      grid-template-columns: 1fr; /* Uma coluna apenas */
-       max-width: 380px; /* Limita mais a largura */
-       gap: 1rem;
-    }
-     .visual-card {
-        padding: 0.8rem 1rem;
-     }
-     .visual-card-main, .visual-card-secondary, .whatsapp-card {
-        grid-column: 1; /* Garante uma coluna */
-        min-height: auto; /* Altura automática */
-     }
-     .chart-placeholder svg {
-        max-height: 100px; /* Reduz altura dos gráficos */
-     }
-     .visual-card-main .chart-placeholder svg {
-        max-height: 150px;
-     }
-     .card-title {
-        font-size: 0.8em;
-     }
-     .chart-labels {
-        font-size: 0.6em;
-     }
+
+  /* >>> Ordem Invertida para Telas Médias <<< */
+  .hero-content { /* TEXTO */
+    max-width: 700px;
+    order: 1; /* <<< TEXTO PRIMEIRO */
+    margin-top: 0;
+    margin-bottom: 3rem; /* Espaço abaixo do texto */
   }
+
+  .hero-visuals { /* VISUAIS */
+    max-width: 600px;
+    order: 2; /* <<< VISUAIS DEPOIS */
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+  /* --- FIM DA INVERSÃO --- */
+
+
+  .hero-title { font-size: 2.8em; }
+  .hero-description { font-size: 1.1em; margin-left: auto; margin-right: auto; max-width: 600px; }
+  .visual-card-main { min-height: 180px; }
+  .visual-card-secondary { min-height: 140px; }
+  .whatsapp-card { grid-column: 1 / -1; }
+}
+
+/* Telas Pequenas (Mobile) */
+@media (max-width: 600px) {
+  .hero-title { font-size: 2.2em; }
+  .hero-description { font-size: 1em; }
+  .hero-cta-button.ant-btn { height: 48px; font-size: 1em; padding: 0 30px; }
+  .hero-visuals { grid-template-columns: 1fr; max-width: 380px; gap: 1rem; }
+  .visual-card { padding: 0.8rem 1rem; }
+  .visual-card-main, .visual-card-secondary, .whatsapp-card { grid-column: 1; min-height: auto; }
+  .chart-placeholder svg { max-height: 100px; }
+  .visual-card-main .chart-placeholder svg { max-height: 150px; }
+  .card-title { font-size: 0.8em; }
+  .chart-labels { font-size: 0.6em; }
+  .hero-content { margin-bottom: 2.5rem; } /* Ajusta margem no mobile */
+}
