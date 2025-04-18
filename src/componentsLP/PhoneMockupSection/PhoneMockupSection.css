@@ -1,0 +1,225 @@
+/* src/componentsLP/PhoneMockupSection.css */
+
+.phone-mockup-section {
+    padding: 4rem 1.5rem; /* Ajuste padding se necessário */
+    background-color: #1f1f1f; /* Fundo da seção */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Para conter sombras ou background */
+  }
+  
+  .phone-container {
+      perspective: 1500px; /* Para efeito 3D */
+  }
+  
+  /* A moldura do celular */
+  .phone-frame {
+    width: 100%;
+    max-width: 320px; /* Largura do mockup */
+    aspect-ratio: 9 / 19.5; /* Proporção de um celular moderno */
+    background-color: #1c1c1c; /* Cor da moldura */
+    border-radius: 40px; /* Bordas bem arredondadas */
+    padding: 12px; /* Espessura da borda lateral/inferior */
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.4), /* Sombra principal */
+                inset 0 2px 4px rgba(255, 255, 255, 0.05), /* Brilho interno sutil */
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3); /* Sombra interna sutil */
+    position: relative;
+    /* Efeito 3D sutil (opcional) */
+    transform: rotateX(10deg) rotateY(-8deg) rotateZ(-2deg);
+    transition: transform 0.5s ease-out;
+  }
+  /* Remove a rotação no hover para "levantar" o celular */
+  .phone-container:hover .phone-frame {
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.02);
+       box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.5);
+  }
+  
+  
+  /* Barra superior com notch */
+  .phone-top {
+    height: 28px; /* Altura da barra superior preta */
+    background-color: #111; /* Preto para a área do notch */
+    position: absolute;
+    top: 12px; /* Alinha com o padding */
+    left: 12px;
+    right: 12px;
+    border-radius: 28px 28px 0 0; /* Arredonda topo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; /* Acima da tela */
+    box-sizing: border-box;
+    padding: 0 20%; /* Afasta speaker/camera das bordas */
+  }
+  .phone-speaker {
+    height: 5px;
+    width: 45px;
+    background-color: #333;
+    border-radius: 3px;
+    margin: 0 auto; /* Centraliza */
+  }
+  .phone-camera { /* Câmera frontal (simulada) */
+      width: 8px;
+      height: 8px;
+      background-color: #282828;
+      border-radius: 50%;
+      position: absolute;
+      right: 25%; /* Posição da câmera */
+      top: 50%;
+      transform: translateY(-50%);
+  }
+  
+  /* A tela do celular */
+  .phone-screen {
+    width: 100%;
+    height: calc(100% - 16px); /* Altura total menos um pouco de borda inferior */
+    background-color: #e5ddd5; /* Fundo padrão WhatsApp */
+    /* Padrão de fundo WhatsApp sutil */
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAJ5JREFUWEft1LENgDAMAEEDMwM6MArz0G4QB5ChE/ADBQhV3a3sRQIu/Lkv7pL3pU9RFPl6K8aAU2AETAAVMAW+BOZDGk1C3wPj0L+gC9kBC7DAIKf3A+gK6wAe8gW+gHIHZAMOxAITGPcBKOkH3AEnoC+sAT3kB/gCdAc0gx3Ygh1YgQ58gfYBN8B+dDF3gSNxQWzFABt9h8g5AAAAAElFTkSuQmCC");
+    background-repeat: repeat;
+    border-radius: 28px; /* Bordas internas da tela */
+    overflow: hidden; /* Esconde conteúdo que vaza */
+    position: relative;
+    display: flex; /* Para o conteúdo interno */
+    flex-direction: column;
+    margin-top: 16px; /* Espaço abaixo do notch */
+  }
+  
+  /* Conteúdo do Chat */
+  .chat-content {
+    flex-grow: 1; /* Ocupa espaço */
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaço entre mensagens */
+    overflow-y: auto; /* Permite scroll se o conteúdo for longo */
+    /* Estilização da barra de scroll (Webkit) */
+    &::-webkit-scrollbar { width: 4px; }
+    &::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); border-radius: 2px;}
+    &::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.3); border-radius: 2px;}
+  }
+  
+  /* Wrapper para cada linha de mensagem (permite alinhar foto se tiver) */
+  .chat-message-wrapper {
+      display: flex;
+      width: 100%;
+  }
+  .chat-message-wrapper.user-wrapper { justify-content: flex-end; }
+  .chat-message-wrapper.bot-wrapper { justify-content: flex-start; }
+  
+  
+  /* Balão de Mensagem */
+  .chat-message {
+    max-width: 75%; /* Largura máxima do balão */
+    padding: 7px 10px;
+    border-radius: 8px;
+    position: relative; /* Para timestamp */
+    word-wrap: break-word;
+    font-size: 0.9em; /* Tamanho da fonte no chat */
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mensagem do Usuário */
+  .chat-message.user {
+    background-color: #dcf8c6; /* Verde claro WhatsApp */
+    color: #303030; /* Texto escuro */
+    align-self: flex-end; /* Alinha à direita */
+    border-bottom-right-radius: 2px; /* Efeito de "cauda" */
+  }
+  
+  /* Mensagem do Bot */
+  .chat-message.bot,
+  .chat-message.bot-structured {
+    background-color: #ffffff; /* Branco */
+    color: #303030;
+    align-self: flex-start; /* Alinha à esquerda */
+    border-bottom-left-radius: 2px;
+  }
+  
+  /* Conteúdo da Mensagem Estruturada do Bot */
+  .structured-msg-content { }
+  .structured-msg-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.95em;
+      color: #444;
+  }
+  .structured-msg-detail {
+      font-size: 0.85em;
+      margin: 2px 0;
+      color: #555;
+      display: flex; /* Alinha ícone, label, valor */
+      align-items: center;
+      gap: 4px;
+  }
+  .structured-msg-detail .detail-icon { font-size: 0.9em; }
+  .structured-msg-detail .detail-label { font-weight: 500; }
+  .structured-msg-detail .detail-value { color: #333; }
+  
+  
+  /* Meta (Tempo e Status) */
+  .message-meta {
+    font-size: 0.7em;
+    color: rgba(0, 0, 0, 0.45);
+    text-align: right;
+    margin-top: 3px;
+    margin-left: 10px; /* Espaço após o texto */
+    float: right; /* Tenta flutuar para direita */
+    line-height: 1; /* Ajusta altura */
+    position: relative; /* Posição para os checks */
+     bottom: -3px; /* Ajuste fino vertical */
+  }
+  /* O texto dentro do balão precisa de espaço para o meta */
+  .message-text {
+      padding-right: 45px; /* Ajuste conforme tamanho da fonte/meta */
+      display: inline-block; /* Para padding funcionar */
+  }
+  /* Mensagens estruturadas não precisam desse padding */
+  .structured-msg-content + .message-meta {
+     /* Estilos diferentes se necessário */
+  }
+  .structured-msg-content .message-meta { /* Se o meta estiver dentro do struct */
+       position: absolute;
+       bottom: 5px;
+       right: 8px;
+  }
+  
+  
+  .message-time {
+      margin-right: 3px;
+  }
+  .message-status {
+      font-size: 1.1em; /* Tamanho relativo dos checks */
+      position: relative;
+      bottom: -1px; /* Ajuste vertical fino */
+  }
+  .message-status.read { color: #4fc3f7; } /* Azul para lido */
+  .message-status.delivered { color: rgba(0, 0, 0, 0.45); } /* Cinza para entregue */
+  
+  
+  /* Estilos para vídeo embedado (se usado) */
+  .embedded-video-iframe-mockup {
+    width: 100%;
+    height: 100%;
+    border: none; /* Remove borda do iframe */
+  }
+  
+  
+  /* Responsividade */
+  @media (max-width: 480px) {
+      .phone-frame {
+          max-width: 280px; /* Telefone menor */
+          padding: 10px;
+          border-radius: 30px;
+      }
+      .phone-top { height: 24px; border-radius: 20px 20px 0 0; }
+      .phone-speaker { width: 40px; height: 4px; }
+      .phone-camera { width: 6px; height: 6px; }
+      .phone-screen { border-radius: 20px; margin-top: 14px; height: calc(100% - 14px);}
+      .chat-message { font-size: 0.85em; padding: 6px 8px;}
+      .structured-msg-title { font-size: 0.9em; }
+      .structured-msg-detail { font-size: 0.8em; }
+      .message-meta { font-size: 0.65em; }
+      .message-text { padding-right: 40px; }
+  }

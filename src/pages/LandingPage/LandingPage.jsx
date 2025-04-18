@@ -10,6 +10,8 @@ import HowItWorksSection from '../../componentsLP/HowItWorksSection/HowItWorksSe
 import FooterLP from '../../componentsLP/Footer/Footer'; // <<< IMPORTAR O FOOTER NOVO
 import InteractiveCardSection from '../../componentsLP/InteractiveCardSection/InteractiveCardSectionJsx'; // <<< ADD THIS LINE
 import FinalCTASection from '../../componentsLP/FinalCTASection/FinalCTASection'; // <<< IMPORTAR
+import PhoneMockupSection from '../../componentsLP/PhoneMockupSection/PhoneMockupSection'; // <<< IMPORTAR
+
 
 import './LandingPage.css'; // Importa os estilos específicos da Landing Page
 
@@ -18,12 +20,12 @@ const LandingPage = () => {
     <div className="lp-container"> {/* Container principal da Landing Page */}
       <Header /> {/* Renderiza o Header */}
       <HeroSection /> {/* Renderiza o Header */}
-      <FeaturesHighlight />
-      <DetailedPricing />
         <HowItWorksSection /> {/* <<< IMPORTAR */}
+      <DetailedPricing />
         <InteractiveCardSection /> {/* <<< ADICIONAR A SEÇÃO DE CARDS */}
 
       <ContactSection /> 
+      <FeaturesHighlight />
         <FinalCTASection /> {/* <<< IMPORTAR */}
       <FooterLP /> {/* <<< SUBSTITUIR O FOOTER ANTIGO */}
 

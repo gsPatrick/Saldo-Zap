@@ -1,260 +1,194 @@
 /* src/componentsLP/HeroSection.css */
 
+/* --- Estilos Gerais da Seção --- */
 .hero-section {
-    display: flex;
-    align-items: center; /* Alinha verticalmente */
-    justify-content: space-between; /* Espaça conteúdo e visuais */
-    gap: 3rem; /* Espaço entre as colunas */
-    padding: 5rem 2.5rem; /* Espaçamento interno (vertical, horizontal) */
-    background-color: #1a1a1a; /* Fundo escuro padrão */
-    color: #FFFFFF;
-    min-height: calc(100vh - 80px); /* Altura mínima (viewport - altura aproximada do header) */
-    box-sizing: border-box;
-    overflow: hidden; /* Evita barras de rolagem indesejadas dos visuais */
-     width: 100%;
-     max-width: 1300px; /* Limita largura máxima */
-     margin: 0 auto; /* Centraliza */
-  }
-  
-  /* --- Conteúdo da Esquerda --- */
-  .hero-content {
-    flex: 1; /* Ocupa o espaço disponível */
-    max-width: 550px; /* Largura máxima para o texto */
-    z-index: 1; /* Garante que fique acima de elementos de fundo se houver */
-  }
-  
-  .hero-title {
-    font-size: 3.2em; /* Título grande e impactante */
-    font-weight: 700;
-    line-height: 1.25;
-    margin-bottom: 1rem;
-    color: #FFFFFF;
-  }
-  
-  .hero-highlight {
-    color: #54945c; /* Cor verde para destaque */
-    /* Opcional: adicionar um sublinhado sutil ou outro efeito */
-    /* border-bottom: 3px solid #54945c; */
-  }
-  
-  .hero-description {
-    font-size: 1.15em;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 2.5rem;
-    line-height: 1.6;
-  }
-  
-  .hero-cta-button.ant-btn-primary {
-    background-color: #54945c !important; /* Cor primária verde */
-    border-color: #54945c !important;
-    color: #FFFFFF !important;
-    padding: 0 38px; /* Padding horizontal */
-    height: 52px; /* Altura */
-    font-size: 1.1em;
-    font-weight: 600;
-    border-radius: 26px; /* Raio da borda */
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 15px rgba(84, 148, 92, 0.2); /* Sombra sutil verde */
-  }
-  
-  .hero-cta-button.ant-btn-primary .anticon {
-     margin-left: 10px; /* Espaço antes do ícone */
-  }
-  
-  .hero-cta-button.ant-btn-primary:hover {
-    background-color: #4a8351 !important;
-    border-color: #4a8351 !important;
-     transform: translateY(-2px); /* Efeito de levantar levemente */
-     box-shadow: 0 6px 20px rgba(84, 148, 92, 0.3); /* Sombra mais forte no hover */
-  }
-  
-  .hero-cta-button.ant-btn-primary:active {
-    transform: translateY(0px) scale(0.98); /* Efeito ao clicar */
-    box-shadow: 0 2px 10px rgba(84, 148, 92, 0.2);
-  }
-  
-  .hero-subtext {
-    font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.65);
-    margin-top: 1rem;
-  }
-  
-  /* --- Visuais da Direita --- */
-  .hero-visuals {
-    flex: 1.1; /* Ocupa um pouco mais de espaço que o texto */
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Duas colunas */
-    grid-template-rows: auto auto; /* Duas linhas, altura automática */
-    gap: 1.5rem; /* Espaço entre os cards */
-    max-width: 650px; /* Largura máxima para a área visual */
-    perspective: 1000px; /* Para efeitos 3D sutis se desejado */
-  }
-  
-  .visual-card {
-    background-color: #2b2b2b; /* Fundo dos cards, igual ao header */
-    border-radius: 12px; /* Bordas arredondadas */
-    padding: 1rem 1.5rem;
-    border: 1px solid #3a3a3a; /* Borda sutil */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative; /* Para posicionar elementos internos se necessário */
-  }
-  
-  .visual-card:hover {
-     transform: translateY(-4px) scale(1.02);
-     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  }
-  
-  .visual-card-main {
-    grid-column: 1 / -1; /* Ocupa as duas colunas */
-    grid-row: 1; /* Primeira linha */
-     min-height: 200px; /* Altura mínima para o gráfico principal */
-     display: flex;
-     flex-direction: column;
-  }
-  
-  .visual-card-secondary {
-    grid-row: 2; /* Segunda linha */
-    min-height: 150px; /* Altura mínima */
-     display: flex;
-     flex-direction: column;
-     align-items: center; /* Centraliza conteúdo interno */
-  }
-  
-  .card-title {
-    font-size: 0.85em;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 0.8rem;
-    border-bottom: 1px solid #444; /* Linha abaixo do título como no template */
-    padding-bottom: 0.4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .card-date {
-      font-size: 0.9em;
-      color: rgba(255, 255, 255, 0.5);
-  }
-  
-  .chart-placeholder {
-    flex-grow: 1; /* Ocupa espaço disponível */
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative; /* Para texto central do donut */
-    /* background-color: rgba(0, 0, 0, 0.1); /* Fundo placeholder */
-    /* border-radius: 6px; */
-    margin-bottom: 0.5rem;
-  }
-  
-  .chart-placeholder svg {
-    width: 100%;
-    height: 100%;
-    max-height: 120px; /* Limita altura dos SVGs menores */
-  }
-  .visual-card-main .chart-placeholder svg {
-      max-height: 180px; /* Altura maior para o principal */
-  }
-  
-  /* Donut Chart Specific */
-  .donut-chart-placeholder svg {
-      max-height: 100px;
-      max-width: 100px;
-  }
-  .donut-center-text {
-      position: absolute;
-      font-size: 1em;
-      font-weight: 600;
-      color: #FFFFFF;
-  }
-  
-  .chart-labels {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      font-size: 0.7em;
-      color: rgba(255, 255, 255, 0.5);
-      padding: 0 5px; /* Pequeno padding nas laterais */
-  }
-  .visual-card-main .chart-labels {
-      padding: 0 10px;
-  }
-  
-  
-  /* Card WhatsApp */
-  .whatsapp-card {
-    grid-column: 1 / -1; /* Ocupa as duas colunas */
-    grid-row: 3; /* Terceira linha (se houver espaço) */
-    display: flex;
-    align-items: center;
-    background-color: #252d36; /* Tom azulado escuro */
-    border-left: 4px solid #25D366; /* Borda verde WhatsApp */
-  }
-  
-  .whatsapp-text {
-      font-size: 0.9em;
-      line-height: 1.4;
-  }
-  .whatsapp-text p {
-      margin: 0.2rem 0;
-  }
-  .user-msg {
-      color: rgba(255, 255, 255, 0.9);
-  }
-  .bot-msg {
-      color: rgba(255, 255, 255, 0.7);
-      font-style: italic;
-  }
-  
-/* src/componentsLP/HeroSection.css */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem; /* Espaço entre texto e celular */
+  padding: 5rem 2.5rem;
+  background-color: #1a1a1a;
+  color: #FFFFFF;
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+  overflow: hidden;
+   width: 100%;
+   max-width: 1300px;
+   margin: 0 auto;
+}
 
-/* ... (all styles before the media query remain the same) ... */
+/* --- Coluna do Conteúdo (Texto) --- */
+.hero-content {
+  flex: 1;
+  max-width: 550px;
+  z-index: 1;
+  order: 1; /* Ordem padrão (texto primeiro) */
+}
+.hero-title { font-size: 3.2em; font-weight: 700; line-height: 1.25; margin-bottom: 1rem; color: #FFFFFF; }
+.hero-highlight { color: #54945c; }
+.hero-description { font-size: 1.15em; color: rgba(255, 255, 255, 0.8); margin-bottom: 2.5rem; line-height: 1.6; }
+.hero-cta-button.ant-btn-primary { /* ... estilos do botão ... */ }
+.hero-cta-button.ant-btn-primary .anticon { margin-left: 10px; }
+.hero-cta-button.ant-btn-primary:hover { /* ... estilos hover ... */ }
+.hero-cta-button.ant-btn-primary:active { /* ... estilos active ... */ }
+.hero-subtext { font-size: 0.9em; color: rgba(255, 255, 255, 0.65); margin-top: 1rem; }
+
+/* --- Coluna dos Visuais (Agora só o Celular) --- */
+.hero-visuals {
+  flex: 1.1; /* Mantém proporção similar */
+  display: flex; /* <<< MUDADO de grid para flex */
+  justify-content: center; /* <<< Centraliza o celular horizontalmente */
+  align-items: center; /* <<< Centraliza o celular verticalmente */
+  order: 2; /* Ordem padrão (visual depois) */
+  min-height: 400px; /* Garante altura mínima para alinhamento */
+}
+
+/* --- ESTILOS COPIADOS E ADAPTADOS DE PhoneMockupSection.css --- */
+
+.phone-container {
+  perspective: 1500px;
+}
+
+.phone-frame {
+width: 100%;
+max-width: 300px; /* Reduzido um pouco para caber melhor na hero */
+aspect-ratio: 9 / 19.5;
+background-color: #1c1c1c;
+border-radius: 40px;
+padding: 12px;
+box-shadow: 0px 25px 55px rgba(0, 0, 0, 0.35), /* Sombra mais forte */
+            inset 0 2px 4px rgba(255, 255, 255, 0.05),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+position: relative;
+/* Animação inicial mais sutil */
+transform: rotateX(8deg) rotateY(-6deg) rotateZ(-1deg) scale(0.98);
+/* Transição aprimorada */
+transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), /* EaseOutExpo */
+            box-shadow 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Animação Hover Melhorada */
+.hero-visuals:hover .phone-frame { /* Aplica hover no container pai */
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.05) translateY(-10px); /* Levanta e escala mais */
+  box-shadow: 0px 40px 70px rgba(0, 0, 0, 0.45), /* Sombra mais dramática */
+               inset 0 1px 2px rgba(255, 255, 255, 0.05),
+               inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+.phone-top {
+height: 28px;
+background-color: #111;
+position: absolute;
+top: 12px; left: 12px; right: 12px;
+border-radius: 28px 28px 0 0;
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 2;
+box-sizing: border-box;
+padding: 0 20%;
+}
+.phone-speaker { height: 5px; width: 45px; background-color: #333; border-radius: 3px; margin: 0 auto; }
+.phone-camera { width: 8px; height: 8px; background-color: #282828; border-radius: 50%; position: absolute; right: 25%; top: 50%; transform: translateY(-50%); }
+
+.phone-screen {
+width: 100%;
+height: calc(100% - 16px);
+background-color: #e5ddd5;
+background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAJ5JREFUWEft1LENgDAMAEEDMwM6MArz0G4QB5ChE/ADBQhV3a3sRQIu/Lkv7pL3pU9RFPl6K8aAU2AETAAVMAW+BOZDGk1C3wPj0L+gC9kBC7DAIKf3A+gK6wAe8gW+gHIHZAMOxAITGPcBKOkH3AEnoC+sAT3kB/gCdAc0gx3Ygh1YgQ58gfYBN8B+dDF3gSNxQWzFABt9h8g5AAAAAElFTkSuQmCC");
+background-repeat: repeat;
+border-radius: 28px;
+overflow: hidden;
+position: relative;
+display: flex;
+flex-direction: column;
+margin-top: 16px;
+}
+
+.chat-content {
+flex-grow: 1;
+padding: 15px 10px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+overflow-y: auto;
+&::-webkit-scrollbar { width: 4px; }
+&::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); border-radius: 2px;}
+&::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.3); border-radius: 2px;}
+}
+
+.chat-message-wrapper { display: flex; width: 100%; }
+.chat-message-wrapper.user-wrapper { justify-content: flex-end; }
+.chat-message-wrapper.bot-wrapper { justify-content: flex-start; }
+
+.chat-message { max-width: 75%; padding: 7px 10px; border-radius: 8px; position: relative; word-wrap: break-word; font-size: 0.9em; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
+.chat-message.user { background-color: #dcf8c6; color: #303030; align-self: flex-end; border-bottom-right-radius: 2px; }
+.chat-message.bot, .chat-message.bot-structured { background-color: #ffffff; color: #303030; align-self: flex-start; border-bottom-left-radius: 2px; }
+
+/* Mensagem Estruturada */
+.structured-msg-content { }
+.structured-msg-title { font-weight: 600; margin-bottom: 6px; font-size: 0.95em; color: #444; }
+.structured-msg-detail { font-size: 0.85em; margin: 2px 0; color: #555; display: flex; align-items: center; gap: 4px; }
+.structured-msg-detail .detail-icon { font-size: 0.9em; }
+.structured-msg-detail .detail-label { font-weight: 500; }
+.structured-msg-detail .detail-value { color: #333; }
+
+/* Meta (Tempo/Status) */
+.message-meta { font-size: 0.7em; color: rgba(0, 0, 0, 0.45); text-align: right; margin-top: 3px; margin-left: 10px; float: right; line-height: 1; position: relative; bottom: -3px; }
+.message-text { padding-right: 45px; display: inline-block; }
+.structured-msg-content + .message-meta { /* Estilos diferentes se meta fora */ }
+.structured-msg-content .message-meta { /* Se meta dentro da struct */ position: absolute; bottom: 5px; right: 8px; }
+.message-time { margin-right: 3px; }
+.message-status { font-size: 1.1em; position: relative; bottom: -1px; }
+.message-status.read { color: #4fc3f7; }
+.message-status.delivered { color: rgba(0, 0, 0, 0.45); }
+/* --- FIM ESTILOS COPIADOS --- */
+
+
+/* --- Responsividade (Ajustada para nova ordem) --- */
 @media (max-width: 1024px) {
-  .hero-section {
-    flex-direction: column !important; /* Empilha */
-    text-align: center;
-    padding: 4rem 1.5rem;
-    min-height: auto;
-  }
-
-  /* >>> Ordem Invertida para Telas Médias <<< */
-  .hero-content { /* TEXTO */
+.hero-section { flex-direction: column; text-align: center; padding: 4rem 1.5rem; min-height: auto; }
+.hero-content { /* TEXTO */
     max-width: 700px;
     order: 1; /* <<< TEXTO PRIMEIRO */
     margin-top: 0;
     margin-bottom: 3rem; /* Espaço abaixo do texto */
   }
-
-  .hero-visuals { /* VISUAIS */
-    max-width: 600px;
-    order: 2; /* <<< VISUAIS DEPOIS */
-    margin: 0 auto;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
+.hero-visuals { /* VISUAIS */
+  max-width: 400px; /* Limita largura do celular */
+  order: 2; /* <<< VISUAIS DEPOIS */
+  margin: 0 auto;
+  width: 100%;
+  min-height: unset; /* Remove min-height */
+  /* Reset perspective and transform for simpler stacking */
+  perspective: none;
+}
+ .phone-frame { /* Reset 3D no mobile stack */
+      max-width: 300px; /* Ajuste se necessário */
+      transform: none !important; /* Remove rotação inicial */
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Sombra 2D */
   }
-  /* --- FIM DA INVERSÃO --- */
+  .hero-visuals:hover .phone-frame { /* Hover mais simples no mobile */
+      transform: scale(1.02) translateY(-5px) !important;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  }
 
-
-  .hero-title { font-size: 2.8em; }
-  .hero-description { font-size: 1.1em; margin-left: auto; margin-right: auto; max-width: 600px; }
-  .visual-card-main { min-height: 180px; }
-  .visual-card-secondary { min-height: 140px; }
-  .whatsapp-card { grid-column: 1 / -1; }
+.hero-title { font-size: 2.8em; }
+.hero-description { font-size: 1.1em; margin-left: auto; margin-right: auto; max-width: 600px; }
+/* Remove estilos de grid dos cards que não existem mais aqui */
 }
 
-/* Telas Pequenas (Mobile) */
 @media (max-width: 600px) {
-  .hero-title { font-size: 2.2em; }
-  .hero-description { font-size: 1em; }
-  .hero-cta-button.ant-btn { height: 48px; font-size: 1em; padding: 0 30px; }
-  .hero-visuals { grid-template-columns: 1fr; max-width: 380px; gap: 1rem; }
-  .visual-card { padding: 0.8rem 1rem; }
-  .visual-card-main, .visual-card-secondary, .whatsapp-card { grid-column: 1; min-height: auto; }
-  .chart-placeholder svg { max-height: 100px; }
-  .visual-card-main .chart-placeholder svg { max-height: 150px; }
-  .card-title { font-size: 0.8em; }
-  .chart-labels { font-size: 0.6em; }
-  .hero-content { margin-bottom: 2.5rem; } /* Ajusta margem no mobile */
+.hero-title { font-size: 2.2em; }
+.hero-description { font-size: 1em; }
+.hero-cta-button.ant-btn { height: 48px; font-size: 1em; padding: 0 30px; }
+.hero-visuals { max-width: 300px; } /* Celular um pouco menor */
+ .phone-frame { max-width: 280px; } /* Ajuste do frame interno */
+.hero-content { margin-bottom: 2.5rem; }
+ /* Ajuste fontes no chat para mobile */
+ .chat-message { font-size: 0.85em; }
+ .structured-msg-title { font-size: 0.9em; }
+ .structured-msg-detail { font-size: 0.8em; }
+ .message-meta { font-size: 0.65em; }
 }

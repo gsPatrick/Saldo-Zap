@@ -2,12 +2,40 @@
 import React from 'react';
 import './HeroSection.css'; // Importa os estilos CSS
 import { Button } from 'antd'; // Usaremos o Button do AntD para consistência
-import { WhatsAppOutlined, ArrowRightOutlined } from '@ant-design/icons'; // Ícones relevantes
-import { Link } from 'react-router-dom'; // <<< IMPORTAR Link
+import { WhatsAppOutlined, ArrowRightOutlined, CheckOutlined } from '@ant-design/icons'; // Ícones relevantes
+import { Link } from 'react-router-dom';
+
+// <<< COPIADO DE PhoneMockupSection.jsx >>>
+// Dados simulados da conversa
+const chatMessages = [
+  { type: 'bot-structured', data: { title: "Registro de Transação Concluído:", details: [ { icon: '📝', label: 'Descrição', value: 'Salário' }, { icon: '💰', label: 'Valor', value: 'R$ 1.000,00' }, { icon: '📊', label: 'Tipo', value: 'Receita' }, { icon: '🏦', label: 'Conta', value: 'Sicoob' }, { icon: '📅', label: 'Data', value: '11/09/2024' }, ] }, timestamp: '11:50' },
+  { type: 'user', text: 'Paguei 12000 reais Televisão crédito Santander em 12x', timestamp: '11:50', status: 'read' },
+  { type: 'bot', text: 'Ok, processando isso agora... ⏳', timestamp: '11:50' },
+  { type: 'bot-structured', data: { title: "Detalhes da Transação Registrada:", details: [ { icon: '📺', label: 'Descrição', value: 'Televisão' }, { icon: '💰', label: 'Valor', value: 'R$ 12.000,00 em 12x' }, { icon: '💸', label: 'Tipo', value: 'Despesa' }, { icon: '💳', label: 'Cartão', value: 'Santander' }, { icon: '📅', label: 'Data', value: '17/09/2024' }, ] }, timestamp: '11:50' },
+  { type: 'user', text: 'Recebi 1412 reais Salário na conta Santander', timestamp: '11:50', status: 'read' },
+  { type: 'bot', text: 'Recebido com sucesso, estou processando. 🎉', timestamp: '11:50' },
+];
+
+// Componente para renderizar a mensagem estruturada
+const StructuredMessage = ({ data }) => (
+    <div className="structured-msg-content">
+        <p className="structured-msg-title">{data.title}</p>
+        {data.details.map((item, index) => (
+            <p key={index} className="structured-msg-detail">
+                <span className="detail-icon">{item.icon}</span>
+                <span className="detail-label">{item.label}:</span>{' '}
+                <span className="detail-value">{item.value}</span>
+            </p>
+        ))}
+    </div>
+);
+// <<< FIM COPIADO >>>
+
 
 const HeroSection = () => {
   return (
     <section className="hero-section">
+      {/* Coluna do Texto (sem alterações) */}
       <div className="hero-content">
         <h1 className="hero-title">
           Gerencie suas Finanças Pelo <span className="hero-highlight">WhatsApp</span> com Saldo Zap
@@ -15,65 +43,51 @@ const HeroSection = () => {
         <p className="hero-description">
           Seu assistente financeiro inteligente: registre gastos e receitas, receba análises e alertas personalizados conversando com nosso bot. Simples, rápido e adaptado a você.
         </p>
-        {/* <<< BOTÃO AGORA É UM LINK PARA /signup >>> */}
-        <Link to="/signup"> {/* Usa o Link para navegação SPA */}
+        <Link to="/signup">
             <Button
               type="primary"
               size="large"
               className="hero-cta-button"
-              // onClick não é mais necessário aqui se for apenas navegação
               icon={<ArrowRightOutlined />}
             >
               Experimente Grátis por 7 Dias
             </Button>
         </Link>
-        {/* <<< FIM DA MUDANÇA >>> */}
         <p className="hero-subtext">Cadastro rápido com seu número e e-mail.</p>
       </div>
 
-      {/* --- HERO VISUALS (sem alterações) --- */}
-      <div className="hero-visuals">
-        <div className="visual-card visual-card-main">
-           <div className="card-title">Relatório Semanal <span className="card-date">AGO 21 - AGO 26</span></div>
-           <div className="chart-placeholder area-chart-placeholder">
-              <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                <path d="M 0 30 Q 15 10, 30 25 T 60 20 T 90 35 L 100 38 L 100 40 L 0 40 Z" fill="rgba(84, 148, 92, 0.4)" />
-                <path d="M 0 35 Q 15 20, 30 30 T 60 28 T 90 38 L 100 40 L 100 40 L 0 40 Z" fill="rgba(84, 148, 92, 0.7)" />
-             </svg>
-           </div>
-           <div className="chart-labels">
-                <span>AGO 21</span><span>AGO 22</span><span>AGO 23</span><span>AGO 24</span><span>AGO 25</span><span>AGO 26</span>
-           </div>
-        </div>
-        <div className="visual-card visual-card-secondary">
-            <div className="card-title">Gastos Mensais</div>
-             <div className="chart-placeholder donut-chart-placeholder">
-                <svg viewBox="0 0 36 36">
-                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="#4a8351" strokeWidth="3"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="#a8d8ac" strokeWidth="3" strokeDasharray="60, 40" strokeDashoffset="25"></circle>
-                    <circle cx="18" cy="18" r="15.915" fill="none" stroke="#ffffff" strokeWidth="3" strokeDasharray="30, 70" strokeDashoffset="-15"></circle>
-                </svg>
-                <div className="donut-center-text">R$ 500</div>
-             </div>
-        </div>
-         <div className="visual-card visual-card-secondary">
-            <div className="card-title">Frequência</div>
-             <div className="chart-placeholder line-chart-placeholder">
-                 <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                    <path d="M 5 25 Q 20 10, 35 20 T 65 15 T 95 30" stroke="#54945c" strokeWidth="2" fill="none"/>
-                 </svg>
-             </div>
-             <div className="chart-labels">
-                <span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SAB</span>
-             </div>
-        </div>
-         <div className="visual-card whatsapp-card">
-            <WhatsAppOutlined style={{ fontSize: '1.5em', color: '#25D366', marginRight: '8px' }}/>
-            <div className="whatsapp-text">
-                <p className="user-msg">Gastei R$50 no mercado.</p>
-                <p className="bot-msg">Registrado: R$50 em Alimentação ✅</p>
+      {/* --- Coluna Visual AGORA com o Phone Mockup --- */}
+      <div className="hero-visuals"> {/* Este container agora centraliza o phone */}
+        {/* <<< CÓDIGO DO PHONE MOCKUP COLADO AQUI >>> */}
+        <div className="phone-container">
+          <div className="phone-frame">
+            <div className="phone-top">
+              <div className="phone-speaker"></div>
+              <div className="phone-camera"></div>
             </div>
-         </div>
+            <div className="phone-screen">
+              <div className="chat-content">
+                {chatMessages.map((msg, index) => (
+                  <div key={index} className={`chat-message-wrapper ${msg.type.startsWith('user') ? 'user-wrapper' : 'bot-wrapper'}`}>
+                    <div className={`chat-message ${msg.type}`}>
+                      {msg.type === 'bot-structured' ? (
+                         <StructuredMessage data={msg.data} />
+                      ) : (
+                         <span className="message-text">{msg.text}</span>
+                      )}
+                      <div className="message-meta">
+                        <span className="message-time">{msg.timestamp}</span>
+                        {msg.type === 'user' && msg.status === 'read' && (<CheckOutlined className="message-status read" />)}
+                        {msg.type === 'user' && msg.status === 'delivered' && (<CheckOutlined className="message-status delivered" />)}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <<< FIM CÓDIGO PHONE MOCKUP >>> */}
       </div>
       {/* --- FIM HERO VISUALS --- */}
     </section>
