@@ -60,18 +60,18 @@ const DetailedFeaturesSection = () => {
           { type: 'bot', text: '✅ Registrado: R$ 50,00 em Alimentação.'}
       ]
     },
-    {
-      icon: <CameraOutlined />, // Mantido, mas pode trocar se quiser
-      title: "Comprovantes e Formatos Flexíveis",
-      description: "Não quer digitar? Envie a foto do seu comprovante ou uma mensagem de áudio. Nossa IA extrai os dados para você.",
-      benefit: "Flexibilidade total para registrar suas finanças como preferir.",
-      align: "right",
-      visualType: "chat", // << NOVO (simulando a resposta após envio)
-      visualData: [       // << NOVO
-          { type: 'user', text: '[Foto de Comprovante] Mercado XYZ' },
-          { type: 'bot', text: '📄 Comprovante recebido! Registrando R$ 125,30 em Alimentação...'}
-      ]
-    },
+    // {
+    //   icon: <CameraOutlined />, // Mantido, mas pode trocar se quiser
+    //   title: "Comprovantes e Formatos Flexíveis",
+    //   description: "Não quer digitar? Envie a foto do seu comprovante ou uma mensagem de áudio. Nossa IA extrai os dados para você.",
+    //   benefit: "Flexibilidade total para registrar suas finanças como preferir.",
+    //   align: "right",
+    //   visualType: "chat", // << NOVO (simulando a resposta após envio)
+    //   visualData: [       // << NOVO
+    //       { type: 'user', text: '[Foto de Comprovante] Mercado XYZ' },
+    //       { type: 'bot', text: '📄 Comprovante recebido! Registrando R$ 125,30 em Alimentação...'}
+    //   ]
+    // },
     {
       icon: <BarChartOutlined />,
       title: "Relatórios e Análises Visuais",
@@ -104,7 +104,7 @@ const DetailedFeaturesSection = () => {
           { type: 'user', text: 'Lembrar de pagar aluguel dia 5' },
           { type: 'bot', text: '🔔 Alerta definido! Pagamento de Aluguel para 05/MM.'},
           { type: 'bot', text: '⏰ Lembrete: Aluguel vence amanhã!'}
-      ]
+      ] 
     },
     {
       icon: <SafetyCertificateOutlined />,

@@ -83,7 +83,7 @@ const Header = () => {
             <a href="/funcionalidades" className="mobile-nav-link" onClick={closeMenu}>Funcionalidades</a>
          )}
         <NavLink to="/planos" className={({ isActive }) => "mobile-nav-link" + (isActive ? " active" : "")} onClick={closeMenu}>Planos</NavLink>
-        <NavLink to="/faq" className={({ isActive }) => "mobile-nav-link" + (isActive ? " active" : "")} onClick={closeMenu}>FAQ</NavLink>
+        <NavLink to="/faq" className={({ isActive }) => "mobile-nav-link" + (isActive ? " active" : "")} onClick={closeMenu}>Perguntas Frequentes</NavLink>
          {/* BOTÃO/LINK "ACESSAR PAINEL" REMOVIDO DO MENU MOBILE */}
         {/* <Link to="/dashboard" className="mobile-cta-button" onClick={closeMenu}>Acessar Painel</Link> */}
 

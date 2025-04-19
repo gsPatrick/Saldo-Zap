@@ -6,8 +6,8 @@ import { WhatsAppOutlined, EditOutlined, BarChartOutlined, BulbOutlined } from '
 const HowItWorksSection = () => {
   const steps = [
     { icon: <WhatsAppOutlined />, title: "Conecte-se", description: "Cadastro rápido com seu WhatsApp. Inicie a conversa com nosso bot." },
-    { icon: <EditOutlined />, title: "Registre Facilmente", description: "Envie seus gastos e receitas por texto, áudio ou foto de comprovante." },
-    { icon: <BarChartOutlined />, title: "Analise Seus Dados", description: "Peça resumos, veja gráficos e entenda seus hábitos financeiros." },
+    { icon: <EditOutlined />, title: "Registre Facilmente", description: "Envie seus gastos e receitas por texto, áudio." },
+    { icon: <BarChartOutlined />, title: "Analise Seus Dados", description: "Peça resumos, e entenda seus hábitos financeiros." },
     { icon: <BulbOutlined />, title: "Receba Insights", description: "Nossa IA te envia alertas e dicas personalizadas para você economizar." },
   ];
 
