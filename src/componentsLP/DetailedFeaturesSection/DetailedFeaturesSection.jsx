@@ -73,15 +73,6 @@ const DetailedFeaturesSection = () => {
     //   ]
     // },
     {
-      icon: <BarChartOutlined />,
-      title: "Relatórios e Análises Visuais",
-      description: "Peça resumos diários, semanais, mensais ou por categoria. Entenda para onde seu dinheiro está indo com gráficos claros.",
-      benefit: "Tenha clareza total sobre suas finanças para tomar decisões melhores.",
-      align: "left",
-      visualType: "graph", // << NOVO
-      visualData: { type: 'bar' } // << NOVO (especifica tipo de gráfico)
-    },
-    {
       icon: <BulbOutlined />,
       title: "Inteligência Artificial Pessoal",
       description: "O Saldo Zap aprende seus hábitos, categoriza despesas automaticamente e oferece insights personalizados para economizar.",
@@ -99,11 +90,11 @@ const DetailedFeaturesSection = () => {
       description: "Nunca mais esqueça uma conta! Defina lembretes de vencimento e gerencie pagamentos recorrentes ou parcelados.",
       benefit: "Evite multas e mantenha suas contas em dia com planejamento fácil.",
       align: "left",
-       visualType: "chat", // << NOVO
+      visualType: "chat", // << NOVO
       visualData: [       // << NOVO
-          { type: 'user', text: 'Lembrar de pagar aluguel dia 5' },
-          { type: 'bot', text: '🔔 Alerta definido! Pagamento de Aluguel para 05/MM.'},
-          { type: 'bot', text: '⏰ Lembrete: Aluguel vence amanhã!'}
+        { type: 'user', text: 'Lembrar de pagar aluguel dia 5' },
+        { type: 'bot', text: '🔔 Alerta definido! Pagamento de Aluguel para 05/MM.'},
+        { type: 'bot', text: '⏰ Lembrete: Aluguel vence amanhã!'}
       ] 
     },
     {
@@ -114,7 +105,16 @@ const DetailedFeaturesSection = () => {
       align: "right",
       visualType: "graph", // << NOVO
       visualData: { type: 'area' } // << NOVO (pode ser outro tipo ou ícone grande)
-    }
+    },
+    {
+      icon: <BarChartOutlined />,
+      title: "Relatórios e Análises Visuais",
+      description: "Peça resumos diários, semanais, mensais ou por categoria. Entenda para onde seu dinheiro está indo com gráficos claros.",
+      benefit: "Tenha clareza total sobre suas finanças para tomar decisões melhores.",
+      align: "left",
+      visualType: "graph", // << NOVO
+      visualData: { type: 'bar' } // << NOVO (especifica tipo de gráfico)
+    },
   ];
 
   return (
