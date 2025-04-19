@@ -80,7 +80,7 @@ const Header = () => {
          )}
          {/* Link para seção Funcionalidades (se estiver na Home) */}
          {isHomePage && (
-            <a href="#funcionalidades-section" className="mobile-nav-link" onClick={closeMenu}>Funcionalidades</a>
+            <a href="/funcionalidades" className="mobile-nav-link" onClick={closeMenu}>Funcionalidades</a>
          )}
         <NavLink to="/planos" className={({ isActive }) => "mobile-nav-link" + (isActive ? " active" : "")} onClick={closeMenu}>Planos</NavLink>
         <NavLink to="/faq" className={({ isActive }) => "mobile-nav-link" + (isActive ? " active" : "")} onClick={closeMenu}>FAQ</NavLink>
