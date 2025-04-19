@@ -62,7 +62,7 @@ const FooterLP = () => {
                 <li><Link to="/funcionalidades">Funcionalidades</Link></li>
                 <li><Link to="/planos">Planos</Link></li>
                 <li><Link to="/seguranca">Segurança</Link></li>
-                <li><Link to="/faq">FAQ</Link></li>
+                <li><Link to="/faq">Perguntas Frequentes</Link></li>
              </ul>
         </div>
 
