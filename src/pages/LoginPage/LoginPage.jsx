@@ -8,6 +8,11 @@ import './LoginPage.css'; // Estilos específicos
 const { Title, Text } = Typography;
 const logoUrl = "https://i.imgur.com/DVNkfll.png"; // Reutiliza a logo
 
+// --- Configuração da API ---
+// Certifique-se que esta URL aponta para o seu backend
+const API_URL = 'https://smart-api.ftslwl.easypanel.host';
+// --------------------------
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
@@ -18,29 +23,81 @@ const LoginPage = () => {
     setLoading(true);
     console.log('Tentativa de Login com:', values);
 
-    // --- SIMULAÇÃO DE AUTENTICAÇÃO ---
-    // Substitua isso pela chamada real à sua API de backend
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Simula delay
+    // --- CHAMADA REAL À API DE BACKEND ---
+    try {
+      // Monta o payload esperado pela API de login
+      const payload = {
+        identifier: values.email, // O backend espera 'identifier' (pode ser email ou telefone)
+        senha: values.password   // O backend espera 'senha'
+      };
 
-    // Simula verificação (substitua pela lógica real)
-    const isValidUser = values.email === "admin@smartcusto.com" && values.password === "password"; // EXEMPLO - NÃO USE EM PRODUÇÃO
+      const response = await fetch(`${API_URL}/api/v1/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
-    if (isValidUser) {
-      message.success('Login realizado com sucesso!');
-      // Aqui você normalmente armazenaria um token (localStorage, Context API, etc.)
-      // Ex: localStorage.setItem('authToken', 'seu_token_jwt');
-      navigate('/dashboard'); // Redireciona para o dashboard após login
-    } else {
-      message.error('E-mail ou senha inválidos.');
+      // Tenta parsear a resposta, mesmo se for erro, pois pode conter uma mensagem
+      let data;
+      try {
+         data = await response.json();
+      } catch (parseError) {
+         console.error("Erro ao parsear JSON da resposta:", parseError, response.status);
+         // Se não conseguiu parsear e o status não é OK, mostra erro genérico
+         if (!response.ok) {
+            message.error(`Erro no servidor (Status: ${response.status}). Tente novamente.`);
+            setLoading(false);
+            return;
+         }
+         // Se status era OK mas não parseou, algo muito estranho aconteceu
+         data = { error: "Resposta inválida do servidor." }; // Define um erro padrão
+      }
+
+
+      // Verifica se a requisição foi bem-sucedida (status 2xx)
+      if (response.ok) {
+        if (data.token) {
+          message.success(data.message || 'Login realizado com sucesso!');
+
+          // <<< ARMAZENA O TOKEN NO localStorage >>>
+          localStorage.setItem('authToken', data.token);
+
+          // Opcional: Armazenar informações básicas do usuário se precisar
+          if (data.user) {
+             localStorage.setItem('authUser', JSON.stringify(data.user));
+          }
+
+          // <<< REDIRECIONA PARA O DASHBOARD >>>
+          navigate('/dashboard');
+
+          // Não precisa setLoading(false) aqui, pois a navegação desmontará o componente
+        } else {
+           // Caso a API retorne 200 OK mas sem o token (erro inesperado)
+           console.error("Login bem-sucedido na API, mas nenhum token recebido:", data);
+           message.error('Falha no login: Resposta inesperada do servidor.');
+           setLoading(false);
+        }
+      } else {
+        // Se a API retornou um erro (status 4xx, 5xx)
+        const errorMessage = data.error || 'E-mail ou senha inválidos.'; // Usa a msg da API ou padrão
+        message.error(errorMessage);
+        setLoading(false);
+      }
+
+    } catch (error) {
+      // Erro de rede ou na própria requisição fetch
+      console.error('Erro na requisição de login:', error);
+      message.error('Não foi possível conectar ao servidor. Verifique sua conexão.');
       setLoading(false);
     }
-    // --- FIM SIMULAÇÃO ---
-
-    // setLoading(false); // O setLoading para em caso de erro ou após redirecionamento
+    // --- FIM CHAMADA À API ---
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Falha na validação do login:', errorInfo);
+    // O Ant Design já mostra os erros de validação nos campos
   };
 
   return (
@@ -56,30 +113,31 @@ const LoginPage = () => {
           <Form
             form={form}
             name="login"
-            onFinish={onFinish}
+            onFinish={onFinish} // Chama a função com a lógica da API
             onFinishFailed={onFinishFailed}
             layout="vertical"
             requiredMark={false}
             className="login-antd-form"
-            initialValues={{ remember: true }} // Lembrar-me marcado por padrão
+            initialValues={{ remember: true }}
           >
             <Form.Item
-              name="email"
-              label="E-mail"
+              name="email" // Mantém 'email' no form, mas envia como 'identifier'
+              label="E-mail ou Telefone" // Atualiza label para refletir backend
               rules={[
-                { required: true, message: 'Por favor, insira seu e-mail!' },
-                { type: 'email', message: 'Formato de e-mail inválido!' },
+                { required: true, message: 'Por favor, insira seu e-mail ou telefone!' },
+                // Removido a validação de formato de email, já que pode ser telefone
+                // { type: 'email', message: 'Formato de e-mail inválido!' },
               ]}
             >
               <Input
                 prefix={<MailOutlined className="site-form-item-icon" />}
-                placeholder="seuemail@exemplo.com"
+                placeholder="seuemail@exemplo.com ou 55119..."
                 size="large"
               />
             </Form.Item>
 
             <Form.Item
-              name="password"
+              name="password" // Mantém 'password' no form, mas envia como 'senha'
               label="Senha"
               rules={[{ required: true, message: 'Por favor, insira sua senha!' }]}
             >
@@ -93,11 +151,11 @@ const LoginPage = () => {
             <Form.Item>
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>Lembrar-me</Checkbox>
+                 {/* A funcionalidade "Lembrar-me" geralmente envolve tokens de longa duração ou refresh tokens,
+                     o que está fora do escopo básico de armazenamento do token JWT de sessão.
+                     Por enquanto, isso é apenas visual. */}
               </Form.Item>
-              {/* Link de "Esqueci minha senha" (opcional, comentado por enquanto) */}
-              {/* <a className="login-form-forgot" href="/reset-password">
-                Esqueci minha senha
-              </a> */}
+              {/* Link de "Esqueci minha senha" (opcional) */}
             </Form.Item>
 
             <Form.Item>
@@ -107,7 +165,7 @@ const LoginPage = () => {
                 className="login-form-button"
                 loading={loading}
                 size="large"
-                block // Ocupa largura total
+                block
                 icon={<LoginOutlined />}
               >
                 {loading ? 'Entrando...' : 'Entrar'}
@@ -120,4 +178,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;   
+export default LoginPage;

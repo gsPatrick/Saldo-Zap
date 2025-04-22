@@ -101,7 +101,7 @@ const Dashboard = () => {
   };
 
   // URL do Gateway (sem alterações)
-  const kiwifyPanelUrl = "https://dashboard.kiwify.com.br/"; // Ou Kirvano
+  const kirvanoURL = "https://app.kirvano.com/"; // Ou Kirvano
 
   // --- Renderização Condicional (Loading / Erro) ---
   if (loading) {
@@ -249,7 +249,7 @@ const Dashboard = () => {
                     <Col flex="none">
                         <Button
                             type="primary"
-                            href={kiwifyPanelUrl}
+                            href={kirvanoURL}
                             target="_blank"
                             icon={<LinkOutlined />}
                             className="gateway-button"
