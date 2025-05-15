@@ -95,7 +95,7 @@ const DetailedPricing = () => {
                 <span className="detailed-plan-price">{plan.price}</span>
                 {plan.priceSuffix && <span className="detailed-plan-price-suffix">{plan.priceSuffix}</span>}
                  {plan.id === 'anual' && (
-                    <span className="annual-equivalent-price">(equivale a R$ 180,00/ano)</span>
+                    <span className="annual-equivalent-price">(equivale a R$ 180,00/an no PIX)</span>
                  )}
               </div>
               <p className="detailed-plan-description">{plan.description}</p>
