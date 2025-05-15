@@ -21,23 +21,7 @@ const DetailedPricing = () => {
 
   // Define os planos (Free, Mensal, Anual)
   const plans = [
-    {
-      id: 'free',
-      name: 'Teste Gratuito',
-      icon: <SmileOutlined />, // Ícone para o Free
-      description: 'Experimente o Saldo Zap completo por 7 dias, sem compromisso.',
-      price: 'R$ 00,00',
-      priceSuffix: 'por 7 dias',
-      features: [ // Features específicas do teste
-        'Acesso a **TODOS** os recursos Premium',
-        'Suporte incluso durante o teste',
-        'Sem necessidade de cartão de crédito',
-      ],
-      ctaText: 'Iniciar Teste Gratuito',
-      ctaLink: '/signup', // <<< Leva para a página de cadastro geral
-      isFeatured: false, // Não é destacado como o Anual
-      badgeText: null,
-    },
+   
     {
       id: 'mensal',
       name: 'Plano Mensal',
@@ -56,7 +40,7 @@ const DetailedPricing = () => {
       name: 'Plano Anual',
       icon: <ThunderboltFilled />,
       description: 'Economize pagando uma vez por ano e aproveite todos os benefícios.',
-      price: 'R$ 180,00',
+      price: 'R$ 15,00',
       priceSuffix: '/ ano',
       features: [
            ...commonPaidFeatures, // Inclui todas as features comuns
@@ -111,7 +95,7 @@ const DetailedPricing = () => {
                 <span className="detailed-plan-price">{plan.price}</span>
                 {plan.priceSuffix && <span className="detailed-plan-price-suffix">{plan.priceSuffix}</span>}
                  {plan.id === 'anual' && (
-                    <span className="annual-equivalent-price">(equivale a R$ 15,00/mês)</span>
+                    <span className="annual-equivalent-price">(equivale a R$ 180,00/ano)</span>
                  )}
               </div>
               <p className="detailed-plan-description">{plan.description}</p>
