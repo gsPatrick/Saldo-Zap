@@ -16,6 +16,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ConfirmationPage from './pages/ConfirmationPage/ConfirmationPage';
 import AccountDetailsPage from './pages/AccountDetailsPage/AccountDetailsPage';
 import UserActivationPage from './pages/UserActivationPage/UserActivationPage';
+import TermsOfUsePage from './pages/TermsOfUse/TermsOfUsePage';
 
 // --- Componentes e Páginas do Dashboard Interno ---
 import Sidebar from './components/Sidebar/Sidebar';
@@ -63,6 +64,7 @@ function App() {
         <Route path="/awaiting-payment" element={<AwaitingPaymentPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/funcionalidades" element={<FeaturesPage />} />
+        <Route path="/termos-de-uso" element={<TermsOfUsePage />} />
         <Route path="/seguranca" element={<SecurityPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/confirmacao" element={<ConfirmationPage />} />

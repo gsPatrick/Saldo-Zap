@@ -63,6 +63,8 @@ const FooterLP = () => {
                 <li><Link to="/planos">Planos</Link></li>
                 <li><Link to="/seguranca">Segurança</Link></li>
                 <li><Link to="/faq">Perguntas Frequentes</Link></li>
+                <li><Link to="/termos-de-uso">Termos de Uso</Link></li>
+              
              </ul>
         </div>
 

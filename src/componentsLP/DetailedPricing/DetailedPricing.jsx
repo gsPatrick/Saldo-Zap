@@ -9,7 +9,7 @@ const DetailedPricing = () => {
   // Define as funcionalidades comuns aos planos PAGOS
   const commonPaidFeatures = [
     '**Todos os Recursos de IA**',
-    'Registro Ilimitado (Texto, Foto, Áudio)',
+    'Registro Ilimitado',
     'Relatórios Detalhados (Semanal, Mensal)',
     'Categorização Automática Inteligente',
     'Análise de Padrões e Insights',
