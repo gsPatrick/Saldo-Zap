@@ -255,8 +255,8 @@ const Dashboard = () => {
                             type="primary"
                             href={kirvanoURL}
                             target="_blank"
-                            icon={<LinkOutlined />} {/* Ícone de link */}
-                            className="gateway-button" {/* Reutiliza a classe CSS */}
+                            icon={<LinkOutlined />} 
+                            className="gateway-button"
                         >
                             Acessar Kirvano
                         </Button>
@@ -284,10 +284,10 @@ const Dashboard = () => {
                     <Col flex="none">
                         <Button
                             type="primary"
-                            href={zapiUrl} {/* Usa a nova URL */}
+                            href={zapiUrl} 
                             target="_blank"
-                            icon={<LinkOutlined />} {/* Ícone de link (consistente com o outro) */}
-                            className="gateway-button" {/* Reutiliza a classe CSS do botão */}
+                            icon={<LinkOutlined />} 
+                            className="gateway-button" 
                         >
                             Acessar Z-API
                         </Button>
