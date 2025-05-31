@@ -5,7 +5,7 @@ import { Typography, Card, Row, Col, Statistic, Button, Spin, Alert } from 'antd
 import {
     UserOutlined, DollarCircleOutlined, StarOutlined, SmileOutlined,
     CrownOutlined, ArrowUpOutlined, ArrowDownOutlined, CreditCardOutlined,
-    LinkOutlined, LoadingOutlined // Adicionado LoadingOutlined
+    LinkOutlined, LoadingOutlined, WhatsAppOutlined // Adicionado WhatsAppOutlined para o Z-API
 } from '@ant-design/icons';
 import './Dashboard.css'; // Importa o CSS específico
 // ----------------------------
@@ -22,6 +22,12 @@ const API_KEY = 'SUA_API_KEY_AQUI';
 const PRECO_PREMIUM = 29.90;
 const PRECO_BASIC = 9.90;
 // ------------------------------------------------------
+
+// --- URLs de Gateways ---
+const kirvanoURL = "https://app.kirvano.com/"; // URL Kirvano
+const zapiUrl = "https://app.z-api.io/"; // <<< Nova URL Z-API
+// -------------------------
+
 
 // Componente Dashboard
 const Dashboard = () => {
@@ -100,8 +106,6 @@ const Dashboard = () => {
     return `R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
-  // URL do Gateway (sem alterações)
-  const kirvanoURL = "https://app.kirvano.com/"; // Ou Kirvano
 
   // --- Renderização Condicional (Loading / Erro) ---
   if (loading) {
@@ -134,7 +138,7 @@ const Dashboard = () => {
   // --- FIM Renderização Condicional ---
 
 
-  // --- RETURN PRINCIPAL (Estrutura Idêntica ao Original, usando dados do state) ---
+  // --- RETURN PRINCIPAL ---
   return (
     <div className="dashboard-page">
       {/* Título da Página */}
@@ -147,7 +151,7 @@ const Dashboard = () => {
           <Card className="dashboard-metric-card">
             <Statistic
               title="Usuários Ativos"
-              value={dashboardData.usuariosAtivos ?? 0} 
+              value={dashboardData.usuariosAtivos ?? 0}
               precision={0}
               valueStyle={{ color: '#FFFFFF' }}
               prefix={<UserOutlined />}
@@ -159,7 +163,7 @@ const Dashboard = () => {
           <Card className="dashboard-metric-card">
             <Statistic
               title="Usuários Free"
-              value={dashboardData.usuariosFree ?? 0} 
+              value={dashboardData.usuariosFree ?? 0}
               precision={0}
               valueStyle={{ color: '#d1d5db' }}
               prefix={<SmileOutlined />}
@@ -171,7 +175,7 @@ const Dashboard = () => {
           <Card className="dashboard-metric-card">
             <Statistic
               title="Usuários Basic"
-              value={dashboardData.usuariosBasic ?? 0} 
+              value={dashboardData.usuariosBasic ?? 0}
               precision={0}
               valueStyle={{ color: '#bfdbfe' }}
               prefix={<StarOutlined />}
@@ -183,7 +187,7 @@ const Dashboard = () => {
           <Card className="dashboard-metric-card">
             <Statistic
               title="Usuários Premium"
-              value={dashboardData.usuariosPremium ?? 0} 
+              value={dashboardData.usuariosPremium ?? 0}
               precision={0}
               valueStyle={{ color: '#adedb1' }}
               prefix={<CrownOutlined />}
@@ -199,7 +203,7 @@ const Dashboard = () => {
           <Card className="dashboard-metric-card">
             <Statistic
               title="Lucro Premium"
-              value={dashboardData.lucroPremium ?? 0} 
+              value={dashboardData.lucroPremium ?? 0}
               formatter={formatCurrency}
               valueStyle={{ color: '#adedb1' }}
               prefix={<DollarCircleOutlined />}
@@ -211,7 +215,7 @@ const Dashboard = () => {
           <Card className="dashboard-metric-card">
              <Statistic
                title="Lucro Basic"
-               value={dashboardData.lucroBasic ?? 0} 
+               value={dashboardData.lucroBasic ?? 0}
                formatter={formatCurrency}
                valueStyle={{ color: '#bfdbfe' }}
                prefix={<DollarCircleOutlined />}
@@ -223,7 +227,7 @@ const Dashboard = () => {
           <Card className="dashboard-metric-card dashboard-total-card">
              <Statistic
                title="Lucro Total"
-               value={dashboardData.lucroTotal ?? 0} 
+               value={dashboardData.lucroTotal ?? 0}
                formatter={formatCurrency}
                valueStyle={{ color: '#56935c', fontWeight: 'bold', fontSize: '2.2em' }}
                prefix={<DollarCircleOutlined />}
@@ -232,17 +236,17 @@ const Dashboard = () => {
         </Col>
       </Row>
 
-      {/* Seção: Gateway de Pagamento (Mantida igual) */}
-      <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
+      {/* Seção: Gateway de Pagamento (Kirvano) */}
+      <Row gutter={[16, 16]} style={{ marginTop: 16 }}> {/* Mantém o espaçamento do topo */}
         <Col span={24}>
-            <Card className="dashboard-gateway-card">
+            <Card className="dashboard-gateway-card"> {/* Reutiliza a classe CSS */}
                  <Row align="middle" justify="space-between" wrap={false}>
                     <Col flex="auto" style={{ paddingRight: '16px' }}>
                         <Title level={4} style={{ color: '#FFFFFF', margin: 0, lineHeight: '1.3' }}>
-                            <CreditCardOutlined style={{ marginRight: 10, color: '#56935c' }}/>
-                            Painel do Gateway de Pagamento
+                            <CreditCardOutlined style={{ marginRight: 10, color: '#56935c' }}/> {/* Ícone de cartão */}
+                            Painel do Gateway de Pagamento (Kirvano)
                         </Title>
-                        <Text type="secondary" style={{ display: 'block', marginTop: '4px', color: 'rgba(255,255,255,0.65)' }}> {/* Cor clara forçada */}
+                        <Text type="secondary" style={{ display: 'block', marginTop: '4px', color: 'rgba(255,255,255,0.65)' }}>
                             Acesse o painel da Kirvano para visualizar vendas, assinaturas e detalhes financeiros.
                         </Text>
                     </Col>
@@ -251,8 +255,8 @@ const Dashboard = () => {
                             type="primary"
                             href={kirvanoURL}
                             target="_blank"
-                            icon={<LinkOutlined />}
-                            className="gateway-button"
+                            icon={<LinkOutlined />} {/* Ícone de link */}
+                            className="gateway-button" {/* Reutiliza a classe CSS */}
                         >
                             Acessar Kirvano
                         </Button>
@@ -262,6 +266,38 @@ const Dashboard = () => {
         </Col>
       </Row>
       {/* Fim da Seção Gateway */}
+
+      {/* <<< NOVA SEÇÃO: Z-API >>> */}
+      <Row gutter={[16, 16]} style={{ marginTop: 16 }}> {/* Novo Row, mantendo espaçamento */}
+        <Col span={24}>
+            <Card className="dashboard-gateway-card"> {/* Reutiliza a classe CSS do card */}
+                 <Row align="middle" justify="space-between" wrap={false}>
+                    <Col flex="auto" style={{ paddingRight: '16px' }}>
+                        <Title level={4} style={{ color: '#FFFFFF', margin: 0, lineHeight: '1.3' }}>
+                            <WhatsAppOutlined style={{ marginRight: 10, color: '#56935c' }}/> {/* Ícone do WhatsApp */}
+                            Painel do Z-API
+                        </Title>
+                        <Text type="secondary" style={{ display: 'block', marginTop: '4px', color: 'rgba(255,255,255,0.65)' }}>
+                            Acesse o painel do Z-API para gerenciar a instância do WhatsApp e monitorar disparos.
+                        </Text>
+                    </Col>
+                    <Col flex="none">
+                        <Button
+                            type="primary"
+                            href={zapiUrl} {/* Usa a nova URL */}
+                            target="_blank"
+                            icon={<LinkOutlined />} {/* Ícone de link (consistente com o outro) */}
+                            className="gateway-button" {/* Reutiliza a classe CSS do botão */}
+                        >
+                            Acessar Z-API
+                        </Button>
+                    </Col>
+                 </Row>
+            </Card>
+        </Col>
+      </Row>
+      {/* <<< FIM NOVA SEÇÃO: Z-API >>> */}
+
 
     </div> // Fim div .dashboard-page
   );
