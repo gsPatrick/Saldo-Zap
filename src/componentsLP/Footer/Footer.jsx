@@ -10,7 +10,7 @@ import './Footer.css'; // Certifique-se que o nome do arquivo CSS está correto
 
 const FooterLP = () => {
   const currentYear = new Date().getFullYear();
-  const portfolioUrl = "https://patrick-siqueira-portifolio.vercel.app/";
+  const portfolioUrl = "https://www.codebypatrick.dev/";
   const logoUrl = "https://i.imgur.com/DVNkfll.png";
   // --- LINKS ---
   const whatsappContactNumber = "55119XXXXXXXX";
