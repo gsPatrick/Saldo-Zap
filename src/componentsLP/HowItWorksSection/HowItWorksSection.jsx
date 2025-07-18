@@ -1,19 +1,18 @@
 // src/componentsLP/HowItWorksSection.jsx
 import React from 'react';
 import './HowItWorksSection.css';
-import { WhatsAppOutlined, EditOutlined, BarChartOutlined, BulbOutlined } from '@ant-design/icons'; // PlayCircleFilled não é mais necessário aqui
+import { WhatsAppOutlined, EditOutlined, BarChartOutlined, BulbOutlined } from '@ant-design/icons';
 
 const HowItWorksSection = () => {
   const steps = [
     { icon: <WhatsAppOutlined />, title: "Conecte-se", description: "Cadastro rápido com seu WhatsApp. Inicie a conversa com nosso bot." },
-    { icon: <EditOutlined />, title: "Registre Facilmente", description: "Envie seus gastos e receitas por texto, áudio." },
-    { icon: <BarChartOutlined />, title: "Analise Seus Dados", description: "Peça resumos, e entenda seus hábitos financeiros." },
+    { icon: <EditOutlined />, title: "Registre Facilmente", description: "Envie seus gastos e receitas por texto ou áudio." },
+    { icon: <BarChartOutlined />, title: "Analise Seus Dados", description: "Peça resumos e entenda seus hábitos financeiros." },
     { icon: <BulbOutlined />, title: "Receba Insights", description: "Nossa IA te envia alertas e dicas personalizadas para você economizar." },
   ];
 
-  // <<< IMPORTANTE: Substitua pela URL de *embed* do seu vídeo >>>
-  // Exemplo YouTube: Vá no vídeo > Compartilhar > Incorporar > copie apenas a URL do atributo 'src'
-  const videoEmbedUrl = "https://youtube.com/shorts/bmbbCbpvT94?si=O6zM_rU4fpyLXzsN"; // <<< SUBSTITUA AQUI!
+  // Caminho para o vídeo na pasta 'public'.
+  const videoPath = "/saldozap.mp4";
 
   return (
     <section className="how-it-works-section">
@@ -38,17 +37,21 @@ const HowItWorksSection = () => {
           ))}
         </div>
 
-        {/* Coluna do Vídeo Embedado */}
+        {/* Coluna do Vídeo Local */}
         <div className="how-it-works-video-container">
-          {/* Iframe para incorporar o vídeo */}
-          <iframe
-            className="embedded-video-iframe" // Classe para estilização
-            src={videoEmbedUrl}
-            title="Demonstração Saldo Zap" // Título acessível
-            frameBorder="0" // Remove borda padrão
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" // Permissões recomendadas
-            allowFullScreen // Permite tela cheia
-          ></iframe>
+          {/* Tag <video> para renderizar o vídeo local */}
+          <video
+            className="embedded-video-iframe" // Reutilizando a classe CSS para manter o estilo
+            src={videoPath}
+            title="Demonstração Saldo Zap"
+            autoPlay  // Inicia o vídeo automaticamente
+            loop      // Repete o vídeo quando termina
+            muted     // Necessário para o autoplay funcionar na maioria dos navegadores
+            playsInline // Evita que o vídeo abra em tela cheia no iOS
+            controls  // Mostra os controles de play/pause, volume, etc.
+          >
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
         </div>
       </div>
     </section>
