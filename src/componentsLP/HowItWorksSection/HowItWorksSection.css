@@ -91,10 +91,14 @@
     border: none; 
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    object-fit: cover; /* <<< ESSA É A LINHA ADICIONADA! Faz o vídeo preencher o container, cortando o excesso. */
+    object-fit: cover; /* Mantém o vídeo cortado na página */
   }
-  /* --- FIM ESTILOS VÍDEO --- */
   
+  /* --- CORREÇÃO PARA TELA CHEIA (NOVO BLOCO) --- */
+  /* Remove o corte quando o vídeo está em tela cheia */
+  .embedded-video-iframe:fullscreen {
+    object-fit: contain; /* 'contain' mostra o vídeo inteiro, com barras pretas se necessário */
+  }
   
   /* Responsividade */
   @media (max-width: 992px) {
