@@ -69,3 +69,76 @@
     margin-bottom: 0.5rem;
     color: #FFFFFF;
   }
+  .step-description {
+    font-size: 0.95em;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Container da Coluna do Vídeo */
+  .how-it-works-video-container {
+    flex: 1.4; /* Ocupa 1.4 partes -> MAIOR */
+    min-width: 320px;
+    align-self: center; /* Tenta centralizar verticalmente */
+  }
+  
+  /* --- ESTILOS PARA O ELEMENTO DE VÍDEO --- */
+  .embedded-video-iframe {
+    display: block; 
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    border: none; 
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    object-fit: cover; /* <<< ESSA É A LINHA ADICIONADA! Faz o vídeo preencher o container, cortando o excesso. */
+  }
+  /* --- FIM ESTILOS VÍDEO --- */
+  
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .how-it-works-content {
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+    }
+    .how-it-works-steps-container {
+      width: 100%;
+      max-width: 650px;
+      flex: none;
+      order: 2; /* Passos depois do vídeo */
+    }
+    .how-it-works-video-container {
+      width: 100%;
+      max-width: 650px;
+      flex: none;
+      order: 1; /* Vídeo primeiro */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .how-it-works-section {
+      padding: 4rem 1rem;
+    }
+    .how-it-works-title {
+       font-size: 2em;
+    }
+     .how-it-works-subtitle {
+       font-size: 1em;
+       margin-bottom: 3rem;
+    }
+    .step-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+        padding: 1.2rem;
+    }
+    .step-icon-wrapper {
+        margin-bottom: 0.5rem;
+    }
+    .step-title {
+        font-size: 1.2em;
+    }
+  }
