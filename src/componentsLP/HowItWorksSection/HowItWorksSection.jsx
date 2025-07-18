@@ -13,7 +13,7 @@ const HowItWorksSection = () => {
 
   // <<< IMPORTANTE: Substitua pela URL de *embed* do seu vídeo >>>
   // Exemplo YouTube: Vá no vídeo > Compartilhar > Incorporar > copie apenas a URL do atributo 'src'
-  const videoEmbedUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ"; // <<< SUBSTITUA AQUI!
+  const videoEmbedUrl = "https://youtube.com/shorts/bmbbCbpvT94?si=O6zM_rU4fpyLXzsN"; // <<< SUBSTITUA AQUI!
 
   return (
     <section className="how-it-works-section">

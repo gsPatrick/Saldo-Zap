@@ -27,7 +27,7 @@ const DetailedPricing = () => {
       name: 'Plano Mensal',
       icon: <CalendarOutlined />,
       description: 'Flexibilidade total com pagamento mês a mês e acesso completo.',
-      price: 'R$ 21,90',
+      price: 'R$ 24,90',
       priceSuffix: '/ mês',
       features: commonPaidFeatures, // Usa as features comuns dos planos pagos
       ctaText: 'Assinar Mensal',
@@ -40,7 +40,7 @@ const DetailedPricing = () => {
       name: 'Plano Anual',
       icon: <ThunderboltFilled />,
       description: 'Economize pagando uma vez por ano e aproveite todos os benefícios.',
-      price: 'R$ 15,00',
+      price: 'R$ 17,00',
       priceSuffix: '/ ano',
       features: [
            ...commonPaidFeatures, // Inclui todas as features comuns
@@ -95,7 +95,7 @@ const DetailedPricing = () => {
                 <span className="detailed-plan-price">{plan.price}</span>
                 {plan.priceSuffix && <span className="detailed-plan-price-suffix">{plan.priceSuffix}</span>}
                  {plan.id === 'anual' && (
-                    <span className="annual-equivalent-price">(equivale a R$ 180,00 no PIX)</span>
+                    <span className="annual-equivalent-price">(equivale a R$ 204,00 no PIX)</span>
                  )}
               </div>
               <p className="detailed-plan-description">{plan.description}</p>
