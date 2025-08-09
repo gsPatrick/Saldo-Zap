@@ -15,7 +15,7 @@ const FooterLP = () => {
   // --- LINKS ---
   const whatsappContactNumber = "55119XXXXXXXX";
   const contactEmail = "contato@saldozap.com";
-  const instagramUrl = "https://www.instagram.com/saldo_zap/?igsh=dG16ejFoZzd4dTlk&utm_source=qr";
+  const instagramUrl = "https://www.instagram.com/saldozap.ai?igsh=MWN5MW5uYndzNHMwag==";
   const tiktokUrl = "https://www.tiktok.com/@user24207358690054?is_from_webapp=1&sender_device=pc";
   const youtubeUrl = "https://www.youtube.com/@Saldo.Zap401";
   // --- FIM LINKS ---
