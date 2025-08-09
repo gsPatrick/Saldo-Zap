@@ -8,7 +8,7 @@ const ContactSection = () => {
   // Substitua pelo seu número de WhatsApp no formato internacional sem '+' ou espaços
   const whatsappNumber = "55119XXXXXXXX"; // EXEMPLO: número de SP, Brasil
   const whatsappMessage = encodeURIComponent("Olá! Tenho uma dúvida sobre o Saldo Zap."); // Mensagem pré-definida (opcional)
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  const whatsappLink = `https://wa.me/message/4JRK6ZQVE4REP1`;
 
   return (
     <section className="contact-section">
